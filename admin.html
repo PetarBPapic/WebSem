@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Panel – SerijaStar</title>
+  <link rel="stylesheet" href="css/stil.css">
+</head>
+<body>
+
+<nav role="navigation">
+  <div class="nav-logo">
+    <span aria-hidden="true" style="font-size:1.4rem">▶</span>
+    <span class="logo-txt">SerijaStar</span>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="pocetna.html">Početna</a></li>
+    <li><a href="admin.html" class="aktivan">Admin Panel</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <div class="nav-desno">
+    <div class="acc-bar">
+      <button class="btn-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu">☀️</button>
+      <button class="btn-acc" onclick="povecajFont()" title="Povećaj font">A+</button>
+      <button class="btn-acc" onclick="smanjiFont()"  title="Smanji font">A-</button>
+    </div>
+    <span class="nav-uloga" id="nav-k" aria-label="Ulogovani korisnik"></span>
+    <button class="btn-odjava" onclick="odjava()" aria-label="Odjava">Odjava</button>
+    <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Meni" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="zlatna-linija"></div>
+
+<div class="panel-hd">
+  <h1>👑 Admin Panel</h1>
+  <p>Upravljanje epizodama, korisnicima i komentarima</p>
+</div>
+
+<!-- STATISTIKE -->
+<div class="stat-row">
+  <div class="stat-k"><span class="stat-n" id="st-ep">–</span><span class="stat-l">Epizoda</span></div>
+  <div class="stat-k"><span class="stat-n" id="st-oc">–</span><span class="stat-l">Ocena</span></div>
+  <div class="stat-k"><span class="stat-n" id="st-ko">–</span><span class="stat-l">Komentara</span></div>
+  <div class="stat-k"><span class="stat-n" id="st-pr">–</span><span class="stat-l">Prosek</span></div>
+</div>
+
+<div class="kontejner">
+
+  <!-- TABOVI -->
+  <div class="admin-tabs" role="tablist">
+    <button class="admin-tab-btn ak" onclick="prikaziTab('ep')"   data-tab="ep"   role="tab" aria-selected="true">📺 Epizode</button>
+    <button class="admin-tab-btn"    onclick="prikaziTab('kom')"  data-tab="kom"  role="tab" aria-selected="false">💬 Komentari</button>
+    <button class="admin-tab-btn"    onclick="prikaziTab('usr')"  data-tab="usr"  role="tab" aria-selected="false">👥 Korisnici</button>
+    <button class="admin-tab-btn"    onclick="prikaziTab('msg')"  data-tab="msg"  role="tab" aria-selected="false">📬 Poruke</button>
+  </div>
+
+  <!-- TAB: EPIZODE -->
+  <div id="tab-ep" class="tab-con vis" role="tabpanel">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+      <h2 style="font-family:var(--font-n);font-size:1.3rem;color:var(--tekst)">Lista epizoda</h2>
+      <button class="btn-dodaj" onclick="otvoriFormu()" aria-label="Dodaj novu epizodu">+ Dodaj epizodu</button>
+    </div>
+
+    <!-- FORMA (skrivena) -->
+    <div class="admin-forma" id="admin-forma" role="form" aria-label="Forma za epizodu">
+      <h3 id="forma-hd">+ Dodaj novu epizodu</h3>
+      <div class="greska-msg" id="forma-g" role="alert"></div>
+      <div class="forma-red">
+        <div class="polje-g">
+          <label for="f-naziv">Naziv epizode <span style="color:#FF7070">*</span></label>
+          <input type="text" id="f-naziv" placeholder="Npr. Pilot – Početak svega" aria-required="true">
+        </div>
+        <div class="polje-g">
+          <label for="f-datum">Datum emitovanja <span style="color:#FF7070">*</span></label>
+          <input type="date" id="f-datum" aria-required="true">
+        </div>
+      </div>
+      <div class="polje-g">
+        <label for="f-opis">Opis epizode <span style="color:#FF7070">*</span></label>
+        <textarea id="f-opis" placeholder="Kratki opis radnje..." aria-required="true"></textarea>
+      </div>
+      <div class="polje-g">
+        <label for="f-slika">Putanja do slike (opciono)</label>
+        <input type="text" id="f-slika" placeholder="slike/ep4.jpg">
+        <div class="polje-pomoc">💡 Dodaj sliku u folder <code>slike/</code> i unesi relativnu putanju</div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:6px">
+        <button class="btn-snimi" id="forma-btn" onclick="sacuvajEpizodu()">Dodaj epizodu</button>
+        <button class="btn-otk"   onclick="otkaziFormu()">Otkaži</button>
+      </div>
+    </div>
+
+    <div id="ep-tabela" role="region" aria-label="Tabela epizoda"></div>
+  </div>
+
+  <!-- TAB: KOMENTARI -->
+  <div id="tab-kom" class="tab-con" role="tabpanel">
+    <h2 style="font-family:var(--font-n);font-size:1.3rem;margin-bottom:20px">Svi komentari</h2>
+    <div id="kom-tabela"></div>
+  </div>
+
+  <!-- TAB: KORISNICI -->
+  <div id="tab-usr" class="tab-con" role="tabpanel">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+      <h2 style="font-family:var(--font-n);font-size:1.3rem">Upravljanje korisnicima</h2>
+    </div>
+
+    <!-- Forma za dodavanje korisnika -->
+    <div style="background:var(--kartica);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:24px">
+      <h3 style="font-family:var(--font-n);color:var(--zlato);margin-bottom:18px;font-size:1.1rem">+ Dodaj novog korisnika</h3>
+      <div class="forma-red">
+        <div class="polje-g">
+          <label for="nu-user">Korisničko ime <span style="color:#FF7070">*</span></label>
+          <input type="text" id="nu-user" placeholder="npr. novak123" aria-required="true">
+        </div>
+        <div class="polje-g">
+          <label for="nu-pass">Lozinka <span style="color:#FF7070">*</span></label>
+          <input type="password" id="nu-pass" placeholder="min. 4 karaktera" aria-required="true">
+        </div>
+      </div>
+      <div class="polje-g" style="margin-bottom:16px">
+        <label for="nu-uloga">Uloga</label>
+        <select id="nu-uloga">
+          <option value="user">👤 Korisnik (User)</option>
+          <option value="admin">👑 Administrator (Admin)</option>
+        </select>
+      </div>
+      <div class="greska-msg" id="nu-g" role="alert"></div>
+      <button class="btn-snimi" onclick="dodajKorisnika()">Dodaj korisnika</button>
+    </div>
+
+    <!-- Liste korisnika -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div>
+        <h3 style="font-family:var(--font-n);color:var(--zlato);margin-bottom:14px;font-size:1rem">👑 Administratori</h3>
+        <div id="lista-admins"></div>
+      </div>
+      <div>
+        <h3 style="font-family:var(--font-n);color:var(--srebro);margin-bottom:14px;font-size:1rem">👤 Korisnici</h3>
+        <div id="lista-users"></div>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding:14px;background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.15);border-radius:10px;font-size:.82rem;color:var(--tekst2)">
+      ℹ️ <strong>Napomena:</strong> Korisnici se čuvaju u localStorage vašeg browsera. Otvorite <em>data/users.txt</em> i <em>data/admins.txt</em> za referentnu listu – ali ona nije aktivna bez back-end servera.
+    </div>
+  </div>
+
+  <!-- TAB: PORUKE SA KONTAKTA -->
+  <div id="tab-msg" class="tab-con" role="tabpanel">
+    <h2 style="font-family:var(--font-n);font-size:1.3rem;margin-bottom:20px">Poruke sa kontakt forme</h2>
+    <div id="msg-tabela"></div>
+  </div>
+
+</div>
+
+<!-- MODAL ZA BRISANJE -->
+<div class="modal-bg" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-hd">
+  <div class="modal">
+    <h3 id="modal-hd">Potvrda brisanja</h3>
+    <p id="modal-txt"></p>
+    <div style="display:flex;gap:12px">
+      <button id="modal-ok" style="padding:10px 24px;background:rgba(200,50,50,.15);border:1px solid rgba(200,50,50,.5);border-radius:9px;color:#FF7070;font-family:var(--font-t);transition:var(--tr)" onmouseover="this.style.background='rgba(200,50,50,.3)'" onmouseout="this.style.background='rgba(200,50,50,.15)'">Obriši</button>
+      <button class="btn-otk" onclick="zatvoriModal()">Otkaži</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<footer role="contentinfo" style="padding:24px 40px;border-top:1px solid var(--border);text-align:center;font-size:.82rem;color:var(--tekst2);position:relative;z-index:1">
+  <span class="footer-logo-txt">SerijaStar</span> Admin Panel · © 2025
+</footer>
+
+<script src="js/core.js"></script>
+<script>
+  /* ==========================================
+     INICIJALIZACIJA
+     ========================================== */
+  if (!zastiti('admin')) { /* zastiti() vrši redirect */ }
+
+  const sesija = citajSesiju();
+  document.getElementById('nav-k').textContent = '👑 ' + sesija.k;
+  document.getElementById('btn-tema').textContent =
+    (localStorage.getItem('ss_tema')||'tamna')==='tamna'?'☀️':'🌙';
+
+  function togglujMeni() {
+    const nl=document.getElementById('nav-links'), hb=document.getElementById('hamburger');
+    const o=nl.classList.toggle('otvoreni');
+    hb.classList.toggle('otvoren',o); hb.setAttribute('aria-expanded',o);
+  }
+
+  /* ==========================================
+     TABOVI
+     ========================================== */
+  function prikaziTab(tab) {
+    document.querySelectorAll('.tab-con').forEach(t=>t.classList.remove('vis'));
+    document.querySelectorAll('.admin-tab-btn').forEach(b=>{b.classList.remove('ak');b.setAttribute('aria-selected','false');});
+    document.getElementById('tab-'+tab).classList.add('vis');
+    const btn = document.querySelector(`[data-tab="${tab}"]`);
+    btn.classList.add('ak'); btn.setAttribute('aria-selected','true');
+    if (tab==='kom') renderujKomentare();
+    if (tab==='usr') renderujKorisnike();
+    if (tab==='msg') renderujPoruke();
+  }
+
+  /* ==========================================
+     STATISTIKE
+     ========================================== */
+  function osveziStat() {
+    const s = dajStatistike();
+    document.getElementById('st-ep').textContent = s.ep;
+    document.getElementById('st-oc').textContent = s.oc;
+    document.getElementById('st-ko').textContent = s.kom;
+    document.getElementById('st-pr').textContent = s.p || '–';
+  }
+  osveziStat();
+
+  /* ==========================================
+     EPIZODE
+     ========================================== */
+  let izmenaId = null;
+
+  function otvoriFormu() {
+    izmenaId = null;
+    document.getElementById('f-naziv').value = '';
+    document.getElementById('f-datum').value  = '';
+    document.getElementById('f-opis').value   = '';
+    document.getElementById('f-slika').value  = '';
+    document.getElementById('forma-hd').textContent = '+ Dodaj novu epizodu';
+    document.getElementById('forma-btn').textContent = 'Dodaj epizodu';
+    document.getElementById('forma-g').style.display = 'none';
+    const f = document.getElementById('admin-forma');
+    f.classList.add('vidljiva');
+    f.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function otvoriIzmenu(id) {
+    const ep = dajEpizodu(id); if(!ep) return;
+    izmenaId = id;
+    document.getElementById('f-naziv').value = ep.naziv;
+    document.getElementById('f-datum').value  = ep.datum;
+    document.getElementById('f-opis').value   = ep.opis;
+    document.getElementById('f-slika').value  = ep.slika||'';
+    document.getElementById('forma-hd').textContent  = '✏️ Izmeni epizodu';
+    document.getElementById('forma-btn').textContent  = 'Sačuvaj izmene';
+    document.getElementById('forma-g').style.display = 'none';
+    const f = document.getElementById('admin-forma');
+    f.classList.add('vidljiva');
+    f.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function otkaziFormu() {
+    document.getElementById('admin-forma').classList.remove('vidljiva');
+    izmenaId = null;
+  }
+
+  function sacuvajEpizodu() {
+    const naziv = document.getElementById('f-naziv').value.trim();
+    const datum = document.getElementById('f-datum').value;
+    const opis  = document.getElementById('f-opis').value.trim();
+    const slika = document.getElementById('f-slika').value.trim();
+    const g = document.getElementById('forma-g');
+
+    if (!naziv) { prikaziGForma('Naziv je obavezan!'); document.getElementById('f-naziv').focus(); return; }
+    if (!datum) { prikaziGForma('Datum je obavezan!'); document.getElementById('f-datum').focus(); return; }
+    if (!opis)  { prikaziGForma('Opis je obavezan!');  document.getElementById('f-opis').focus();  return; }
+
+    g.style.display = 'none';
+
+    if (izmenaId !== null) {
+      izmeniEpizodu(izmenaId, {naziv,datum,opis,slika});
+      prikaziToast('✅ Epizoda izmenjena!');
+    } else {
+      dodajEpizodu({naziv,datum,opis,slika});
+      prikaziToast('✅ Epizoda dodata!');
+    }
+    otkaziFormu();
+    renderujEpizode();
+    osveziStat();
+  }
+
+  function prikaziGForma(msg) {
+    const g = document.getElementById('forma-g');
+    g.textContent = msg; g.style.display = 'block';
+    setTimeout(()=>{g.style.display='none';},4000);
+  }
+
+  function renderujEpizode() {
+    const ep = dajEpizode();
+    const k = document.getElementById('ep-tabela');
+    if (!ep.length) { k.innerHTML='<div class="prazno-msg"><div style="font-size:3rem;margin-bottom:12px">📺</div><p>Nema epizoda. Dodaj prvu!</p></div>'; return; }
+    k.innerHTML = `<table class="tabela" role="table" aria-label="Lista epizoda">
+      <thead><tr>
+        <th scope="col">ID</th><th scope="col">Naziv</th><th scope="col">Datum</th>
+        <th scope="col">Ocena</th><th scope="col">Akcije</th>
+      </tr></thead>
+      <tbody>
+      ${ep.map(e=>{
+        const oc=dajProsek(e.id);
+        const zv=oc.p>0?'★'.repeat(Math.round(oc.p))+'☆'.repeat(5-Math.round(oc.p)):'–';
+        return `<tr>
+          <td style="color:var(--zlato);font-weight:600">${e.id}</td>
+          <td><div style="font-weight:500">${e.naziv}</div><div style="font-size:.78rem;color:var(--tekst2);margin-top:2px">${e.opis.substring(0,55)}...</div></td>
+          <td style="color:var(--tekst2);font-size:.85rem">${e.datum}</td>
+          <td>${oc.p>0?`<span style="color:var(--zlato);font-size:.85rem">${zv}</span> <span style="font-size:.78rem;color:var(--srebro-t)">${oc.p} (${oc.n})</span>`:'<span style="color:var(--tekst2);font-size:.82rem">Bez ocena</span>'}</td>
+          <td>
+            <button class="btn-izmeni" onclick="otvoriIzmenu(${e.id})" aria-label="Izmeni epizodu ${e.naziv}">✏️ Izmeni</button>
+            <button class="btn-obrisi" onclick="potvrdiObrisi(${e.id},'ep')" aria-label="Obriši epizodu ${e.naziv}">🗑 Obriši</button>
+          </td>
+        </tr>`;
+      }).join('')}
+      </tbody>
+    </table>`;
+  }
+  renderujEpizode();
+
+  /* ==========================================
+     KOMENTARI
+     ========================================== */
+  function renderujKomentare() {
+    const d = ucitajDB();
+    const k = document.getElementById('kom-tabela');
+    if (!d.komentari.length) { k.innerHTML='<div class="prazno-msg"><p>Nema komentara.</p></div>'; return; }
+    k.innerHTML = `<table class="tabela" role="table">
+      <thead><tr><th>Korisnik</th><th>Epizoda</th><th>Komentar</th><th>Datum</th><th>Akcija</th></tr></thead>
+      <tbody>
+      ${d.komentari.map(c=>{
+        const ep = dajEpizodu(c.eid);
+        return `<tr>
+          <td style="color:var(--zlato);font-weight:500">${c.k}</td>
+          <td style="font-size:.85rem">${ep?ep.naziv:`(obrisana, ID:${c.eid})`}</td>
+          <td style="color:var(--tekst2);font-size:.86rem">${c.t}</td>
+          <td style="color:var(--tekst2);font-size:.82rem">${c.dat||'–'}</td>
+          <td><button class="btn-obrisi" onclick="potvrdiObrisi(${c.id},'kom')" aria-label="Obriši komentar">🗑</button></td>
+        </tr>`;
+      }).join('')}
+      </tbody>
+    </table>`;
+  }
+
+  /* ==========================================
+     KORISNICI
+     ========================================== */
+  function renderujKorisnike() {
+    const admini   = parsujTxt(dajAdmineTxt());
+    const korisnici = parsujTxt(dajKorisnikeTxt());
+
+    document.getElementById('lista-admins').innerHTML = admini.map(a=>`
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--kartica);border:1px solid rgba(212,175,55,.15);border-radius:9px;margin-bottom:8px;font-size:.86rem">
+        <span style="color:var(--zlato)">👑 ${a.u}</span>
+        ${a.u!==sesija.k?`<button class="btn-obrisi" style="padding:4px 10px;font-size:.78rem" onclick="obrisiKorisnikaTxt('${a.u}','admin')">Ukloni</button>`:'<span style="font-size:.75rem;color:var(--tekst2)">(ti)</span>'}
+      </div>`).join('');
+
+    document.getElementById('lista-users').innerHTML = korisnici.map(u=>`
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--kartica);border:1px solid var(--border);border-radius:9px;margin-bottom:8px;font-size:.86rem">
+        <span style="color:var(--srebro)">👤 ${u.u}</span>
+        <button class="btn-obrisi" style="padding:4px 10px;font-size:.78rem" onclick="obrisiKorisnikaTxt('${u.u}','user')">Ukloni</button>
+      </div>`).join('') || '<div class="prazno-msg" style="padding:20px"><p>Nema korisnika.</p></div>';
+  }
+
+  function dodajKorisnika() {
+    const u   = document.getElementById('nu-user').value.trim();
+    const p   = document.getElementById('nu-pass').value.trim();
+    const ul  = document.getElementById('nu-uloga').value;
+    const g   = document.getElementById('nu-g');
+    g.style.display='none';
+
+    if (!u || u.length<2) { g.textContent='Korisničko ime mora imati min. 2 karaktera.'; g.style.display='block'; return; }
+    if (!p || p.length<4) { g.textContent='Lozinka mora imati min. 4 karaktera.'; g.style.display='block'; return; }
+
+    // Proveri da li već postoji
+    const svi = [...parsujTxt(dajAdmineTxt()), ...parsujTxt(dajKorisnikeTxt())];
+    if (svi.some(x=>x.u===u)) { g.textContent='Korisnik sa tim imenom već postoji.'; g.style.display='block'; return; }
+
+    dodajKorisnikaTxt(u, p, ul);
+    document.getElementById('nu-user').value = '';
+    document.getElementById('nu-pass').value = '';
+    renderujKorisnike();
+    prikaziToast(`✅ Korisnik "${u}" dodat kao ${ul==='admin'?'Admin':'Korisnik'}!`);
+  }
+
+  function obrisiKorisnikaTxt(username, uloga) {
+    if (uloga==='admin') {
+      const linije = dajAdmineTxt().split('\n').filter(l=>!l.startsWith(username+':') && l.trim());
+      sacuvajAdmineTxt(linije.join('\n'));
+    } else {
+      const linije = dajKorisnikeTxt().split('\n').filter(l=>!l.startsWith(username+':') && l.trim());
+      sacuvajKorisnikeTxt(linije.join('\n'));
+    }
+    renderujKorisnike();
+    prikaziToast(`🗑 Korisnik "${username}" uklonjen.`);
+  }
+
+  /* ==========================================
+     PORUKE SA KONTAKT FORME
+     ========================================== */
+  function renderujPoruke() {
+    const poruke = JSON.parse(localStorage.getItem('ss_poruke')||'[]');
+    const k = document.getElementById('msg-tabela');
+    if (!poruke.length) { k.innerHTML='<div class="prazno-msg"><div style="font-size:2.5rem;margin-bottom:12px">📬</div><p>Nema poruka sa kontakt forme.</p></div>'; return; }
+    k.innerHTML = `<table class="tabela" role="table">
+      <thead><tr><th>Ime</th><th>Email</th><th>Tema</th><th>Poruka</th><th>Datum</th></tr></thead>
+      <tbody>
+      ${poruke.reverse().map(p=>`<tr>
+        <td style="font-weight:500">${p.ime}</td>
+        <td style="color:var(--tekst2);font-size:.85rem">${p.email}</td>
+        <td><span style="background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.25);border-radius:6px;padding:2px 8px;font-size:.75rem;color:var(--zlato)">${p.tema}</span></td>
+        <td style="color:var(--tekst2);font-size:.85rem;max-width:250px">${p.poruka.substring(0,80)}${p.poruka.length>80?'...':''}</td>
+        <td style="color:var(--tekst2);font-size:.8rem">${new Date(p.datum).toLocaleDateString('sr-RS')}</td>
+      </tr>`).join('')}
+      </tbody>
+    </table>`;
+  }
+
+  /* ==========================================
+     MODAL ZA BRISANJE
+     ========================================== */
+  function potvrdiObrisi(id, tip) {
+    const ep = tip==='ep' ? dajEpizodu(id) : null;
+    document.getElementById('modal-txt').textContent = tip==='ep'
+      ? `Obrisati epizodu "${ep?.naziv}"? Briše se i sve ocene i komentari te epizode.`
+      : `Obrisati ovaj komentar?`;
+    document.getElementById('modal').classList.add('vis');
+    document.getElementById('modal-ok').onclick = () => {
+      if (tip==='ep') { obrisiEpizodu(id); renderujEpizode(); }
+      else            { obrisiKomentar(id); renderujKomentare(); }
+      zatvoriModal(); osveziStat();
+      prikaziToast('🗑 Obrisano uspešno.');
+    };
+  }
+
+  function zatvoriModal() { document.getElementById('modal').classList.remove('vis'); }
+
+  // Zatvori modal klikom na pozadinu
+  document.getElementById('modal').addEventListener('click', e=>{
+    if (e.target===document.getElementById('modal')) zatvoriModal();
+  });
+</script>
+</body>
+</html>

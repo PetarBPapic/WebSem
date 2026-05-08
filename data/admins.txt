@@ -1,0 +1,10 @@
+# Admin nalozi – SerijaStar
+# Format: username:password  (jedan nalog po redu)
+# ================================================
+# OVA LISTA JE SAMO REFERENTNA – browser ne može
+# direktno čitati .txt fajlove bez back-end servera!
+# Nove naloge dodaj kroz Admin panel > Korisnici.
+# ================================================
+
+Admin:Admin
+superadmin:super123

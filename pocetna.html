@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SerijaStar početna stranica – otkrijte, ocenite i komentarišite TV serije i epizode na našoj platformi.">
+  <meta name="keywords" content="serije, tv serije, ocenjivanje, epizode, komentari, SerijaStar, drama, thriller, komedija">
+  <meta name="author" content="SerijaStar Tim">
+  <meta property="og:title" content="SerijaStar – Početna">
+  <meta property="og:description" content="Platforma za ljubitelje serija. Oceni, komentariši i deli utiske.">
+  <meta property="og:type" content="website">
+  <title>SerijaStar – Početna</title>
+  <link rel="stylesheet" href="css/stil.css">
+  <style>
+    /* ===== TOP 5 KARTICA ===== */
+    .top5-k {
+      background: var(--kartica); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px;
+      display: flex; align-items: center; gap: 16px;
+      transition: var(--tr); text-decoration: none; color: inherit;
+    }
+    .top5-k:hover {
+      border-color: var(--zlato);
+      box-shadow: 0 0 22px rgba(212,175,55,0.18);
+      transform: translateY(-3px);
+      text-decoration: none; color: inherit;
+    }
+    .top5-mesto {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-n); font-weight: 700; font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .top5-m1 { background:linear-gradient(135deg,#B8960C,#FFD700); color:#07070F; box-shadow:0 0 16px rgba(255,215,0,.4); }
+    .top5-m2 { background:linear-gradient(135deg,#606060,#C0C0C0); color:#07070F; }
+    .top5-m3 { background:linear-gradient(135deg,#7C4A1E,#CD7F32); color:#fff; }
+    .top5-mo { background:rgba(212,175,55,.08); border:1px solid rgba(212,175,55,.2); color:var(--tekst2); }
+    .top5-info { flex: 1; min-width: 0; }
+    .top5-naziv { font-weight: 600; font-size: .93rem; color: var(--tekst); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
+    .top5-zv    { font-size: .78rem; color: var(--zlato-s); letter-spacing: 1px; }
+    .top5-ocena { font-family: var(--font-n); font-size: 1.5rem; font-weight: 700; color: var(--zlato); line-height: 1; }
+    .top5-glasovi { font-size: .72rem; color: var(--tekst2); }
+    .top5-prazno { grid-column:1/-1; text-align:center; padding:30px; color:var(--tekst2); font-size:.9rem; }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVIGACIJA ===== -->
+<nav id="nav" role="navigation" aria-label="Glavna navigacija">
+  <div class="nav-logo">
+    <!-- Zameni span sa <img src="slike/logo.png" alt="SerijaStar logo" class="logo-img"> -->
+    <span aria-hidden="true" style="font-size:1.4rem">▶</span>
+    <span class="logo-txt">SerijaStar</span>
+  </div>
+
+  <ul class="nav-links" id="nav-links" role="menubar">
+    <li><a href="pocetna.html" class="aktivan" role="menuitem">Početna</a></li>
+    <li><a href="o-nama.html" role="menuitem">O nama</a></li>
+    <li><a href="user.html" role="menuitem">Epizode</a></li>
+    <li><a href="kontakt.html" role="menuitem">Kontakt</a></li>
+  </ul>
+
+  <div class="nav-desno">
+    <div class="acc-bar">
+      <button class="btn-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu" aria-label="Promena teme">☀️</button>
+      <button class="btn-acc" onclick="povecajFont()" title="Povećaj font" aria-label="Povećaj veličinu fonta">A+</button>
+      <button class="btn-acc" onclick="smanjiFont()"  title="Smanji font"  aria-label="Smanji veličinu fonta">A-</button>
+    </div>
+    <a href="index.html" class="btn-prim" style="font-size:.82rem;padding:8px 18px;">Prijavi se</a>
+    <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Otvori meni" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="zlatna-linija"></div>
+
+<!-- ===== SLIDER ===== -->
+<section class="slider-wrap" aria-label="Istaknute serije">
+  <div class="slider-track" id="slider">
+    <!-- Slajd 1 -->
+    <div class="slider-slide">
+      <!--
+        SLIKA: Zameni div sa: <img src="slike/slider1.jpg" alt="Drama serija – misteriozni grad" class="...">
+        Preporučena dimenzija: 1920x600px
+      -->
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#0A0A1A,#1A1020,#0A0810);display:flex;align-items:center;justify-content:center;">
+        <div style="font-size:6rem;opacity:.15">🎬</div>
+      </div>
+      <div class="slider-caption">
+        <h3>Sezona 1 – Pilot epizoda</h3>
+        <p>Upoznajte likove u misterioznom gradu gde ništa nije onakvo kakvim se čini</p>
+      </div>
+    </div>
+    <!-- Slajd 2 -->
+    <div class="slider-slide">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#0A1020,#0A1A10,#151020);display:flex;align-items:center;justify-content:center;">
+        <div style="font-size:6rem;opacity:.15">🏆</div>
+      </div>
+      <div class="slider-caption">
+        <h3>Ocenjuj i osvoji titulu Kritičara</h3>
+        <p>Što više oceniš i komentarišeš, to više gradi tvoj glas u zajednici</p>
+      </div>
+    </div>
+    <!-- Slajd 3 -->
+    <div class="slider-slide">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#1A0A10,#0A0A1A,#100A1A);display:flex;align-items:center;justify-content:center;">
+        <div style="font-size:6rem;opacity:.15">⭐</div>
+      </div>
+      <div class="slider-caption">
+        <h3>Tvoje mišljenje je važno</h3>
+        <p>Svaka ocena i komentar oblikuju rang listu najomiljenijih epizoda</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigacija slidera -->
+  <button class="slider-btn slider-prev" onclick="sliderPomeri(-1)" aria-label="Prethodna slika">‹</button>
+  <button class="slider-btn slider-next" onclick="sliderPomeri(1)"  aria-label="Sledeća slika">›</button>
+  <div class="slider-dots" id="slider-dots" role="tablist" aria-label="Navigacija slidera"></div>
+</section>
+
+<!-- ===== HERO ===== -->
+<header class="hero" role="banner">
+  <div class="hero-badge" aria-label="Novost">✦ Nova sezona dostupna</div>
+  <h1>Otkrij. Gledaj.<br>Oceni.</h1>
+  <p>Tvoje mišljenje oblikuje rang listu. Oceni epizode, ostavi komentar i pridruži se zajednici ljubitelja serija.</p>
+  <div class="hero-btns">
+    <a href="user.html"  class="btn-prim" aria-label="Pregledaj epizode">📺 Pregledaj epizode</a>
+    <a href="index.html" class="btn-sek"  aria-label="Postani član">✦ Postani član</a>
+  </div>
+</header>
+
+<!-- Statistike -->
+<div class="stat-row" role="complementary" aria-label="Statistike platforme">
+  <div class="stat-k">
+    <span class="stat-n" id="s-ep">–</span>
+    <span class="stat-l">Epizoda</span>
+  </div>
+  <div class="stat-k">
+    <span class="stat-n" id="s-oc">–</span>
+    <span class="stat-l">Ocena</span>
+  </div>
+  <div class="stat-k">
+    <span class="stat-n" id="s-pr">–</span>
+    <span class="stat-l">Prosečna ocena</span>
+  </div>
+  <div class="stat-k">
+    <span class="stat-n" id="s-ko">–</span>
+    <span class="stat-l">Komentara</span>
+  </div>
+</div>
+
+<!-- ===== NAJNOVIJE EPIZODE ===== -->
+<section class="kontejner" aria-labelledby="ep-hd">
+  <div class="sek-hd">
+    <h2 id="ep-hd"><span>Najnovije</span> epizode</h2>
+    <a href="user.html" class="sek-vidi-sve" aria-label="Vidi sve epizode">Vidi sve →</a>
+  </div>
+  <div class="ep-grid" id="ep-grid" aria-label="Lista epizoda">
+    <p style="color:var(--tekst2)">Učitavanje...</p>
+  </div>
+</section>
+
+<!-- ===== VIDEO SEKCIJA ===== -->
+<section class="video-sekcija" aria-labelledby="vid-hd">
+  <div class="kontejner">
+    <div class="sek-hd" style="margin-bottom:24px">
+      <h2 id="vid-hd"><span>Video</span> pregled</h2>
+    </div>
+    <div class="video-wrap" role="region" aria-label="YouTube video player">
+      <!-- YouTube embed – zameni VIDEO_ID sa stvarnim ID-em -->
+      <iframe
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="SerijaStar – Promo video | YouTube embed"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+    <p style="text-align:center;color:var(--tekst2);font-size:.82rem;margin-top:12px;">
+      Zameni YouTube embed ID sa tvojim videom (u src atributu gornjeg iframe-a)
+    </p>
+  </div>
+</section>
+
+<!-- ===== O PLATFORMI ===== -->
+<section class="kontejner" aria-labelledby="o-hd">
+  <div class="sek-hd" style="margin-bottom:24px">
+    <h2 id="o-hd">O <span>platformi</span></h2>
+    <a href="o-nama.html" class="sek-vidi-sve">Saznaj više →</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;">
+    <div class="stat-k" style="text-align:left;padding:28px">
+      <div style="font-size:2rem;margin-bottom:12px">⭐</div>
+      <div style="font-family:var(--font-n);font-size:1.1rem;margin-bottom:8px;color:var(--zlato)">Ocenjivanje</div>
+      <div style="font-size:.88rem;color:var(--tekst2)">Ocenjuj epizode od 1 do 5 zvezdica. Tvoja ocena se instantno reflektuje u proseku.</div>
+    </div>
+    <div class="stat-k" style="text-align:left;padding:28px">
+      <div style="font-size:2rem;margin-bottom:12px">💬</div>
+      <div style="font-family:var(--font-n);font-size:1.1rem;margin-bottom:8px;color:var(--zlato)">Komentari</div>
+      <div style="font-size:.88rem;color:var(--tekst2)">Ostavi komentar na svaku epizodu. Možeš ga izmeniti kad god poželiš.</div>
+    </div>
+    <div class="stat-k" style="text-align:left;padding:28px">
+      <div style="font-size:2rem;margin-bottom:12px">👑</div>
+      <div style="font-family:var(--font-n);font-size:1.1rem;margin-bottom:8px;color:var(--zlato)">Admin panel</div>
+      <div style="font-size:.88rem;color:var(--tekst2)">Admin dodaje, menja i briše epizode. Upravlja korisnicima i komentarima.</div>
+    </div>
+    <div class="stat-k" style="text-align:left;padding:28px">
+      <div style="font-size:2rem;margin-bottom:12px">🔒</div>
+      <div style="font-family:var(--font-n);font-size:1.1rem;margin-bottom:8px;color:var(--zlato)">Privatnost</div>
+      <div style="font-size:.88rem;color:var(--tekst2)">Svi podaci se čuvaju lokalno u tvom browseru. Ništa se ne šalje na server.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOP 5 EPIZODA ===== -->
+<section style="background:var(--bg2);padding:60px 0;position:relative;z-index:1" aria-labelledby="top5-hd">
+  <div class="kontejner" style="padding-top:0;padding-bottom:0">
+    <div class="sek-hd" style="margin-bottom:28px">
+      <h2 id="top5-hd"><span>🏆 Top 5</span> epizoda</h2>
+      <a href="user.html" class="sek-vidi-sve" aria-label="Vidi kompletan Top 10">Vidi Top 10 →</a>
+    </div>
+
+    <!-- Top 5 lista – punjeno JS-om -->
+    <div id="top5-lista" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px" role="list" aria-label="Top 5 epizoda po oceni">
+      <!-- JS puni ovde -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-txt">SerijaStar</div>
+      <p class="footer-opis">Platforma za ljubitelje TV serija. Ocenjuj, komentariši i otkrivaj skrivene bisere televizije. Proof-of-concept projekat.</p>
+    </div>
+    <div>
+      <div class="footer-hd">Navigacija</div>
+      <nav class="footer-links" aria-label="Footer navigacija">
+        <a href="pocetna.html">Početna</a>
+        <a href="o-nama.html">O nama</a>
+        <a href="user.html">Epizode</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+    <div>
+      <div class="footer-hd">Nalog</div>
+      <nav class="footer-links" aria-label="Nalog navigacija">
+        <a href="index.html">Prijava</a>
+        <a href="admin.html">Admin panel</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 SerijaStar. Sva prava zadržana.</span>
+    <span style="color:var(--zlato)">Izrađeno sa ♥ za ljubitelje serija</span>
+  </div>
+</footer>
+
+<script src="js/core.js"></script>
+<script>
+  // Tema dugme
+  document.getElementById('btn-tema').textContent =
+    (localStorage.getItem('ss_tema')||'tamna')==='tamna' ? '☀️' : '🌙';
+
+  // Hamburger meni
+  function togglujMeni() {
+    const nl = document.getElementById('nav-links');
+    const hb = document.getElementById('hamburger');
+    const open = nl.classList.toggle('otvoreni');
+    hb.classList.toggle('otvoren', open);
+    hb.setAttribute('aria-expanded', open);
+  }
+
+  // Statistike
+  const st = dajStatistike();
+  document.getElementById('s-ep').textContent = st.ep;
+  document.getElementById('s-oc').textContent = st.oc;
+  document.getElementById('s-pr').textContent = st.p || '–';
+  document.getElementById('s-ko').textContent = st.kom;
+
+  // ===== TOP 5 EPIZODA =====
+  (function renderujTop5() {
+    const rangirane = dajEpizode()
+      .map(ep => ({ ep, oc: dajProsek(ep.id) }))
+      .filter(x => x.oc.n > 0)
+      .sort((a,b) => b.oc.p !== a.oc.p ? b.oc.p - a.oc.p : b.oc.n - a.oc.n)
+      .slice(0, 5);
+
+    const k = document.getElementById('top5-lista');
+    if (!rangirane.length) {
+      k.innerHTML = '<div class="top5-prazno"><div style="font-size:2rem;margin-bottom:8px">📊</div><p>Nema ocenjenih epizoda.<br><a href="user.html" style="color:var(--zlato)">Budi prvi koji ocenjuje!</a></p></div>';
+      return;
+    }
+
+    const klasaMesta = i => ['top5-m1','top5-m2','top5-m3','top5-mo','top5-mo'][i];
+    const tekstMesta = i => ['🥇','🥈','🥉','4','5'][i];
+    const zv = p => '★'.repeat(Math.round(p)) + '☆'.repeat(5-Math.round(p));
+
+    k.innerHTML = rangirane.map(({ep,oc},i) => `
+      <a class="top5-k" href="user.html" role="listitem" aria-label="${i+1}. ${ep.naziv} – ocena ${oc.p}">
+        <div class="top5-mesto ${klasaMesta(i)}" aria-hidden="true">${tekstMesta(i)}</div>
+        <div class="top5-info">
+          <div class="top5-naziv" title="${ep.naziv}">${ep.naziv}</div>
+          <div class="top5-zv" aria-hidden="true">${zv(oc.p)}</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div class="top5-ocena" aria-label="Ocena ${oc.p}">${oc.p}</div>
+          <div class="top5-glasovi">${oc.n} ${oc.n===1?'glas':'glasova'}</div>
+        </div>
+      </a>`).join('');
+  })();
+
+  // Prikaz 3 najnovije epizode
+  const epizode = dajEpizode().slice(-3).reverse();
+  const grid = document.getElementById('ep-grid');
+  if (epizode.length === 0) {
+    grid.innerHTML = '<p style="color:var(--tekst2);grid-column:1/-1">Admin još nije dodao epizode.</p>';
+  } else {
+    grid.innerHTML = epizode.map(ep => {
+      const oc = dajProsek(ep.id);
+      const zv = '★'.repeat(Math.round(oc.p)) + '☆'.repeat(5-Math.round(oc.p));
+      return `
+      <article class="ep-k" tabindex="0" aria-label="Epizoda: ${ep.naziv}">
+        ${ep.slika
+          ? `<img src="${ep.slika}" alt="Slika epizode: ${ep.naziv}" class="ep-img" loading="lazy" onerror="this.outerHTML='<div class=ep-img-ph>📺</div>'">`
+          : `<div class="ep-img-ph" aria-hidden="true">📺</div>`}
+        <div class="ep-body">
+          <div class="ep-naziv">${ep.naziv}</div>
+          <div class="ep-datum">📅 ${ep.datum}</div>
+          <div class="ep-opis">${ep.opis}</div>
+          <div class="ep-ocena-row">
+            <span class="zv-prikaz" aria-label="Ocena ${oc.p} od 5">${oc.p>0?zv:'☆☆☆☆☆'}</span>
+            ${oc.n>0?`<span class="ocena-n">${oc.p}</span><span class="ocena-br">(${oc.n})</span>`
+                    :`<span class="ocena-br">Bez ocena</span>`}
+          </div>
+          <a href="user.html" class="btn-sek" style="font-size:.82rem;padding:8px 16px;display:inline-block">Oceni →</a>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  // ===== SLIDER =====
+  let slajd = 0;
+  const ukupno = document.querySelectorAll('.slider-slide').length;
+  const dots = document.getElementById('slider-dots');
+  let slajdTimer;
+
+  // Kreira dots
+  for (let i=0; i<ukupno; i++) {
+    const d = document.createElement('button');
+    d.className = 'slider-dot' + (i===0?' aktivan':'');
+    d.setAttribute('aria-label', `Slajd ${i+1}`);
+    d.setAttribute('role', 'tab');
+    d.onclick = () => idiNaSlajd(i);
+    dots.appendChild(d);
+  }
+
+  function osveziSlider() {
+    document.getElementById('slider').style.transform = `translateX(-${slajd*100}%)`;
+    document.querySelectorAll('.slider-dot').forEach((d,i)=>{
+      d.classList.toggle('aktivan', i===slajd);
+      d.setAttribute('aria-selected', i===slajd);
+    });
+  }
+
+  function sliderPomeri(smer) {
+    slajd = (slajd + smer + ukupno) % ukupno;
+    osveziSlider();
+    resetTimer();
+  }
+
+  function idiNaSlajd(i) { slajd=i; osveziSlider(); resetTimer(); }
+
+  function resetTimer() {
+    clearInterval(slajdTimer);
+    slajdTimer = setInterval(()=>sliderPomeri(1), 5000);
+  }
+
+  // Auto-play sa tajmerom od 5 sekundi
+  slajdTimer = setInterval(()=>sliderPomeri(1), 5000);
+
+  // Touch podrška za slider
+  let startX=0;
+  const track = document.getElementById('slider');
+  track.addEventListener('touchstart', e=>{ startX=e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend',   e=>{ const d=e.changedTouches[0].clientX-startX; if(Math.abs(d)>50) sliderPomeri(d<0?1:-1); }, {passive:true});
+</script>
+</body>
+</html>

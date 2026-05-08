@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="O nama – SerijaStar tim, naša misija i vizija platforme za ocenjivanje TV serija.">
+  <meta name="keywords" content="o nama, SerijaStar tim, misija, vizija, ocenjivanje serija">
+  <meta name="author" content="SerijaStar Tim">
+  <title>O nama – SerijaStar</title>
+  <link rel="stylesheet" href="css/stil.css">
+</head>
+<body>
+
+<nav id="nav" role="navigation">
+  <div class="nav-logo">
+    <span aria-hidden="true" style="font-size:1.4rem">▶</span>
+    <span class="logo-txt">SerijaStar</span>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="pocetna.html">Početna</a></li>
+    <li><a href="o-nama.html" class="aktivan">O nama</a></li>
+    <li><a href="user.html">Epizode</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <div class="nav-desno">
+    <div class="acc-bar">
+      <button class="btn-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu">☀️</button>
+      <button class="btn-acc" onclick="povecajFont()" title="Povećaj font">A+</button>
+      <button class="btn-acc" onclick="smanjiFont()"  title="Smanji font">A-</button>
+    </div>
+    <a href="index.html" class="btn-prim" style="font-size:.82rem;padding:8px 18px;">Prijavi se</a>
+    <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Meni" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="zlatna-linija"></div>
+
+<!-- ZAGLAVLJE -->
+<div class="panel-hd">
+  <h1>O nama</h1>
+  <p>Ko smo i šta nas pokreće</p>
+</div>
+
+<!-- O NAMA SEKCIJA -->
+<section class="kontejner">
+  <div class="o-nama-grid">
+    <div>
+      <!--
+        SLIKA: Zameni div sa:
+        <img src="slike/o-nama.jpg" alt="Tim SerijaStar platforme na poslu" class="o-nama-slika">
+      -->
+      <div class="o-nama-slika-ph" role="img" aria-label="Slika tima SerijaStar">🎬</div>
+    </div>
+    <div class="o-nama-content">
+      <h2>Naša <span style="color:var(--zlato)">priča</span></h2>
+      <p>SerijaStar je nastao iz jednostavne ideje: svaki gledaoc zaslužuje da ima glas. Premešten između hiljada epizoda i nebrojenih serija, prosečan fan nema gde da ostavi smislenu ocenu ili komentar koji će čuti pravi ljudi.</p>
+      <p>Naša platforma je odgovor na taj problem. Ovde tvoje mišljenje nije broj u statistici – ono oblikuje rang liste, pomaže drugima da odluče šta da gledaju i gradi zajednicu koja zaista voli televiziju.</p>
+      <p>Projekat je zamišljen kao proof-of-concept, ali sa vizijom koja daleko prevazilazi to – zamislite mesto gde se svi fanovi serija sreću.</p>
+      <a href="kontakt.html" class="btn-prim" style="display:inline-flex;margin-top:8px">Kontaktirajte nas →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TIM -->
+<section class="kontejner" style="padding-top:0">
+  <div class="sek-hd">
+    <h2>Naš <span style="color:var(--zlato)">tim</span></h2>
+  </div>
+  <div class="tim-grid">
+    <div class="tim-k">
+      <!--
+        AVATAR: Zameni div sa:
+        <img src="slike/clan1.jpg" alt="Portret člana tima – Petar" style="width:70px;height:70px;border-radius:50%;margin:0 auto 12px;display:block;object-fit:cover;">
+      -->
+      <div class="tim-avatar" aria-hidden="true">👨‍💻</div>
+      <div class="tim-ime">Petar P.</div>
+      <div class="tim-uloga">Osnivač & Developer</div>
+    </div>
+    <div class="tim-k">
+      <div class="tim-avatar" aria-hidden="true">🎨</div>
+      <div class="tim-ime">Ana M.</div>
+      <div class="tim-uloga">UI/UX Dizajner</div>
+    </div>
+    <div class="tim-k">
+      <div class="tim-avatar" aria-hidden="true">📝</div>
+      <div class="tim-ime">Marko J.</div>
+      <div class="tim-uloga">Content Manager</div>
+    </div>
+    <div class="tim-k">
+      <div class="tim-avatar" aria-hidden="true">📊</div>
+      <div class="tim-ime">Sara L.</div>
+      <div class="tim-uloga">Marketing & SEO</div>
+    </div>
+  </div>
+</section>
+
+<!-- MISIJA -->
+<section style="background:var(--bg2);padding:60px 0;position:relative;z-index:1">
+  <div class="kontejner" style="padding-top:0;padding-bottom:0">
+    <div style="text-align:center;max-width:700px;margin:0 auto">
+      <div style="font-size:3rem;margin-bottom:16px">✦</div>
+      <h2 style="font-family:var(--font-n);font-size:2rem;color:var(--zlato);margin-bottom:16px">Naša misija</h2>
+      <p style="color:var(--tekst2);font-size:1.05rem;line-height:1.8">Verujem da svaka serija zaslužuje poštenu ocenu, a svaki gledaoc zaslužuje da bude čuven. SerijaStar je platforma gde se ta dva sveta sreću – transparentno, fer i sa ljubavlju prema televizijskoj umetnosti.</p>
+    </div>
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-txt">SerijaStar</div>
+      <p class="footer-opis">Platforma za ljubitelje TV serija. Ocenjuj, komentariši i otkrivaj skrivene bisere televizije.</p>
+    </div>
+    <div>
+      <div class="footer-hd">Navigacija</div>
+      <nav class="footer-links">
+        <a href="pocetna.html">Početna</a>
+        <a href="o-nama.html">O nama</a>
+        <a href="user.html">Epizode</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+    <div>
+      <div class="footer-hd">Nalog</div>
+      <nav class="footer-links">
+        <a href="index.html">Prijava</a>
+        <a href="admin.html">Admin panel</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 SerijaStar.</span>
+    <span style="color:var(--zlato)">Izrađeno sa ♥</span>
+  </div>
+</footer>
+
+<script src="js/core.js"></script>
+<script>
+  document.getElementById('btn-tema').textContent =
+    (localStorage.getItem('ss_tema')||'tamna')==='tamna'?'☀️':'🌙';
+  function togglujMeni() {
+    const nl=document.getElementById('nav-links'), hb=document.getElementById('hamburger');
+    const o=nl.classList.toggle('otvoreni');
+    hb.classList.toggle('otvoren',o); hb.setAttribute('aria-expanded',o);
+  }
+</script>
+</body>
+</html>

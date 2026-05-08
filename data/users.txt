@@ -1,0 +1,14 @@
+# Korisnički nalozi – SerijaStar
+# Format: username:password  (jedan nalog po redu)
+# ================================================
+# OVA LISTA JE SAMO REFERENTNA – browser ne može
+# direktno čitati .txt fajlove bez back-end servera!
+# Nove naloge dodaj kroz Admin panel > Korisnici.
+# Dodati korisnici se čuvaju u localStorage browsera.
+# ================================================
+
+User:User
+marko:marko123
+ana:ana456
+pera:pera
+p123:p123

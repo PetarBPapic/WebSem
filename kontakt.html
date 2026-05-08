@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kontaktirajte SerijaStar tim – pišite nam pitanja, sugestije ili prijave grešaka.">
+  <meta name="keywords" content="kontakt, SerijaStar kontakt, poruka, sugestija, podrška">
+  <meta name="author" content="SerijaStar Tim">
+  <title>Kontakt – SerijaStar</title>
+  <link rel="stylesheet" href="css/stil.css">
+  <style>
+    .kontakt-forma-k {
+      background:var(--kartica); border:1px solid var(--border); border-radius:var(--radius);
+      padding:36px; position:relative;
+    }
+    .kontakt-forma-k::before {
+      content:''; position:absolute; top:0; left:20%; right:20%;
+      height:2px; background:linear-gradient(90deg,transparent,var(--zlato),transparent);
+    }
+    .uspeh-msg {
+      background:rgba(40,160,80,.12); border:1px solid rgba(60,200,100,.3);
+      border-radius:10px; padding:16px; color:#80FF80;
+      font-size:.9rem; display:none; text-align:center;
+      animation:fadeIn .4s ease;
+    }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+    .char-count { font-size:.72rem; color:var(--tekst2); text-align:right; margin-top:4px; }
+    .kontakt-stavka-i { min-width:36px; text-align:center; }
+  </style>
+</head>
+<body>
+
+<nav role="navigation">
+  <div class="nav-logo">
+    <span aria-hidden="true" style="font-size:1.4rem">▶</span>
+    <span class="logo-txt">SerijaStar</span>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="pocetna.html">Početna</a></li>
+    <li><a href="o-nama.html">O nama</a></li>
+    <li><a href="user.html">Epizode</a></li>
+    <li><a href="kontakt.html" class="aktivan">Kontakt</a></li>
+  </ul>
+  <div class="nav-desno">
+    <div class="acc-bar">
+      <button class="btn-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu">☀️</button>
+      <button class="btn-acc" onclick="povecajFont()" title="Povećaj font">A+</button>
+      <button class="btn-acc" onclick="smanjiFont()"  title="Smanji font">A-</button>
+    </div>
+    <a href="index.html" class="btn-prim" style="font-size:.82rem;padding:8px 18px;">Prijavi se</a>
+    <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Meni" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="zlatna-linija"></div>
+
+<div class="panel-hd">
+  <h1>Kontakt</h1>
+  <p>Pišite nam – odgovaramo u roku od 24 sata</p>
+</div>
+
+<section class="kontejner">
+  <div class="kontakt-grid">
+
+    <!-- KONTAKT INFO -->
+    <div class="kontakt-info">
+      <h2><span style="color:var(--zlato)">Povežite</span> se s nama</h2>
+      <p>Imate pitanje, sugestiju ili ste pronašli grešku? Javite nam se – svaka povratna informacija nam je dragocena i pomaže nam da unapredimo platformu.</p>
+
+      <div class="kontakt-stavka">
+        <div class="kontakt-stavka-i" aria-hidden="true">📧</div>
+        <div class="kontakt-stavka-t">
+          <strong>Email</strong><br>kontakt@serijastar.rs
+        </div>
+      </div>
+      <div class="kontakt-stavka">
+        <div class="kontakt-stavka-i" aria-hidden="true">📍</div>
+        <div class="kontakt-stavka-t">
+          <strong>Lokacija</strong><br>Beograd, Srbija
+        </div>
+      </div>
+      <div class="kontakt-stavka">
+        <div class="kontakt-stavka-i" aria-hidden="true">⏱</div>
+        <div class="kontakt-stavka-t">
+          <strong>Radno vreme podrške</strong><br>Pon–Pet: 09:00–17:00
+        </div>
+      </div>
+
+      <!-- GOOGLE MAPS EMBED -->
+      <div class="mapa-wrap" role="region" aria-label="Google mapa lokacije SerijaStar">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.1234567890123!2d20.4612!3d44.8178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7aa3a3a3a3a3%3A0x0!2sBeograd%2C+Srbija!5e0!3m2!1ssr!2srs!4v1234567890!5m2!1ssr!2srs"
+          title="Mapa – Beograd, Srbija | Google Maps"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          aria-label="Interaktivna Google mapa Beograda">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- KONTAKT FORMA (sa JS validacijom) -->
+    <div>
+      <div class="kontakt-forma-k">
+        <h3 style="font-family:var(--font-n);color:var(--zlato);margin-bottom:22px;font-size:1.4rem">Pošaljite poruku</h3>
+
+        <div class="greska-msg" id="forma-greska" role="alert" aria-live="polite"></div>
+        <div class="uspeh-msg" id="forma-uspeh" role="status" aria-live="polite">
+          ✅ Poruka je uspešno poslata! Odgovorićemo vam uskoro.
+        </div>
+
+        <!-- Ime -->
+        <div class="polje-g">
+          <label for="ime">Ime i prezime <span style="color:#FF7070" aria-label="obavezno">*</span></label>
+          <input type="text" id="ime" placeholder="Vaše ime i prezime" maxlength="80"
+                 aria-required="true" autocomplete="name" onkeyup="validujPolje(this,2,'Ime mora imati min. 2 karaktera.')">
+        </div>
+
+        <!-- Email -->
+        <div class="polje-g">
+          <label for="email">Email adresa <span style="color:#FF7070" aria-label="obavezno">*</span></label>
+          <input type="email" id="email" placeholder="vasa@email.com"
+                 aria-required="true" autocomplete="email" onkeyup="validujEmail()">
+        </div>
+
+        <!-- Tema -->
+        <div class="polje-g">
+          <label for="tema">Tema poruke <span style="color:#FF7070" aria-label="obavezno">*</span></label>
+          <select id="tema" aria-required="true">
+            <option value="">– Izaberite temu –</option>
+            <option value="pitanje">Pitanje o platformi</option>
+            <option value="greška">Prijava greške</option>
+            <option value="sugestija">Sugestija</option>
+            <option value="saradnja">Predlog za saradnju</option>
+            <option value="ostalo">Ostalo</option>
+          </select>
+        </div>
+
+        <!-- Poruka -->
+        <div class="polje-g">
+          <label for="poruka">Poruka <span style="color:#FF7070" aria-label="obavezno">*</span></label>
+          <textarea id="poruka" placeholder="Napišite vašu poruku..." maxlength="1000"
+                    aria-required="true" rows="6" oninput="azurirajBrojac()"></textarea>
+          <div class="char-count"><span id="brojac">0</span>/1000 karaktera</div>
+        </div>
+
+        <!-- Saglasnost (pristupačnost) -->
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:20px">
+          <input type="checkbox" id="saglasnost" style="margin-top:3px;accent-color:var(--zlato);width:16px;height:16px" aria-required="true">
+          <label for="saglasnost" style="font-size:.83rem;color:var(--tekst2);letter-spacing:0;text-transform:none;font-weight:400">
+            Saglasan/na sam da SerijaStar čuva moje podatke u svrhu odgovaranja na upit. <span style="color:#FF7070">*</span>
+          </label>
+        </div>
+
+        <button class="btn-prim" onclick="posaljiFormu()" style="width:100%;justify-content:center"
+                aria-label="Pošalji kontakt poruku">
+          ✦ Pošalji poruku
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-txt">SerijaStar</div>
+      <p class="footer-opis">Platforma za ljubitelje TV serija. Proof-of-concept projekat.</p>
+    </div>
+    <div>
+      <div class="footer-hd">Navigacija</div>
+      <nav class="footer-links">
+        <a href="pocetna.html">Početna</a>
+        <a href="o-nama.html">O nama</a>
+        <a href="user.html">Epizode</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+    <div>
+      <div class="footer-hd">Nalog</div>
+      <nav class="footer-links">
+        <a href="index.html">Prijava</a>
+        <a href="admin.html">Admin panel</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 SerijaStar.</span>
+    <span style="color:var(--zlato)">Izrađeno sa ♥</span>
+  </div>
+</footer>
+
+<script src="js/core.js"></script>
+<script>
+  document.getElementById('btn-tema').textContent =
+    (localStorage.getItem('ss_tema')||'tamna')==='tamna'?'☀️':'🌙';
+
+  function togglujMeni() {
+    const nl=document.getElementById('nav-links'), hb=document.getElementById('hamburger');
+    const o=nl.classList.toggle('otvoreni');
+    hb.classList.toggle('otvoren',o); hb.setAttribute('aria-expanded',o);
+  }
+
+  /* ===== JS VALIDACIJA FORME ===== */
+
+  function azurirajBrojac() {
+    document.getElementById('brojac').textContent = document.getElementById('poruka').value.length;
+  }
+
+  function validujPolje(el, minLen, msg) {
+    const ok = el.value.trim().length >= minLen;
+    el.classList.toggle('greska-p', !ok);
+    return ok;
+  }
+
+  function validujEmail() {
+    const el = document.getElementById('email');
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+    el.classList.toggle('greska-p', !ok && el.value.length>0);
+    return ok;
+  }
+
+  function prikaziGresku(msg) {
+    const g = document.getElementById('forma-greska');
+    g.textContent = msg; g.style.display='block';
+    document.getElementById('forma-uspeh').style.display='none';
+    setTimeout(()=>{ g.style.display='none'; }, 5000);
+  }
+
+  function posaljiFormu() {
+    // Sakri prethodne poruke
+    document.getElementById('forma-greska').style.display = 'none';
+    document.getElementById('forma-uspeh').style.display   = 'none';
+
+    const ime  = document.getElementById('ime').value.trim();
+    const email= document.getElementById('email').value.trim();
+    const tema = document.getElementById('tema').value;
+    const por  = document.getElementById('poruka').value.trim();
+    const sag  = document.getElementById('saglasnost').checked;
+
+    // Validacija – HTML5 + JS
+    if (ime.length < 2) {
+      document.getElementById('ime').classList.add('greska-p');
+      prikaziGresku('❌ Unesite vaše ime (min. 2 karaktera).');
+      document.getElementById('ime').focus();
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById('email').classList.add('greska-p');
+      prikaziGresku('❌ Unesite ispravnu email adresu.');
+      document.getElementById('email').focus();
+      return;
+    }
+    if (!tema) {
+      document.getElementById('tema').classList.add('greska-p');
+      prikaziGresku('❌ Izaberite temu poruke.');
+      document.getElementById('tema').focus();
+      return;
+    }
+    if (por.length < 10) {
+      document.getElementById('poruka').classList.add('greska-p');
+      prikaziGresku('❌ Poruka mora imati minimum 10 karaktera.');
+      document.getElementById('poruka').focus();
+      return;
+    }
+    if (!sag) {
+      prikaziGresku('❌ Morate prihvatiti uslove pre slanja.');
+      document.getElementById('saglasnost').focus();
+      return;
+    }
+
+    // Ukloni greška stilove
+    ['ime','email','tema','poruka'].forEach(id => document.getElementById(id).classList.remove('greska-p'));
+
+    // Sačuvaj u localStorage (simulacija slanja)
+    const poruke = JSON.parse(localStorage.getItem('ss_poruke')||'[]');
+    poruke.push({ ime, email, tema, poruka: por, datum: new Date().toISOString() });
+    localStorage.setItem('ss_poruke', JSON.stringify(poruke));
+
+    // Prikaži uspeh i resetuj formu
+    document.getElementById('forma-uspeh').style.display = 'block';
+    document.getElementById('ime').value    = '';
+    document.getElementById('email').value  = '';
+    document.getElementById('tema').value   = '';
+    document.getElementById('poruka').value = '';
+    document.getElementById('saglasnost').checked = false;
+    document.getElementById('brojac').textContent = '0';
+  }
+</script>
+</body>
+</html>
