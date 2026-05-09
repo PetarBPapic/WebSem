@@ -1,0 +1,172 @@
+{
+  "sr": {
+    "nav": {
+      "pocetna":  "Početna",
+      "onama":    "O nama",
+      "epizode":  "Epizode",
+      "kontakt":  "Kontakt",
+      "prijava":  "Prijavi se",
+      "odjava":   "Odjava",
+      "admin":    "Admin Panel",
+      "mega_ocenjivanje": "Ocenjivanje",
+      "mega_top10":       "Top 10 lista",
+      "mega_najnovije":   "Najnovije",
+      "mega_onama":       "O nama",
+      "mega_tim":         "Naš tim",
+      "mega_misija":      "Misija",
+      "mega_kontakt":     "Kontakt forma",
+      "mega_mapa":        "Lokacija",
+      "mega_dokument":    "Dokumentacija"
+    },
+    "hero": {
+      "badge":   "✦ Nova sezona dostupna",
+      "naslov":  "Otkrij. Gledaj.<br><span class='zlatni-tekst'>Oceni.</span>",
+      "opis":    "Tvoje mišljenje oblikuje rang listu. Oceni epizode, ostavi komentar i pridruži se zajednici ljubitelja serija.",
+      "btn1":    "📺 Pregledaj epizode",
+      "btn2":    "✦ Postani član"
+    },
+    "stat": {
+      "epizode":  "Epizoda",
+      "ocene":    "Ocena",
+      "prosek":   "Prosečna ocena",
+      "komentari":"Komentara"
+    },
+    "sekcije": {
+      "najnovije":    "Najnovije epizode",
+      "vidi_sve":     "Vidi sve →",
+      "video":        "Video pregled",
+      "o_platformi":  "O platformi",
+      "saznaj_vise":  "Saznaj više →",
+      "top5":         "🏆 Top 5 epizoda",
+      "vidi_top10":   "Vidi Top 10 →",
+      "muzika":       "Muzika",
+      "dokumenti":    "Dokumentacija",
+      "preuzmi_vodic":"📄 Preuzmi korisnički vodič",
+      "pravilnik":    "📋 Pravilnik korišćenja",
+      "api_docs":     "🔗 API dokumentacija"
+    },
+    "video": {
+      "naslov":     "Pogledaj kako funkcioniše SerijaStar",
+      "podnaslov":  "Promo video",
+      "mp4_naslov": "Trejler serije",
+      "youtube":    "YouTube pregled"
+    },
+    "muzika": {
+      "svira":      "Sada svira",
+      "artist":     "SerijaStar Soundtrack",
+      "zatvori":    "Zatvori plejer",
+      "pusti":      "Pusti muziku"
+    },
+    "footer": {
+      "opis":     "Platforma za ljubitelje TV serija. Ocenjuj, komentariši i otkrivaj skrivene bisere televizije.",
+      "nav_hd":   "Navigacija",
+      "nalog_hd": "Nalog",
+      "copy":     "© 2025 SerijaStar. Sva prava zadržana.",
+      "ljubav":   "Izrađeno sa ♥ za ljubitelje serija"
+    },
+    "login": {
+      "admin_tab":  "Admin",
+      "user_tab":   "Korisnik",
+      "username":   "Korisničko ime",
+      "password":   "Lozinka",
+      "btn_admin":  "Prijavi se kao Admin",
+      "btn_user":   "Prijavi se kao Korisnik",
+      "greska":     "Pogrešno korisničko ime ili lozinka.",
+      "prazno":     "Unesite korisničko ime i lozinku.",
+      "pogresna_uloga_admin": "Ovaj nalog nije admin. Koristite tab \"Korisnik\".",
+      "pogresna_uloga_user":  "Ovaj nalog je admin. Koristite tab \"Admin\".",
+      "demo":       "Demo nalozi"
+    },
+    "pristupacnost": {
+      "tema_tamna":  "Tamna tema",
+      "tema_svetla": "Svetla tema",
+      "font_vece":   "Povećaj font",
+      "font_manje":  "Smanji font"
+    }
+  },
+  "en": {
+    "nav": {
+      "pocetna":  "Home",
+      "onama":    "About",
+      "epizode":  "Episodes",
+      "kontakt":  "Contact",
+      "prijava":  "Login",
+      "odjava":   "Logout",
+      "admin":    "Admin Panel",
+      "mega_ocenjivanje": "Rating",
+      "mega_top10":       "Top 10 List",
+      "mega_najnovije":   "Latest",
+      "mega_onama":       "About Us",
+      "mega_tim":         "Our Team",
+      "mega_misija":      "Mission",
+      "mega_kontakt":     "Contact Form",
+      "mega_mapa":        "Location",
+      "mega_dokument":    "Documentation"
+    },
+    "hero": {
+      "badge":   "✦ New season available",
+      "naslov":  "Discover. Watch.<br><span class='zlatni-tekst'>Rate.</span>",
+      "opis":    "Your opinion shapes the rankings. Rate episodes, leave a comment and join the community of series lovers.",
+      "btn1":    "📺 Browse episodes",
+      "btn2":    "✦ Become a member"
+    },
+    "stat": {
+      "epizode":  "Episodes",
+      "ocene":    "Ratings",
+      "prosek":   "Average rating",
+      "komentari":"Comments"
+    },
+    "sekcije": {
+      "najnovije":    "Latest episodes",
+      "vidi_sve":     "View all →",
+      "video":        "Video preview",
+      "o_platformi":  "About the platform",
+      "saznaj_vise":  "Learn more →",
+      "top5":         "🏆 Top 5 episodes",
+      "vidi_top10":   "View Top 10 →",
+      "muzika":       "Music",
+      "dokumenti":    "Documentation",
+      "preuzmi_vodic":"📄 Download user guide",
+      "pravilnik":    "📋 Terms of use",
+      "api_docs":     "🔗 API documentation"
+    },
+    "video": {
+      "naslov":     "See how SerijaStar works",
+      "podnaslov":  "Promo video",
+      "mp4_naslov": "Series trailer",
+      "youtube":    "YouTube preview"
+    },
+    "muzika": {
+      "svira":      "Now playing",
+      "artist":     "SerijaStar Soundtrack",
+      "zatvori":    "Close player",
+      "pusti":      "Play music"
+    },
+    "footer": {
+      "opis":     "Platform for TV series lovers. Rate, comment and discover hidden gems of television.",
+      "nav_hd":   "Navigation",
+      "nalog_hd": "Account",
+      "copy":     "© 2025 SerijaStar. All rights reserved.",
+      "ljubav":   "Made with ♥ for series lovers"
+    },
+    "login": {
+      "admin_tab":  "Admin",
+      "user_tab":   "User",
+      "username":   "Username",
+      "password":   "Password",
+      "btn_admin":  "Login as Admin",
+      "btn_user":   "Login as User",
+      "greska":     "Incorrect username or password.",
+      "prazno":     "Please enter username and password.",
+      "pogresna_uloga_admin": "This account is not an admin. Use the \"User\" tab.",
+      "pogresna_uloga_user":  "This account is an admin. Use the \"Admin\" tab.",
+      "demo":       "Demo accounts"
+    },
+    "pristupacnost": {
+      "tema_tamna":  "Dark theme",
+      "tema_svetla": "Light theme",
+      "font_vece":   "Increase font",
+      "font_manje":  "Decrease font"
+    }
+  }
+}
