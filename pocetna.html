@@ -21,7 +21,8 @@
   <!-- ═══ 3 CSS FAJLA ═══ -->
   <link rel="stylesheet" href="css/stil.css">         <!-- 1/3: Reset, nav, layout, tipografija -->
   <link rel="stylesheet" href="css/komponente.css">   <!-- 2/3: Kartice, forme, slider, rang -->
-  <link rel="stylesheet" href="css/animacije.css">    <!-- 3/3: Animacije, efekti, media player -->
+  <link rel="stylesheet" href="css/animacije.css">
+  <link rel="stylesheet" href="css/responzivan.css">    <!-- 3/3: Animacije, efekti, media player -->
 </head>
 <body>
 
@@ -73,7 +74,7 @@
 <!-- ═══════════════════════════════════════════════════════════
      NAVIGACIJA – horizontalni + padajući + mega meni
      ═══════════════════════════════════════════════════════════ -->
-<nav id="nav" role="navigation" aria-label="Glavna navigacija">
+<<nav id="nav" role="navigation" aria-label="Glavna navigacija">
   <div class="nav-logo">
     <img src="slike/logo.png" alt="SerijaStar logo" class="logo-img" width="36" height="36">
     <span class="logo-txt">SerijaStar</span>
@@ -120,7 +121,7 @@
           <h4 data-i18n="nav.kontakt">Kontakt</h4>
           <a href="kontakt.html" role="menuitem"><span class="m-ikona">✉️</span><span data-i18n="nav.mega_kontakt">Kontakt forma</span></a>
           <a href="kontakt.html#mapa" role="menuitem"><span class="m-ikona">📍</span><span data-i18n="nav.mega_mapa">Lokacija</span></a>
-          <a href="pocetna.html#dokumenti" role="menuitem"><span class="m-ikona">📄</span><span data-i18n="nav.mega_dokument">Dokumentacija</span></a>
+          <a href="api.html" role="menuitem"><span class="m-ikona">📄</span><span data-i18n="nav.mega_dokument">Dokumentacija</span></a>
         </div>
       </div>
     </li>
@@ -128,6 +129,11 @@
     <!-- Kontakt -->
     <li>
       <a href="kontakt.html" role="menuitem" data-i18n="nav.kontakt">Kontakt</a>
+    </li>
+
+    <!-- Dokumentacija -->
+    <li>
+      <a href="api.html" role="menuitem" data-i18n="nav.api" style="color:var(--zlato);font-weight:600">Dokumentacija</a>
     </li>
   </ul>
 
@@ -184,7 +190,7 @@
 </section>
 
 <!-- ═══ HERO ═══ -->
-<header class="hero" role="banner">
+<<header class="hero" role="banner">
   <div class="hero-badge animuj-gore ani-d1" data-i18n="hero.badge">✦ Nova sezona dostupna</div>
   <h1 class="animuj-gore ani-d2" data-i18n-html="hero.naslov">
     Otkrij. Gledaj.<br><span class="zlatni-tekst">Oceni.</span>
@@ -233,14 +239,6 @@
           Trejler serije
         </h3>
         <div class="video-player-wrap sjaj-efekat">
-          <!--
-            ╔════════════════════════════════════════════╗
-            ║  DODAJ MP4 VIDEO                           ║
-            ║  1. Snimi fajl kao:  video/trejler.mp4     ║
-            ║  2. Promeni src ispod na: video/trejler.mp4║
-            ║  Preporučena rezolucija: 1280x720 (720p)   ║
-            ╚════════════════════════════════════════════╝
-          -->
           <video id="mp4-video" preload="metadata" aria-label="Trejler serije">
             <source src="video/trejler.mp4" type="video/mp4">
             <source src="video/trejler.webm" type="video/webm">
@@ -261,22 +259,14 @@
       </div>
 
       <!-- YouTube embed -->
-      <div class="animuj-desno">
+     <div class="animuj-desno">
         <h3 style="font-family:var(--font-n);color:var(--zlato);margin-bottom:14px;font-size:1.1rem" data-i18n="video.youtube">
           YouTube pregled
         </h3>
-        <!--
-          ╔════════════════════════════════════════════════╗
-          ║  DODAJ YOUTUBE VIDEO                           ║
-          ║  Zameni  dQw4w9WgXcQ  sa ID tvojeg videa      ║
-          ║  Npr. ako je link: youtube.com/watch?v=ABC123  ║
-          ║  onda je ID: ABC123                            ║
-          ╚════════════════════════════════════════════════╝
-        -->
         <div class="video-wrap">
           <iframe
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
-            title="SerijaStar – Promo video na YouTube"
+            src="https://www.youtube.com/embed/HhesaQXLuRY?rel=0&modestbranding=1"
+            title="Game of Thrones – Zvanični HBO trailer"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen loading="lazy">
           </iframe>
@@ -297,21 +287,13 @@
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
 
-    <!--
-      ╔════════════════════════════════════════════════╗
-      ║  DODAJ PDF DOKUMENT                            ║
-      ║  1. Snimi PDF kao:  video/vodic.pdf            ║
-      ║  2. href ispod već pokazuje na tu putanju      ║
-      ║  download atribut omogućava preuzimanje        ║
-      ╚════════════════════════════════════════════════╝
-    -->
     <a href="video/vodic.pdf" download="SerijaStar-vodic.pdf" class="dokument-kartica animuj-gore ani-d1" aria-label="Preuzmi korisnički vodič PDF">
       <div class="dok-ikona">📄</div>
       <div class="dok-info">
         <div class="dok-naziv" data-i18n="sekcije.preuzmi_vodic">📄 Preuzmi korisnički vodič</div>
         <div class="dok-opis">PDF dokument · Korisničko uputstvo za SerijaStar platformu</div>
       </div>
-      <div class="dok-strelica">→</div>
+      <div class="dok-strelica">↓</div>
     </a>
 
     <a href="video/pravilnik.pdf" download="SerijaStar-pravilnik.pdf" class="dokument-kartica animuj-gore ani-d2" aria-label="Pravilnik korišćenja">
@@ -320,17 +302,51 @@
         <div class="dok-naziv" data-i18n="sekcije.pravilnik">📋 Pravilnik korišćenja</div>
         <div class="dok-opis">PDF dokument · Uslovi korišćenja platforme i pravila zajednice</div>
       </div>
-      <div class="dok-strelica">→</div>
+      <div class="dok-strelica">↓</div>
     </a>
 
-    <a href="https://docs.anthropic.com" target="_blank" rel="noopener" class="dokument-kartica animuj-gore ani-d3" aria-label="Otvori API dokumentaciju u novom tabu">
+    <!-- API dokumentacija – DROPDOWN KARTICA -->
+    <div class="dokument-kartica animuj-gore ani-d3" id="api-kartica"
+         style="cursor:pointer;position:relative;z-index:10" aria-label="API dokumentacija" tabindex="0">
       <div class="dok-ikona">🔗</div>
       <div class="dok-info">
         <div class="dok-naziv" data-i18n="sekcije.api_docs">🔗 API dokumentacija</div>
-        <div class="dok-opis">Eksterni link · Otvara se u novom tabu</div>
+        <div class="dok-opis">Preuzmi dokumentaciju ili otvori online</div>
       </div>
-      <div class="dok-strelica">↗</div>
-    </a>
+      <div class="dok-strelica" id="api-strelica">↓</div>
+      
+      <!-- Dropdown meni -->
+      <div id="api-dropdown"
+           style="display:none;position:absolute;left:0;right:0;top:100%;
+                  margin-top:6px;background:var(--bg2,#16213e);border:1px solid var(--zlato,#D4AF37);
+                  border-radius:10px;z-index:999;padding:8px 0;
+                  box-shadow:0 8px 24px rgba(0,0,0,.6)">
+        <a href="api.html" style="display:flex;align-items:center;gap:10px;padding:11px 16px;
+                  color:var(--tekst,#eee);text-decoration:none;font-size:.88rem;transition:background .2s"
+           onmouseover="this.style.background='rgba(212,175,55,.12)'"
+           onmouseout="this.style.background=''">
+          <span>📚</span><span>Otvori stranicu dokumentacije</span>
+          <span style="margin-left:auto;color:var(--zlato,#D4AF37)">↗</span>
+        </a>
+        <div style="border-top:1px solid rgba(212,175,55,.2);margin:4px 0"></div>
+        <a href="video/vodic.pdf" download="SerijaStar-vodic.pdf"
+           style="display:flex;align-items:center;gap:10px;padding:11px 16px;
+                  color:var(--tekst,#eee);text-decoration:none;font-size:.88rem;transition:background .2s"
+           onmouseover="this.style.background='rgba(212,175,55,.12)'"
+           onmouseout="this.style.background=''">
+          <span>📄</span><span>Preuzmi korisnički vodič</span>
+          <span style="margin-left:auto;color:var(--zlato,#D4AF37)">↓</span>
+        </a>
+        <a href="video/pravilnik.pdf" download="SerijaStar-pravilnik.pdf"
+           style="display:flex;align-items:center;gap:10px;padding:11px 16px;
+                  color:var(--tekst,#eee);text-decoration:none;font-size:.88rem;transition:background .2s"
+           onmouseover="this.style.background='rgba(212,175,55,.12)'"
+           onmouseout="this.style.background=''">
+          <span>📋</span><span>Preuzmi pravilnik korišćenja</span>
+          <span style="margin-left:auto;color:var(--zlato,#D4AF37)">↓</span>
+        </a>
+      </div>
+    </div>
 
   </div>
 </section>
@@ -338,7 +354,7 @@
 <!-- ═══ O PLATFORMI ═══ -->
 <section class="kontejner" aria-labelledby="o-hd" style="padding-top:0">
   <div class="sek-hd" style="margin-bottom:24px">
-    <h2 id="o-hd">O <span data-i18n="sekcije.o_platformi">platformi</span></h2>
+    <h2 id="o-hd"><span style="color:inherit">O platformi</span></h2>
     <a href="o-nama.html" class="sek-vidi-sve" data-i18n="sekcije.saznaj_vise">Saznaj više →</a>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
@@ -387,14 +403,6 @@
     </div>
   </div>
   <div class="mapa-wrap" style="margin:0;border-radius:0;border-left:none;border-right:none">
-    <!--
-      ╔════════════════════════════════════════════════════╗
-      ║  GOOGLE MAPS EMBED                                 ║
-      ║  Idi na: maps.google.com                          ║
-      ║  Pronađi lokaciju → Share → Embed a map           ║
-      ║  Kopiraj iframe src i zameni ga ovde              ║
-      ╚════════════════════════════════════════════════════╝
-    -->
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.12!2d20.4612!3d44.8178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBeograd!5e0!3m2!1ssr!2srs!4v1234567890"
       title="SerijaStar lokacija – Beograd, Srbija | Google Maps"
@@ -406,7 +414,7 @@
 </section>
 
 <!-- ═══ FOOTER ═══ -->
-<footer role="contentinfo" style="margin-top:0">
+<<footer role="contentinfo" style="margin-top:0">
   <div class="footer-grid">
     <div>
       <div class="footer-logo-txt">SerijaStar</div>
@@ -729,6 +737,72 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.animuj-levo, .animuj-desno, .animuj-gore').forEach(el => {
   observer.observe(el);
 });
+
+/* ════════════════════════════════════════════════════════════
+   API DROPDOWN – JEDNOSTAVNA I SIGURNA VERZIJA
+   ════════════════════════════════════════════════════════════ */
+(function initApiDropdown() {
+  var k = document.getElementById('api-kartica');
+  var d = document.getElementById('api-dropdown');
+  var s = document.getElementById('api-strelica');
+  if (!k || !d) return;
+
+  var otvoreno = false;
+
+  function otvori() {
+    d.style.display = 'block';
+    if (s) s.textContent = '↑';
+    otvoreno = true;
+  }
+
+  function zatvori() {
+    d.style.display = 'none';
+    if (s) s.textContent = '↓';
+    otvoreno = false;
+  }
+
+  function toggle(e) {
+    if (e) {
+      // Ako je klik na link unutar dropdowna, ne radi ništa (pusti da link radi)
+      if (d.contains(e.target) && e.target.tagName === 'A') {
+        return;
+      }
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (otvoreno) zatvori(); else otvori();
+  }
+
+  // Klik na karticu
+  k.addEventListener('click', toggle);
+
+  // Enter/Space na fokusiranoj kartici
+  k.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggle();
+    }
+    if (e.key === 'Escape') zatvori();
+  });
+
+  // Klik van kartice zatvara
+  document.addEventListener('click', function(e) {
+    if (!k.contains(e.target)) zatvori();
+  });
+
+  // Hover opcionalno (otvori na hover, zatvori kad skloniš miš)
+  // Otkomentariši ako želiš hover ponašanje:
+  /*
+  k.addEventListener('mouseenter', otvori);
+  k.addEventListener('mouseleave', function(e) {
+    // Samo zatvori ako miš nije ušao u dropdown
+    if (!d.contains(e.relatedTarget)) zatvori();
+  });
+  d.addEventListener('mouseleave', function(e) {
+    if (!k.contains(e.relatedTarget)) zatvori();
+  });
+  */
+})();
 </script>
 </body>
 </html>

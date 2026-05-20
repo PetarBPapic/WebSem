@@ -1,0 +1,220 @@
+/* ═══════════════════════════════════════════════════════════════
+   responzivan.css – SerijaStar
+   Responsive media queries za sve stranice
+   Breakpointi: 1200px | 900px | 640px | 480px
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 1. NAVIGACIJA ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .nav-sadrzaj {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 16px;
+  }
+  .nav-linkovi {
+    order: 3;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    padding-bottom: 6px;
+  }
+  .nav-akcije {
+    gap: 6px;
+  }
+  .nav-link { font-size: .82rem; padding: 6px 8px; }
+}
+
+@media (max-width: 640px) {
+  .nav-linkovi { display: none; }
+  .nav-logo-txt { font-size: 1.1rem; }
+
+  /* Hamburger meni – prikazuje se na mobilnom */
+  .nav-hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: none;
+    border: none;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--zlato);
+    border-radius: 2px;
+    transition: transform .3s;
+  }
+  .nav-linkovi.otvoren {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: var(--bg2);
+    border-top: 1px solid rgba(212,175,55,.2);
+    padding: 12px 0;
+  }
+  .nav-sadrzaj { padding: 10px 14px; }
+  .nav-prijava { font-size: .78rem; padding: 7px 12px; }
+  .font-btn, .lang-btn, .tema-btn { font-size: .75rem; padding: 5px 8px; }
+}
+
+/* ── 2. HERO / SLIDER ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero { padding: 60px 20px 50px; }
+  .hero h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); }
+  .hero-btns { flex-direction: column; align-items: center; gap: 10px; }
+  .btn-prim, .btn-sek { width: 100%; max-width: 300px; text-align: center; }
+}
+
+@media (max-width: 640px) {
+  .slider-wrap { height: clamp(220px, 55vw, 380px); }
+  .slider-caption { padding: 16px 14px; }
+  .slider-caption h3 { font-size: 1rem; }
+  .slider-caption p { font-size: .8rem; display: none; } /* sakrij na malim ekranima */
+  .slider-btn { width: 34px; height: 34px; font-size: 1.2rem; }
+}
+
+/* ── 3. STAT ROW ─────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .stat-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 16px 14px;
+  }
+  .stat-n { font-size: 1.6rem; }
+}
+
+@media (max-width: 360px) {
+  .stat-row { grid-template-columns: 1fr; }
+}
+
+/* ── 4. EPIZODE GRID ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ep-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 540px) {
+  .ep-grid { grid-template-columns: 1fr; }
+}
+
+/* ── 5. SEK-HD (section headers) ────────────────────────────── */
+@media (max-width: 640px) {
+  .sek-hd { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .sek-hd h2 { font-size: 1.5rem; }
+}
+
+/* ── 6. KONTEJNER ────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .kontejner { padding: 0 16px; }
+}
+
+/* ── 7. VIDEO SEKCIJA ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .video-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .video-wrap { min-height: 220px; }
+  .mp4-wrap   { min-height: 200px; }
+}
+
+/* ── 8. DOKUMENTACIJA KARTICE ────────────────────────────────── */
+@media (max-width: 640px) {
+  .dokument-kartica {
+    flex-direction: row;
+    align-items: center;
+    padding: 14px 16px;
+  }
+  .dok-ikona { font-size: 1.6rem; }
+  .dok-naziv { font-size: .9rem; }
+  .dok-opis  { font-size: .78rem; }
+}
+
+/* ── 9. O PLATFORMI GRID ─────────────────────────────────────── */
+@media (max-width: 900px) {
+  .o-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (max-width: 540px) {
+  .o-grid { grid-template-columns: 1fr !important; }
+  .o-blok { padding: 20px 16px; }
+}
+
+/* ── 10. TOP 5 / TOP LISTA ───────────────────────────────────── */
+@media (max-width: 900px) {
+  .top5-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── 11. FOOTER ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+}
+
+@media (max-width: 540px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
+  .footer-logo-txt { font-size: 1.4rem; }
+}
+
+/* ── 12. MUZIČKI PLEJER ──────────────────────────────────────── */
+@media (max-width: 540px) {
+  .muzika-bar {
+    padding: 10px 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .muzika-info { width: 100%; }
+  .muzika-ctrl { flex: 1; justify-content: center; }
+}
+
+/* ── 13. API STRANICA ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .api-grid { grid-template-columns: 1fr 1fr; }
+  .api-kartica-velika { flex-direction: column; }
+  .api-info-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .api-grid { grid-template-columns: 1fr; }
+  .api-hero h1 { font-size: 1.8rem; }
+  .api-hero { padding: 50px 16px 40px; }
+  .api-info-grid { grid-template-columns: 1fr 1fr; }
+  .api-kartica-velika .akcije-red { flex-direction: column; }
+  .api-kartica-akcija { justify-content: center; }
+}
+
+@media (max-width: 400px) {
+  .api-info-grid { grid-template-columns: 1fr; }
+}
+
+/* ── 14. HAMBURGER toggle ────────────────────────────────────── */
+.nav-hamburger { display: none; }
+
+@media (max-width: 640px) {
+  .nav-hamburger { display: flex; }
+}
+
+/* ── 15. GLOBALNI TOUCH POBOLJŠANJA ──────────────────────────── */
+@media (hover: none) {
+  /* Na touch uređajima nema hover efekta – primeni odmah */
+  .dokument-kartica:hover,
+  .api-kartica:hover,
+  .ep-kartica:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* ── 16. PRISTUPAČNOST – povećani klik na touch ──────────────── */
+@media (max-width: 640px) {
+  .slider-btn,
+  .nav-hamburger,
+  .btn-prim,
+  .btn-sek,
+  .nav-prijava {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
