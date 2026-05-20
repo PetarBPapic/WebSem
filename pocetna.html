@@ -278,8 +278,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════
-     DOKUMENTI / LINKOVI (a href na dokument)
-     KAKO DODATI PDF: Snimi fajl kao  video/vodic.pdf
+     DOKUMENTI / LINKOVI — 3 KARTICE ZA DOWNLOAD
      ═══════════════════════════════════════════════════════════ -->
 <section class="kontejner" id="dokumenti" aria-labelledby="dok-hd">
   <div class="sek-hd" style="margin-bottom:24px">
@@ -287,6 +286,7 @@
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
 
+    <!-- Korisnički vodič -->
     <a href="video/vodic.pdf" download="SerijaStar-vodic.pdf" class="dokument-kartica animuj-gore ani-d1" aria-label="Preuzmi korisnički vodič PDF">
       <div class="dok-ikona">📄</div>
       <div class="dok-info">
@@ -296,6 +296,7 @@
       <div class="dok-strelica">↓</div>
     </a>
 
+    <!-- Pravilnik korišćenja -->
     <a href="video/pravilnik.pdf" download="SerijaStar-pravilnik.pdf" class="dokument-kartica animuj-gore ani-d2" aria-label="Pravilnik korišćenja">
       <div class="dok-ikona">📋</div>
       <div class="dok-info">
@@ -305,48 +306,15 @@
       <div class="dok-strelica">↓</div>
     </a>
 
-    <!-- API dokumentacija – DROPDOWN KARTICA -->
-    <div class="dokument-kartica animuj-gore ani-d3" id="api-kartica"
-         style="cursor:pointer;position:relative;z-index:10" aria-label="API dokumentacija" tabindex="0">
+    <!-- API dokumentacija — DIREKTAN DOWNLOAD IZ VIDEO FOLDER -->
+    <a href="video/api_dokumentacija.pdf" download="SerijaStar-api-dokumentacija.pdf" class="dokument-kartica animuj-gore ani-d3" aria-label="Preuzmi API dokumentaciju PDF">
       <div class="dok-ikona">🔗</div>
       <div class="dok-info">
         <div class="dok-naziv" data-i18n="sekcije.api_docs">🔗 API dokumentacija</div>
-        <div class="dok-opis">Preuzmi dokumentaciju ili otvori online</div>
+        <div class="dok-opis">PDF dokument · Tehnička dokumentacija API-ja i integracija</div>
       </div>
-      <div class="dok-strelica" id="api-strelica">↓</div>
-      
-      <!-- Dropdown meni -->
-      <div id="api-dropdown"
-           style="display:none;position:absolute;left:0;right:0;top:100%;
-                  margin-top:6px;background:var(--bg2,#16213e);border:1px solid var(--zlato,#D4AF37);
-                  border-radius:10px;z-index:999;padding:8px 0;
-                  box-shadow:0 8px 24px rgba(0,0,0,.6)">
-        <a href="api.html" style="display:flex;align-items:center;gap:10px;padding:11px 16px;
-                  color:var(--tekst,#eee);text-decoration:none;font-size:.88rem;transition:background .2s"
-           onmouseover="this.style.background='rgba(212,175,55,.12)'"
-           onmouseout="this.style.background=''">
-          <span>📚</span><span>Otvori stranicu dokumentacije</span>
-          <span style="margin-left:auto;color:var(--zlato,#D4AF37)">↗</span>
-        </a>
-        <div style="border-top:1px solid rgba(212,175,55,.2);margin:4px 0"></div>
-        <a href="video/vodic.pdf" download="SerijaStar-vodic.pdf"
-           style="display:flex;align-items:center;gap:10px;padding:11px 16px;
-                  color:var(--tekst,#eee);text-decoration:none;font-size:.88rem;transition:background .2s"
-           onmouseover="this.style.background='rgba(212,175,55,.12)'"
-           onmouseout="this.style.background=''">
-          <span>📄</span><span>Preuzmi korisnički vodič</span>
-          <span style="margin-left:auto;color:var(--zlato,#D4AF37)">↓</span>
-        </a>
-        <a href="video/pravilnik.pdf" download="SerijaStar-pravilnik.pdf"
-           style="display:flex;align-items:center;gap:10px;padding:11px 16px;
-                  color:var(--tekst,#eee);text-decoration:none;font-size:.88rem;transition:background .2s"
-           onmouseover="this.style.background='rgba(212,175,55,.12)'"
-           onmouseout="this.style.background=''">
-          <span>📋</span><span>Preuzmi pravilnik korišćenja</span>
-          <span style="margin-left:auto;color:var(--zlato,#D4AF37)">↓</span>
-        </a>
-      </div>
-    </div>
+      <div class="dok-strelica">↓</div>
+    </a>
 
   </div>
 </section>
@@ -737,72 +705,6 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.animuj-levo, .animuj-desno, .animuj-gore').forEach(el => {
   observer.observe(el);
 });
-
-/* ════════════════════════════════════════════════════════════
-   API DROPDOWN – JEDNOSTAVNA I SIGURNA VERZIJA
-   ════════════════════════════════════════════════════════════ */
-(function initApiDropdown() {
-  var k = document.getElementById('api-kartica');
-  var d = document.getElementById('api-dropdown');
-  var s = document.getElementById('api-strelica');
-  if (!k || !d) return;
-
-  var otvoreno = false;
-
-  function otvori() {
-    d.style.display = 'block';
-    if (s) s.textContent = '↑';
-    otvoreno = true;
-  }
-
-  function zatvori() {
-    d.style.display = 'none';
-    if (s) s.textContent = '↓';
-    otvoreno = false;
-  }
-
-  function toggle(e) {
-    if (e) {
-      // Ako je klik na link unutar dropdowna, ne radi ništa (pusti da link radi)
-      if (d.contains(e.target) && e.target.tagName === 'A') {
-        return;
-      }
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    if (otvoreno) zatvori(); else otvori();
-  }
-
-  // Klik na karticu
-  k.addEventListener('click', toggle);
-
-  // Enter/Space na fokusiranoj kartici
-  k.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      toggle();
-    }
-    if (e.key === 'Escape') zatvori();
-  });
-
-  // Klik van kartice zatvara
-  document.addEventListener('click', function(e) {
-    if (!k.contains(e.target)) zatvori();
-  });
-
-  // Hover opcionalno (otvori na hover, zatvori kad skloniš miš)
-  // Otkomentariši ako želiš hover ponašanje:
-  /*
-  k.addEventListener('mouseenter', otvori);
-  k.addEventListener('mouseleave', function(e) {
-    // Samo zatvori ako miš nije ušao u dropdown
-    if (!d.contains(e.relatedTarget)) zatvori();
-  });
-  d.addEventListener('mouseleave', function(e) {
-    if (!k.contains(e.relatedTarget)) zatvori();
-  });
-  */
-})();
 </script>
 </body>
 </html>
