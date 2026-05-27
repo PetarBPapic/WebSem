@@ -134,3 +134,167 @@ function smanjiFont()  { const v=Math.max(12,parseInt(localStorage.getItem('ss_f
 // Primeni pri učitavanju
 primeniTemu();
 primeniFontVelicinu();
+
+/* ============================================================
+   VIŠEJEZIČNOST – SR / EN
+   Prevodi su ugradjeni direktno – radi i na file:// protokolu.
+   ============================================================ */
+var LANG = {
+  "sr": {
+    "nav": {
+      "pocetna": "Početna", "onama": "O nama", "epizode": "Epizode",
+      "kontakt": "Kontakt", "prijava": "Prijavi se", "odjava": "Odjava",
+      "admin": "Admin Panel",
+      "mega_ocenjivanje": "Ocenjivanje", "mega_top10": "Top 10 lista",
+      "mega_najnovije": "Najnovije", "mega_onama": "O nama",
+      "mega_tim": "Naš tim", "mega_misija": "Misija",
+      "mega_kontakt": "Kontakt forma", "mega_mapa": "Lokacija",
+      "mega_dokument": "Dokumentacija"
+    },
+    "hero": {
+      "badge": "✦ Nova sezona dostupna",
+      "naslov": "Otkrij. Gledaj.<br><span class=\'zlatni-tekst\'>Oceni.</span>",
+      "opis": "Tvoje mišljenje oblikuje rang listu. Oceni epizode, ostavi komentar i pridruži se zajednici ljubitelja serija.",
+      "btn1": "📺 Pregledaj epizode", "btn2": "✦ Postani član"
+    },
+    "stat": {
+      "epizode": "Epizoda", "ocene": "Ocena",
+      "prosek": "Prosečna ocena", "komentari": "Komentara"
+    },
+    "sekcije": {
+      "najnovije": "Najnovije epizode", "vidi_sve": "Vidi sve →",
+      "video": "Video pregled", "o_platformi": "O platformi",
+      "saznaj_vise": "Saznaj više →", "top5": "🏆 Top 5 epizoda",
+      "vidi_top10": "Vidi Top 10 →", "muzika": "Muzika",
+      "dokumenti": "Dokumentacija",
+      "preuzmi_vodic": "📄 Preuzmi korisnički vodič",
+      "pravilnik": "📋 Pravilnik korišćenja",
+      "api_docs": "🔗 API dokumentacija"
+    },
+    "video": {
+      "naslov": "Pogledaj kako funkcioniše SerijaStar",
+      "podnaslov": "Promo video", "mp4_naslov": "Trejler serije",
+      "youtube": "YouTube pregled"
+    },
+    "muzika": {
+      "svira": "Sada svira", "artist": "SerijaStar Soundtrack",
+      "zatvori": "Zatvori plejer", "pusti": "Pusti muziku"
+    },
+    "footer": {
+      "opis": "Platforma za ljubitelje TV serija. Ocenjuj, komentariši i otkrivaj skrivene bisere televizije.",
+      "nav_hd": "Navigacija", "nalog_hd": "Nalog",
+      "copy": "© 2025 SerijaStar. Sva prava zadržana.",
+      "ljubav": "Izrađeno sa ♥ za ljubitelje serija"
+    },
+    "login": {
+      "admin_tab": "Admin", "user_tab": "Korisnik",
+      "username": "Korisničko ime", "password": "Lozinka",
+      "btn_admin": "Prijavi se kao Admin", "btn_user": "Prijavi se kao Korisnik",
+      "greska": "Pogrešno korisničko ime ili lozinka.",
+      "prazno": "Unesite korisničko ime i lozinku.",
+      "demo": "Demo nalozi"
+    },
+    "pristupacnost": {
+      "tema_tamna": "Tamna tema", "tema_svetla": "Svetla tema",
+      "font_vece": "Povećaj font", "font_manje": "Smanji font"
+    }
+  },
+  "en": {
+    "nav": {
+      "pocetna": "Home", "onama": "About", "epizode": "Episodes",
+      "kontakt": "Contact", "prijava": "Login", "odjava": "Logout",
+      "admin": "Admin Panel",
+      "mega_ocenjivanje": "Rating", "mega_top10": "Top 10 List",
+      "mega_najnovije": "Latest", "mega_onama": "About Us",
+      "mega_tim": "Our Team", "mega_misija": "Mission",
+      "mega_kontakt": "Contact Form", "mega_mapa": "Location",
+      "mega_dokument": "Documentation"
+    },
+    "hero": {
+      "badge": "✦ New season available",
+      "naslov": "Discover. Watch.<br><span class=\'zlatni-tekst\'>Rate.</span>",
+      "opis": "Your opinion shapes the rankings. Rate episodes, leave a comment and join the community of series lovers.",
+      "btn1": "📺 Browse episodes", "btn2": "✦ Become a member"
+    },
+    "stat": {
+      "epizode": "Episodes", "ocene": "Ratings",
+      "prosek": "Average rating", "komentari": "Comments"
+    },
+    "sekcije": {
+      "najnovije": "Latest episodes", "vidi_sve": "View all →",
+      "video": "Video preview", "o_platformi": "About the platform",
+      "saznaj_vise": "Learn more →", "top5": "🏆 Top 5 episodes",
+      "vidi_top10": "View Top 10 →", "muzika": "Music",
+      "dokumenti": "Documentation",
+      "preuzmi_vodic": "📄 Download user guide",
+      "pravilnik": "📋 Terms of use",
+      "api_docs": "🔗 API documentation"
+    },
+    "video": {
+      "naslov": "See how SerijaStar works",
+      "podnaslov": "Promo video", "mp4_naslov": "Series trailer",
+      "youtube": "YouTube preview"
+    },
+    "muzika": {
+      "svira": "Now playing", "artist": "SerijaStar Soundtrack",
+      "zatvori": "Close player", "pusti": "Play music"
+    },
+    "footer": {
+      "opis": "Platform for TV series lovers. Rate, comment and discover hidden gems of television.",
+      "nav_hd": "Navigation", "nalog_hd": "Account",
+      "copy": "© 2025 SerijaStar. All rights reserved.",
+      "ljubav": "Made with ♥ for series lovers"
+    },
+    "login": {
+      "admin_tab": "Admin", "user_tab": "User",
+      "username": "Username", "password": "Password",
+      "btn_admin": "Login as Admin", "btn_user": "Login as User",
+      "greska": "Incorrect username or password.",
+      "prazno": "Please enter username and password.",
+      "demo": "Demo accounts"
+    },
+    "pristupacnost": {
+      "tema_tamna": "Dark theme", "tema_svetla": "Light theme",
+      "font_vece": "Increase font", "font_manje": "Decrease font"
+    }
+  }
+};
+
+function ucitajJezik() {
+  // Prevodi su vec ugradjeni u LANG - nema potrebe za fetch
+  const sacuvan = localStorage.getItem('ss_jezik') || 'sr';
+  primeniJezik(sacuvan);
+}
+
+function primeniJezik(kod) {
+  if (!LANG[kod]) return;
+  localStorage.setItem('ss_jezik', kod);
+  const t = LANG[kod];
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const kljuc = el.getAttribute('data-i18n');
+    const vrednost = dajVrednost(t, kljuc);
+    if (vrednost) el.textContent = vrednost;
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const kljuc = el.getAttribute('data-i18n-html');
+    const vrednost = dajVrednost(t, kljuc);
+    if (vrednost) el.innerHTML = vrednost;
+  });
+
+  const btnSr = document.getElementById('btn-sr');
+  const btnEn = document.getElementById('btn-en');
+  if (btnSr) btnSr.classList.toggle('aktivan-lang', kod === 'sr');
+  if (btnEn) btnEn.classList.toggle('aktivan-lang', kod === 'en');
+
+  document.documentElement.lang = kod;
+}
+
+function dajVrednost(obj, put) {
+  return put.split('.').reduce((o, k) => o?.[k], obj) || null;
+}
+
+function postaviJezik(kod) {
+  primeniJezik(kod);
+}

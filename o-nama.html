@@ -8,6 +8,11 @@
   <meta name="author" content="SerijaStar Tim">
   <title>O nama – SerijaStar</title>
   <link rel="stylesheet" href="css/stil.css">
+<style>
+.btn-lang { background:transparent; border:1px solid rgba(212,175,55,.3); color:var(--tekst2,#9A9080); font-size:.75rem; font-weight:700; letter-spacing:1px; padding:5px 10px; border-radius:6px; cursor:pointer; transition:.2s; }
+.btn-lang:hover { border-color:var(--zlato,#D4AF37); color:var(--zlato,#D4AF37); }
+.btn-lang.aktivan-lang { background:var(--zlato,#D4AF37); color:#07070F; border-color:var(--zlato,#D4AF37); }
+</style>
 </head>
 <body>
 
@@ -17,18 +22,19 @@
     <span class="logo-txt">SerijaStar</span>
   </div>
   <ul class="nav-links" id="nav-links">
-    <li><a href="pocetna.html">Početna</a></li>
-    <li><a href="o-nama.html" class="aktivan">O nama</a></li>
-    <li><a href="user.html">Epizode</a></li>
-    <li><a href="kontakt.html">Kontakt</a></li>
+    <li><a href="pocetna.html" data-i18n="nav.pocetna">Početna</a></li>
+    <li><a href="o-nama.html" class="aktivan" data-i18n="nav.onama">O nama</a></li>
+    <li><a href="user.html" data-i18n="nav.epizode">Epizode</a></li>
+    <li><a href="kontakt.html" data-i18n="nav.kontakt">Kontakt</a></li>
   </ul>
   <div class="nav-desno">
     <div class="acc-bar">
       <button class="btn-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu">☀️</button>
       <button class="btn-acc" onclick="povecajFont()" title="Povećaj font">A+</button>
       <button class="btn-acc" onclick="smanjiFont()"  title="Smanji font">A-</button>
-    </div>
-    <a href="index.html" class="btn-prim" style="font-size:.82rem;padding:8px 18px;">Prijavi se</a>
+        <button class="btn-lang aktivan-lang" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski">SR</button>
+    <button class="btn-lang" id="btn-en" onclick="postaviJezik('en')" aria-label="English">EN</button>
+    <a href="index.html" class="btn-prim" style="font-size:.82rem;padding:8px 18px;" data-i18n="nav.prijava">Prijavi se</a>
     <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Meni" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -113,25 +119,25 @@
       <p class="footer-opis">Platforma za ljubitelje TV serija. Ocenjuj, komentariši i otkrivaj skrivene bisere televizije.</p>
     </div>
     <div>
-      <div class="footer-hd">Navigacija</div>
+      <div class="footer-hd" data-i18n="footer.nav_hd">Navigacija</div>
       <nav class="footer-links">
-        <a href="pocetna.html">Početna</a>
-        <a href="o-nama.html">O nama</a>
-        <a href="user.html">Epizode</a>
-        <a href="kontakt.html">Kontakt</a>
+        <a href="pocetna.html" data-i18n="nav.pocetna">Početna</a>
+        <a href="o-nama.html" data-i18n="nav.onama">O nama</a>
+        <a href="user.html" data-i18n="nav.epizode">Epizode</a>
+        <a href="kontakt.html" data-i18n="nav.kontakt">Kontakt</a>
       </nav>
     </div>
     <div>
-      <div class="footer-hd">Nalog</div>
+      <div class="footer-hd" data-i18n="footer.nalog_hd">Nalog</div>
       <nav class="footer-links">
-        <a href="index.html">Prijava</a>
-        <a href="admin.html">Admin panel</a>
+        <a href="index.html" data-i18n="nav.prijava">Prijava</a>
+        <a href="admin.html" data-i18n="nav.admin">Admin panel</a>
       </nav>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 SerijaStar.</span>
-    <span style="color:var(--zlato)">Izrađeno sa ♥</span>
+    <span data-i18n="footer.copy">© 2025 SerijaStar.</span>
+    <span style="color:var(--zlato)" data-i18n="footer.ljubav">Izrađeno sa ♥</span>
   </div>
 </footer>
 
@@ -144,6 +150,9 @@
     const o=nl.classList.toggle('otvoreni');
     hb.classList.toggle('otvoren',o); hb.setAttribute('aria-expanded',o);
   }
+
+  /* ════ VIŠEJEZIČNOST ════ */
+  ucitajJezik();
 </script>
 </body>
 </html>

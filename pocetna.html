@@ -482,45 +482,7 @@
 <!-- ═══ SKRIPTE ═══ -->
 <script src="js/core.js"></script>
 <script>
-/* ════ DVOJEZICNA PODRSKA ════ */
-let LANG = {};
-let trenutniJezik = localStorage.getItem('ss_jezik') || 'sr';
-
-async function ucitajJezik() {
-  try {
-    const res = await fetch('data/jezik.json');
-    const data = await res.json();
-    LANG = data;
-    primeniJezik(trenutniJezik);
-  } catch(e) {
-    console.warn('jezik.json nije dostupan offline, koristim srpski default.');
-  }
-}
-
-function primeniJezik(kod) {
-  trenutniJezik = kod;
-  localStorage.setItem('ss_jezik', kod);
-  document.getElementById('btn-sr').classList.toggle('aktivan-lang', kod === 'sr');
-  document.getElementById('btn-en').classList.toggle('aktivan-lang', kod === 'en');
-  if (!LANG[kod]) return;
-  const t = LANG[kod];
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const kljuc = el.getAttribute('data-i18n');
-    const vrednost = dajVrednost(t, kljuc);
-    if (vrednost) el.textContent = vrednost;
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(el => {
-    const kljuc = el.getAttribute('data-i18n-html');
-    const vrednost = dajVrednost(t, kljuc);
-    if (vrednost) el.innerHTML = vrednost;
-  });
-  document.documentElement.lang = kod;
-}
-
-function dajVrednost(obj, put) {
-  return put.split('.').reduce((o, k) => o?.[k], obj) || null;
-}
-function postaviJezik(kod) { primeniJezik(kod); }
+/* jezik je u core.js */
 
 /* Inicijalizacija teme ikone */
 const tamna = (localStorage.getItem('ss_tema')||'tamna') === 'tamna';

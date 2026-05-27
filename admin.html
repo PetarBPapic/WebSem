@@ -6,6 +6,11 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Admin Panel – SerijaStar</title>
   <link rel="stylesheet" href="css/stil.css">
+<style>
+.btn-lang { background:transparent; border:1px solid rgba(212,175,55,.3); color:var(--tekst2,#9A9080); font-size:.75rem; font-weight:700; letter-spacing:1px; padding:5px 10px; border-radius:6px; cursor:pointer; transition:.2s; }
+.btn-lang:hover { border-color:var(--zlato,#D4AF37); color:var(--zlato,#D4AF37); }
+.btn-lang.aktivan-lang { background:var(--zlato,#D4AF37); color:#07070F; border-color:var(--zlato,#D4AF37); }
+</style>
 </head>
 <body>
 
@@ -15,9 +20,9 @@
     <span class="logo-txt">SerijaStar</span>
   </div>
   <ul class="nav-links" id="nav-links">
-    <li><a href="pocetna.html">Početna</a></li>
+    <li><a href="pocetna.html" data-i18n="nav.pocetna">Početna</a></li>
     <li><a href="admin.html" class="aktivan">Admin Panel</a></li>
-    <li><a href="kontakt.html">Kontakt</a></li>
+    <li><a href="kontakt.html" data-i18n="nav.kontakt">Kontakt</a></li>
   </ul>
   <div class="nav-desno">
     <div class="acc-bar">
@@ -27,6 +32,8 @@
     </div>
     <span class="nav-uloga" id="nav-k" aria-label="Ulogovani korisnik"></span>
     <button class="btn-odjava" onclick="odjava()" aria-label="Odjava">Odjava</button>
+    <button class="btn-lang aktivan-lang" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski">SR</button>
+    <button class="btn-lang" id="btn-en" onclick="postaviJezik('en')" aria-label="English">EN</button>
     <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Meni" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -438,6 +445,9 @@
   document.getElementById('modal').addEventListener('click', e=>{
     if (e.target===document.getElementById('modal')) zatvoriModal();
   });
+
+  /* ════ VIŠEJEZIČNOST ════ */
+  ucitajJezik();
 </script>
 </body>
 </html>
