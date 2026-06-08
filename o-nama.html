@@ -8,34 +8,124 @@
   <meta name="author" content="SerijaStar Tim">
   <title>O nama – SerijaStar</title>
   <link rel="stylesheet" href="css/stil.css">
-<style>
-.btn-lang { background:transparent; border:1px solid rgba(212,175,55,.3); color:var(--tekst2,#9A9080); font-size:.75rem; font-weight:700; letter-spacing:1px; padding:5px 10px; border-radius:6px; cursor:pointer; transition:.2s; }
-.btn-lang:hover { border-color:var(--zlato,#D4AF37); color:var(--zlato,#D4AF37); }
-.btn-lang.aktivan-lang { background:var(--zlato,#D4AF37); color:#07070F; border-color:var(--zlato,#D4AF37); }
-</style>
+  <link rel="stylesheet" href="css/Komponente.css">
+
+  <!-- Lucide za ikonice u mega meniju -->
+  <script src="js/vendor/lucide.min.js"></script>
+
+  <style>
+    .btn-lang { background:transparent; border:1px solid rgba(212,175,55,.3); color:var(--tekst2,#9A9080); font-size:.75rem; font-weight:700; letter-spacing:1px; padding:5px 10px; border-radius:6px; cursor:pointer; transition:.2s; }
+    .btn-lang:hover { border-color:var(--zlato,#D4AF37); color:var(--zlato,#D4AF37); }
+    .btn-lang.aktivan-lang { background:var(--zlato,#D4AF37); color:#07070F; border-color:var(--zlato,#D4AF37); }
+    /* Lucide helpers */
+    .lucide-icon { display:inline-flex; align-items:center; justify-content:center; }
+    .lucide-icon svg { width:1em; height:1em; vertical-align:middle; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .m-ikona .lucide-icon { margin-right:4px; }
+    .m-ikona .lucide-icon svg { width:1em; height:1em; }
+    .nav-desno .lucide-icon svg { width:1rem; height:1rem; }
+    .btn-acc .lucide-icon svg { width:1rem; height:1rem; }
+  </style>
 </head>
 <body>
 
-<nav id="nav" role="navigation">
+<!-- ═══ NAVIGACIJA SA MEGA MENIJEM ═══ -->
+<nav id="nav" role="navigation" aria-label="Glavna navigacija">
   <div class="nav-logo">
-    <span aria-hidden="true" style="font-size:1.4rem">▶</span>
+    <img src="slike/logo.png" alt="SerijaStar logo" class="logo-img" width="36" height="36">
     <span class="logo-txt">SerijaStar</span>
   </div>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="pocetna.html" data-i18n="nav.pocetna">Početna</a></li>
-    <li><a href="o-nama.html" class="aktivan" data-i18n="nav.onama">O nama</a></li>
-    <li><a href="user.html" data-i18n="nav.epizode">Epizode</a></li>
-    <li><a href="kontakt.html" data-i18n="nav.kontakt">Kontakt</a></li>
+  <ul class="nav-links" id="nav-links" role="menubar">
+    <li>
+      <a href="pocetna.html" role="menuitem" data-i18n="nav.pocetna">Početna</a>
+    </li>
+    <li>
+      <a href="user.html" role="menuitem" aria-haspopup="true">
+        <span data-i18n="nav.epizode">Epizode</span>
+        <span class="strelica"><span class="lucide-icon"><i data-lucide="chevron-down"></i></span></span>
+      </a>
+      <div class="dropdown" role="menu">
+        <a href="user.html" role="menuitem">
+          <span class="m-ikona"><span class="lucide-icon"><i data-lucide="sparkles"></i></span></span>
+          <span data-i18n="nav.mega_najnovije">Najnovije</span>
+        </a>
+        <a href="user.html" role="menuitem">
+          <span class="m-ikona"><span class="lucide-icon"><i data-lucide="star"></i></span></span>
+          <span data-i18n="nav.mega_ocenjivanje">Ocenjivanje</span>
+        </a>
+        <a href="user.html#top10" role="menuitem">
+          <span class="m-ikona"><span class="lucide-icon"><i data-lucide="trophy"></i></span></span>
+          <span data-i18n="nav.mega_top10">Top 10 lista</span>
+        </a>
+      </div>
+    </li>
+    <li>
+      <a href="o-nama.html" class="aktivan" role="menuitem" aria-haspopup="true">
+        <span data-i18n="nav.onama">O nama</span>
+        <span class="strelica"><span class="lucide-icon"><i data-lucide="chevron-down"></i></span></span>
+      </a>
+      <div class="mega-meni" role="menu">
+        <div class="mega-kolona">
+          <h4 data-i18n="nav.onama">O nama</h4>
+          <a href="o-nama.html" role="menuitem">
+            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="users"></i></span></span>
+            <span data-i18n="nav.mega_tim">Naš tim</span>
+          </a>
+          <a href="o-nama.html#misija" role="menuitem">
+            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="target"></i></span></span>
+            <span data-i18n="nav.mega_misija">Misija</span>
+          </a>
+        </div>
+        <div class="mega-kolona">
+          <h4 data-i18n="nav.epizode">Epizode</h4>
+          <a href="user.html" role="menuitem">
+            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="tv-2"></i></span></span>
+            <span data-i18n="nav.mega_najnovije">Najnovije</span>
+          </a>
+          <a href="user.html" role="menuitem">
+            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="star"></i></span></span>
+            <span data-i18n="nav.mega_ocenjivanje">Ocenjivanje</span>
+          </a>
+          <a href="user.html" role="menuitem">
+            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="trophy"></i></span></span>
+            <span data-i18n="nav.mega_top10">Top 10</span>
+          </a>
+        </div>
+        <div class="mega-kolona">
+          <h4 data-i18n="nav.kontakt">Kontakt</h4>
+          <a href="kontakt.html" role="menuitem">
+            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="mail"></i></span></span>
+            <span data-i18n="nav.mega_kontakt">Kontakt forma</span>
+          </a>
+          <a href="kontakt.html#mapa" role="menuitem">
+            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="map-pin"></i></span></span>
+            <span data-i18n="nav.mega_mapa">Lokacija</span>
+          </a>
+          <a href="pocetna.html#dokumenti" role="menuitem">
+            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="file-text"></i></span></span>
+            <span data-i18n="nav.mega_dokument">Dokumentacija</span>
+          </a>
+        </div>
+      </div>
+    </li>
+    <li>
+      <a href="kontakt.html" role="menuitem" data-i18n="nav.kontakt">Kontakt</a>
+    </li>
   </ul>
+
   <div class="nav-desno">
     <div class="acc-bar">
-      <button class="btn-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu">☀️</button>
-      <button class="btn-acc" onclick="povecajFont()" title="Povećaj font">A+</button>
-      <button class="btn-acc" onclick="smanjiFont()"  title="Smanji font">A-</button>
-        <button class="btn-lang aktivan-lang" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski">SR</button>
+      <button class="btn-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu" aria-label="Promena teme">
+        <span class="lucide-icon" id="tema-icon"><i data-lucide="sun"></i></span>
+      </button>
+      <button class="btn-acc" onclick="povecajFont()" title="Povecaj font" aria-label="Povecaj font">A+</button>
+      <button class="btn-acc" onclick="smanjiFont()" title="Smanji font" aria-label="Smanji font">A-</button>
+    </div>
+    <button class="btn-lang aktivan-lang" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski">SR</button>
     <button class="btn-lang" id="btn-en" onclick="postaviJezik('en')" aria-label="English">EN</button>
-    <a href="index.html" class="btn-prim" style="font-size:.82rem;padding:8px 18px;" data-i18n="nav.prijava">Prijavi se</a>
-    <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Meni" aria-expanded="false">
+    <a href="index.html" class="btn-prim" style="font-size:.82rem;padding:8px 18px;" data-i18n="nav.prijava">
+      <span class="lucide-icon" style="margin-right:4px"><i data-lucide="log-in"></i></span>Prijavi se
+    </a>
+    <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Otvori meni" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -52,10 +142,6 @@
 <section class="kontejner">
   <div class="o-nama-grid">
     <div>
-      <!--
-        SLIKA: Zameni div sa:
-        <img src="slike/o-nama.jpg" alt="Tim SerijaStar platforme na poslu" class="o-nama-slika">
-      -->
       <div class="o-nama-slika-ph" role="img" aria-label="Slika tima SerijaStar">🎬</div>
     </div>
     <div class="o-nama-content">
@@ -75,13 +161,9 @@
   </div>
   <div class="tim-grid">
     <div class="tim-k">
-      <!--
-        AVATAR: Zameni div sa:
-        <img src="slike/clan1.jpg" alt="Portret člana tima – Petar" style="width:70px;height:70px;border-radius:50%;margin:0 auto 12px;display:block;object-fit:cover;">
-      -->
       <div class="tim-avatar" aria-hidden="true">👨‍💻</div>
       <div class="tim-ime">Petar P.</div>
-      <div class="tim-uloga">Osnivač & Developer</div>
+      <div class="tim-uloga">Osnivač &amp; Developer</div>
     </div>
     <div class="tim-k">
       <div class="tim-avatar" aria-hidden="true">🎨</div>
@@ -96,13 +178,13 @@
     <div class="tim-k">
       <div class="tim-avatar" aria-hidden="true">📊</div>
       <div class="tim-ime">Sara L.</div>
-      <div class="tim-uloga">Marketing & SEO</div>
+      <div class="tim-uloga">Marketing &amp; SEO</div>
     </div>
   </div>
 </section>
 
 <!-- MISIJA -->
-<section style="background:var(--bg2);padding:60px 0;position:relative;z-index:1">
+<section id="misija" style="background:var(--bg2);padding:60px 0;position:relative;z-index:1">
   <div class="kontejner" style="padding-top:0;padding-bottom:0">
     <div style="text-align:center;max-width:700px;margin:0 auto">
       <div style="font-size:3rem;margin-bottom:16px">✦</div>
@@ -143,16 +225,30 @@
 
 <script src="js/core.js"></script>
 <script>
-  document.getElementById('btn-tema').textContent =
-    (localStorage.getItem('ss_tema')||'tamna')==='tamna'?'☀️':'🌙';
+  const tamna = (localStorage.getItem('ss_tema')||'tamna') === 'tamna';
+  document.getElementById('tema-icon').innerHTML = tamna
+    ? '<i data-lucide="sun"></i>'
+    : '<i data-lucide="moon"></i>';
+
   function togglujMeni() {
     const nl=document.getElementById('nav-links'), hb=document.getElementById('hamburger');
     const o=nl.classList.toggle('otvoreni');
     hb.classList.toggle('otvoren',o); hb.setAttribute('aria-expanded',o);
   }
 
-  /* ════ VIŠEJEZIČNOST ════ */
+  document.querySelectorAll('.nav-links > li > a').forEach(a => {
+    a.addEventListener('click', function(e) {
+      if (window.innerWidth > 768) return;
+      const li = this.parentElement;
+      const ima = li.querySelector('.dropdown, .mega-meni');
+      if (!ima) return;
+      e.preventDefault();
+      li.classList.toggle('mob-otvoren');
+    });
+  });
+
   ucitajJezik();
+  lucide.createIcons();
 </script>
 </body>
 </html>

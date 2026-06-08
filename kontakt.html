@@ -7,31 +7,62 @@
   <meta name="keywords" content="kontakt, SerijaStar kontakt, poruka, sugestija, podrška">
   <meta name="author" content="SerijaStar Tim">
   <title>Kontakt – SerijaStar</title>
+
+  <!-- ═══ BOOTSTRAP 5 CDN ═══ -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/vendor/bootstrap.bundle.min.js" defer></script>
+
+  <!-- ═══ VLASTITI CSS ═══ -->
   <link rel="stylesheet" href="css/stil.css">
+
   <style>
+    /* Bootstrap override – uklapa se u temu sajta */
     .kontakt-forma-k {
-      background:var(--kartica); border:1px solid var(--border); border-radius:var(--radius);
-      padding:36px; position:relative;
+      background: var(--kartica);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      position: relative;
     }
     .kontakt-forma-k::before {
-      content:''; position:absolute; top:0; left:20%; right:20%;
-      height:2px; background:linear-gradient(90deg,transparent,var(--zlato),transparent);
+      content: '';
+      position: absolute;
+      top: 0; left: 20%; right: 20%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--zlato), transparent);
     }
-    .uspeh-msg {
-      background:rgba(40,160,80,.12); border:1px solid rgba(60,200,100,.3);
-      border-radius:10px; padding:16px; color:#80FF80;
-      font-size:.9rem; display:none; text-align:center;
-      animation:fadeIn .4s ease;
+    .form-control, .form-select {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--tekst);
+      border-radius: 8px;
     }
-    @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+    .form-control:focus, .form-select:focus {
+      background: var(--bg2);
+      border-color: var(--zlato);
+      color: var(--tekst);
+      box-shadow: 0 0 0 3px rgba(212,175,55,.2);
+    }
+    .form-label {
+      color: var(--tekst2);
+      font-size: .8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .btn-lang { background:transparent; border:1px solid rgba(212,175,55,.3); color:var(--tekst2,#9A9080); font-size:.75rem; font-weight:700; letter-spacing:1px; padding:5px 10px; border-radius:6px; cursor:pointer; transition:.2s; }
+    .btn-lang:hover { border-color:var(--zlato,#D4AF37); color:var(--zlato,#D4AF37); }
+    .btn-lang.aktivan-lang { background:var(--zlato,#D4AF37); color:#07070F; border-color:var(--zlato,#D4AF37); }
+    .kontakt-stavka { display:flex; align-items:flex-start; gap:14px; margin-bottom:20px; }
+    .kontakt-stavka-i { font-size:1.4rem; min-width:36px; text-align:center; }
+    .mapa-wrap { border-radius: var(--radius); overflow:hidden; border:1px solid var(--border); margin-top:20px; }
+    .mapa-wrap iframe { width:100%; height:260px; border:none; display:block; }
+    .uspeh-msg { background:rgba(40,160,80,.12); border:1px solid rgba(60,200,100,.3); border-radius:10px; padding:16px; color:#80FF80; font-size:.9rem; display:none; text-align:center; }
+    .greska-msg { background:rgba(180,40,40,.12); border:1px solid rgba(220,60,60,.35); border-radius:10px; padding:11px 15px; color:#FF8080; font-size:.88rem; margin-bottom:14px; display:none; }
     .char-count { font-size:.72rem; color:var(--tekst2); text-align:right; margin-top:4px; }
-    .kontakt-stavka-i { min-width:36px; text-align:center; }
+    .greska-p { border-color: rgba(220,60,60,.6) !important; }
   </style>
-<style>
-.btn-lang { background:transparent; border:1px solid rgba(212,175,55,.3); color:var(--tekst2,#9A9080); font-size:.75rem; font-weight:700; letter-spacing:1px; padding:5px 10px; border-radius:6px; cursor:pointer; transition:.2s; }
-.btn-lang:hover { border-color:var(--zlato,#D4AF37); color:var(--zlato,#D4AF37); }
-.btn-lang.aktivan-lang { background:var(--zlato,#D4AF37); color:#07070F; border-color:var(--zlato,#D4AF37); }
-</style>
 </head>
 <body>
 
@@ -51,12 +82,13 @@
       <button class="btn-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu">☀️</button>
       <button class="btn-acc" onclick="povecajFont()" title="Povećaj font">A+</button>
       <button class="btn-acc" onclick="smanjiFont()"  title="Smanji font">A-</button>
-        <button class="btn-lang aktivan-lang" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski">SR</button>
-    <button class="btn-lang" id="btn-en" onclick="postaviJezik('en')" aria-label="English">EN</button>
-    <a href="index.html" class="btn-prim" style="font-size:.82rem;padding:8px 18px;" data-i18n="nav.prijava">Prijavi se</a>
-    <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Meni" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+      <button class="btn-lang aktivan-lang" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski">SR</button>
+      <button class="btn-lang" id="btn-en" onclick="postaviJezik('en')" aria-label="English">EN</button>
+      <a href="index.html" class="btn-prim" style="font-size:.82rem;padding:8px 18px;" data-i18n="nav.prijava">Prijavi se</a>
+      <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Meni" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 <div class="zlatna-linija"></div>
@@ -66,38 +98,41 @@
   <p>Pišite nam – odgovaramo u roku od 24 sata</p>
 </div>
 
-<section class="kontejner">
-  <div class="kontakt-grid">
+<!-- ═══ BOOTSTRAP KONTEJNER ═══ -->
+<div class="container py-5">
+  <div class="row g-5">
 
-    <!-- KONTAKT INFO -->
-    <div class="kontakt-info">
-      <h2><span style="color:var(--zlato)">Povežite</span> se s nama</h2>
-      <p>Imate pitanje, sugestiju ili ste pronašli grešku? Javite nam se – svaka povratna informacija nam je dragocena i pomaže nam da unapredimo platformu.</p>
+    <!-- LEVA KOLONA – Kontakt info + mapa -->
+    <div class="col-lg-5">
+      <h2 class="mb-3"><span style="color:var(--zlato)">Povežite</span> se s nama</h2>
+      <p style="color:var(--tekst2);margin-bottom:28px;">
+        Imate pitanje, sugestiju ili ste pronašli grešku? Javite nam se – svaka povratna informacija nam je dragocena.
+      </p>
 
+      <!-- Bootstrap ikone info stavki -->
       <div class="kontakt-stavka">
         <div class="kontakt-stavka-i" aria-hidden="true">📧</div>
-        <div class="kontakt-stavka-t">
-          <strong>Email</strong><br>kontakt@serijastar.rs
-        </div>
+        <div><strong>Email</strong><br><span style="color:var(--tekst2)">kontakt@serijastar.rs</span></div>
       </div>
       <div class="kontakt-stavka">
         <div class="kontakt-stavka-i" aria-hidden="true">📍</div>
-        <div class="kontakt-stavka-t">
-          <strong>Lokacija</strong><br>Beograd, Srbija
-        </div>
+        <div><strong>Lokacija</strong><br><span style="color:var(--tekst2)">Beograd, Srbija</span></div>
       </div>
       <div class="kontakt-stavka">
         <div class="kontakt-stavka-i" aria-hidden="true">⏱</div>
-        <div class="kontakt-stavka-t">
-          <strong>Radno vreme podrške</strong><br>Pon–Pet: 09:00–17:00
-        </div>
+        <div><strong>Radno vreme podrške</strong><br><span style="color:var(--tekst2)">Pon–Pet: 09:00–17:00</span></div>
       </div>
 
-      <!-- GOOGLE MAPS EMBED -->
-      <div class="mapa-wrap" role="region" aria-label="Google mapa lokacije SerijaStar">
+      <!-- Bootstrap Alert – info -->
+      <div class="alert alert-warning mt-4" style="background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.3);color:var(--tekst2);" role="alert">
+        💡 <strong style="color:var(--zlato)">Savet:</strong> Za hitne prijave grešaka koristite temu <em>„Prijava greške"</em> u formi.
+      </div>
+
+      <!-- Mapa -->
+      <div class="mapa-wrap" role="region" aria-label="Mapa lokacije SerijaStar">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.1234567890123!2d20.4612!3d44.8178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7aa3a3a3a3a3%3A0x0!2sBeograd%2C+Srbija!5e0!3m2!1ssr!2srs!4v1234567890!5m2!1ssr!2srs"
-          title="Mapa – Beograd, Srbija | Google Maps"
+          title="Mapa – Beograd, Srbija"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           aria-label="Interaktivna Google mapa Beograda">
@@ -105,8 +140,8 @@
       </div>
     </div>
 
-    <!-- KONTAKT FORMA (sa JS validacijom) -->
-    <div>
+    <!-- DESNA KOLONA – Bootstrap forma -->
+    <div class="col-lg-7">
       <div class="kontakt-forma-k">
         <h3 style="font-family:var(--font-n);color:var(--zlato);margin-bottom:22px;font-size:1.4rem">Pošaljite poruku</h3>
 
@@ -115,24 +150,32 @@
           ✅ Poruka je uspešno poslata! Odgovorićemo vam uskoro.
         </div>
 
-        <!-- Ime -->
-        <div class="polje-g">
-          <label for="ime">Ime i prezime <span style="color:#FF7070" aria-label="obavezno">*</span></label>
-          <input type="text" id="ime" placeholder="Vaše ime i prezime" maxlength="80"
-                 aria-required="true" autocomplete="name" onkeyup="validujPolje(this,2,'Ime mora imati min. 2 karaktera.')">
-        </div>
-
-        <!-- Email -->
-        <div class="polje-g">
-          <label for="email">Email adresa <span style="color:#FF7070" aria-label="obavezno">*</span></label>
-          <input type="email" id="email" placeholder="vasa@email.com"
-                 aria-required="true" autocomplete="email" onkeyup="validujEmail()">
+        <!-- Bootstrap row – ime + email -->
+        <div class="row g-3 mb-3">
+          <div class="col-sm-6">
+            <label for="ime" class="form-label">
+              Ime i prezime <span style="color:#FF7070" aria-label="obavezno">*</span>
+            </label>
+            <input type="text" class="form-control" id="ime"
+              placeholder="Vaše ime i prezime" maxlength="80"
+              aria-required="true" autocomplete="name">
+          </div>
+          <div class="col-sm-6">
+            <label for="email" class="form-label">
+              Email adresa <span style="color:#FF7070" aria-label="obavezno">*</span>
+            </label>
+            <input type="email" class="form-control" id="email"
+              placeholder="vasa@email.com"
+              aria-required="true" autocomplete="email">
+          </div>
         </div>
 
         <!-- Tema -->
-        <div class="polje-g">
-          <label for="tema">Tema poruke <span style="color:#FF7070" aria-label="obavezno">*</span></label>
-          <select id="tema" aria-required="true">
+        <div class="mb-3">
+          <label for="tema" class="form-label">
+            Tema poruke <span style="color:#FF7070" aria-label="obavezno">*</span>
+          </label>
+          <select class="form-select" id="tema" aria-required="true">
             <option value="">– Izaberite temu –</option>
             <option value="pitanje">Pitanje o platformi</option>
             <option value="greška">Prijava greške</option>
@@ -143,30 +186,89 @@
         </div>
 
         <!-- Poruka -->
-        <div class="polje-g">
-          <label for="poruka">Poruka <span style="color:#FF7070" aria-label="obavezno">*</span></label>
-          <textarea id="poruka" placeholder="Napišite vašu poruku..." maxlength="1000"
-                    aria-required="true" rows="6" oninput="azurirajBrojac()"></textarea>
+        <div class="mb-3">
+          <label for="poruka" class="form-label">
+            Poruka <span style="color:#FF7070" aria-label="obavezno">*</span>
+          </label>
+          <textarea class="form-control" id="poruka"
+            placeholder="Napišite vašu poruku..." maxlength="1000"
+            aria-required="true" rows="6"
+            oninput="azurirajBrojac()"></textarea>
           <div class="char-count"><span id="brojac">0</span>/1000 karaktera</div>
         </div>
 
-        <!-- Saglasnost (pristupačnost) -->
-        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:20px">
-          <input type="checkbox" id="saglasnost" style="margin-top:3px;accent-color:var(--zlato);width:16px;height:16px" aria-required="true">
-          <label for="saglasnost" style="font-size:.83rem;color:var(--tekst2);letter-spacing:0;text-transform:none;font-weight:400">
-            Saglasan/na sam da SerijaStar čuva moje podatke u svrhu odgovaranja na upit. <span style="color:#FF7070">*</span>
+        <!-- Bootstrap checkbox – saglasnost -->
+        <div class="form-check mb-4">
+          <input class="form-check-input" type="checkbox" id="saglasnost"
+            aria-required="true" style="accent-color:var(--zlato)">
+          <label class="form-check-label" for="saglasnost"
+            style="font-size:.83rem;color:var(--tekst2)">
+            Saglasan/na sam da SerijaStar čuva moje podatke u svrhu odgovaranja na upit.
+            <span style="color:#FF7070">*</span>
           </label>
         </div>
 
-        <button class="btn-prim" onclick="posaljiFormu()" style="width:100%;justify-content:center"
-                aria-label="Pošalji kontakt poruku">
+        <!-- Bootstrap dugme -->
+        <button class="btn-prim w-100 d-flex justify-content-center"
+          onclick="posaljiFormu()"
+          aria-label="Pošalji kontakt poruku">
           ✦ Pošalji poruku
         </button>
+      </div>
+
+      <!-- Bootstrap accordion – FAQ -->
+      <div class="accordion mt-4" id="faqAkordion">
+        <h4 style="color:var(--zlato);margin-bottom:14px;font-size:1rem;letter-spacing:1px;text-transform:uppercase">Česta pitanja</h4>
+
+        <div class="accordion-item" style="background:var(--kartica);border:1px solid var(--border);margin-bottom:8px;border-radius:8px!important;overflow:hidden">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button"
+              data-bs-toggle="collapse" data-bs-target="#faq1"
+              style="background:var(--kartica);color:var(--tekst);font-size:.9rem">
+              Kako da se registrujem na SerijaStar?
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAkordion">
+            <div class="accordion-body" style="color:var(--tekst2);font-size:.88rem">
+              Admin kreira vaš nalog u Admin panelu. Kontaktirajte nas putem ove forme i dodelićemo vam pristup.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" style="background:var(--kartica);border:1px solid var(--border);margin-bottom:8px;border-radius:8px!important;overflow:hidden">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button"
+              data-bs-toggle="collapse" data-bs-target="#faq2"
+              style="background:var(--kartica);color:var(--tekst);font-size:.9rem">
+              Da li se moje ocene čuvaju trajno?
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAkordion">
+            <div class="accordion-body" style="color:var(--tekst2);font-size:.88rem">
+              Ocene se čuvaju u localStorage vašeg browsera. Brisanjem browser podataka ocene se gube – radi se o proof-of-concept projektu bez servera.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item" style="background:var(--kartica);border:1px solid var(--border);border-radius:8px!important;overflow:hidden">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button"
+              data-bs-toggle="collapse" data-bs-target="#faq3"
+              style="background:var(--kartica);color:var(--tekst);font-size:.9rem">
+              Mogu li da promenim komentar koji sam ostavio?
+            </button>
+          </h2>
+          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAkordion">
+            <div class="accordion-body" style="color:var(--tekst2);font-size:.88rem">
+              Da – komentare možete uređivati i brisati u svakom trenutku dok ste prijavljeni kao korisnik.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
   </div>
-</section>
+</div>
 
 <footer role="contentinfo">
   <div class="footer-grid">
@@ -208,23 +310,13 @@
     hb.classList.toggle('otvoren',o); hb.setAttribute('aria-expanded',o);
   }
 
-  /* ===== JS VALIDACIJA FORME ===== */
-
   function azurirajBrojac() {
     document.getElementById('brojac').textContent = document.getElementById('poruka').value.length;
   }
 
-  function validujPolje(el, minLen, msg) {
-    const ok = el.value.trim().length >= minLen;
-    el.classList.toggle('greska-p', !ok);
-    return ok;
-  }
-
   function validujEmail() {
     const el = document.getElementById('email');
-    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
-    el.classList.toggle('greska-p', !ok && el.value.length>0);
-    return ok;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
   }
 
   function prikaziGresku(msg) {
@@ -235,7 +327,6 @@
   }
 
   function posaljiFormu() {
-    // Sakri prethodne poruke
     document.getElementById('forma-greska').style.display = 'none';
     document.getElementById('forma-uspeh').style.display   = 'none';
 
@@ -245,56 +336,43 @@
     const por  = document.getElementById('poruka').value.trim();
     const sag  = document.getElementById('saglasnost').checked;
 
-    // Validacija – HTML5 + JS
+    ['ime','email','tema','poruka'].forEach(id => document.getElementById(id).classList.remove('greska-p','is-invalid'));
+
     if (ime.length < 2) {
-      document.getElementById('ime').classList.add('greska-p');
+      document.getElementById('ime').classList.add('greska-p','is-invalid');
       prikaziGresku('❌ Unesite vaše ime (min. 2 karaktera).');
-      document.getElementById('ime').focus();
-      return;
+      document.getElementById('ime').focus(); return;
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      document.getElementById('email').classList.add('greska-p');
+    if (!validujEmail()) {
+      document.getElementById('email').classList.add('greska-p','is-invalid');
       prikaziGresku('❌ Unesite ispravnu email adresu.');
-      document.getElementById('email').focus();
-      return;
+      document.getElementById('email').focus(); return;
     }
     if (!tema) {
-      document.getElementById('tema').classList.add('greska-p');
+      document.getElementById('tema').classList.add('greska-p','is-invalid');
       prikaziGresku('❌ Izaberite temu poruke.');
-      document.getElementById('tema').focus();
-      return;
+      document.getElementById('tema').focus(); return;
     }
     if (por.length < 10) {
-      document.getElementById('poruka').classList.add('greska-p');
+      document.getElementById('poruka').classList.add('greska-p','is-invalid');
       prikaziGresku('❌ Poruka mora imati minimum 10 karaktera.');
-      document.getElementById('poruka').focus();
-      return;
+      document.getElementById('poruka').focus(); return;
     }
     if (!sag) {
       prikaziGresku('❌ Morate prihvatiti uslove pre slanja.');
-      document.getElementById('saglasnost').focus();
-      return;
+      document.getElementById('saglasnost').focus(); return;
     }
 
-    // Ukloni greška stilove
-    ['ime','email','tema','poruka'].forEach(id => document.getElementById(id).classList.remove('greska-p'));
-
-    // Sačuvaj u localStorage (simulacija slanja)
     const poruke = JSON.parse(localStorage.getItem('ss_poruke')||'[]');
     poruke.push({ ime, email, tema, poruka: por, datum: new Date().toISOString() });
     localStorage.setItem('ss_poruke', JSON.stringify(poruke));
 
-    // Prikaži uspeh i resetuj formu
     document.getElementById('forma-uspeh').style.display = 'block';
-    document.getElementById('ime').value    = '';
-    document.getElementById('email').value  = '';
-    document.getElementById('tema').value   = '';
-    document.getElementById('poruka').value = '';
+    ['ime','email','tema','poruka'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('saglasnost').checked = false;
     document.getElementById('brojac').textContent = '0';
   }
 
-  /* ════ VIŠEJEZIČNOST ════ */
   ucitajJezik();
 </script>
 </body>
