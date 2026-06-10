@@ -65,45 +65,45 @@
 @media (max-width: 900px) {
   .hero { padding: 60px 20px 50px; }
   .hero h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); }
-  .hero-btns { flex-direction: column; align-items: center; gap: 10px; }
-  .btn-prim, .btn-sek { width: 100%; max-width: 300px; text-align: center; }
+  .hero-dugmad { flex-direction: column; align-items: center; gap: 10px; }
+  .dugme-prim, .dugme-sek { width: 100%; max-width: 300px; text-align: center; }
 }
 
 @media (max-width: 640px) {
-  .slider-wrap { height: clamp(220px, 55vw, 380px); }
-  .slider-caption { padding: 16px 14px; }
-  .slider-caption h3 { font-size: 1rem; }
-  .slider-caption p { font-size: .8rem; display: none; } /* sakrij na malim ekranima */
-  .slider-btn { width: 34px; height: 34px; font-size: 1.2rem; }
+  .slajder-omotac { height: clamp(220px, 55vw, 380px); }
+  .slajder-natpis { padding: 16px 14px; }
+  .slajder-natpis h3 { font-size: 1rem; }
+  .slajder-natpis p { font-size: .8rem; display: none; } /* sakrij na malim ekranima */
+  .slajder-dugme { width: 34px; height: 34px; font-size: 1.2rem; }
 }
 
 /* ── 3. STAT ROW ─────────────────────────────────────────────── */
 @media (max-width: 640px) {
-  .stat-row {
+  .stat-red {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     padding: 16px 14px;
   }
-  .stat-n { font-size: 1.6rem; }
+  .stat-broj { font-size: 1.6rem; }
 }
 
 @media (max-width: 360px) {
-  .stat-row { grid-template-columns: 1fr; }
+  .stat-red { grid-template-columns: 1fr; }
 }
 
 /* ── 4. EPIZODE GRID ─────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .ep-grid { grid-template-columns: repeat(2, 1fr); }
+  .ep-mreza { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 540px) {
-  .ep-grid { grid-template-columns: 1fr; }
+  .ep-mreza { grid-template-columns: 1fr; }
 }
 
 /* ── 5. SEK-HD (section headers) ────────────────────────────── */
 @media (max-width: 640px) {
-  .sek-hd { flex-direction: column; align-items: flex-start; gap: 4px; }
-  .sek-hd h2 { font-size: 1.5rem; }
+  .sek-naslov { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .sek-naslov h2 { font-size: 1.5rem; }
 }
 
 /* ── 6. KONTEJNER ────────────────────────────────────────────── */
@@ -116,7 +116,7 @@
   .video-grid {
     grid-template-columns: 1fr !important;
   }
-  .video-wrap { min-height: 220px; }
+  .video-omotac { min-height: 220px; }
   .mp4-wrap   { min-height: 200px; }
 }
 
@@ -149,18 +149,18 @@
 
 /* ── 11. FOOTER ──────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .podnozje-mreza { grid-template-columns: 1fr 1fr; gap: 24px; }
 }
 
 @media (max-width: 540px) {
-  .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
-  .footer-logo-txt { font-size: 1.4rem; }
+  .podnozje-mreza { grid-template-columns: 1fr; }
+  .podnozje-dno { flex-direction: column; gap: 6px; text-align: center; }
+  .podnozje-logo-tekst { font-size: 1.4rem; }
 }
 
 /* ── 12. MUZIČKI PLEJER ──────────────────────────────────────── */
 @media (max-width: 540px) {
-  .muzika-bar {
+  .muzika-traka {
     padding: 10px 12px;
     flex-wrap: wrap;
     gap: 8px;
@@ -209,12 +209,24 @@
 
 /* ── 16. PRISTUPAČNOST – povećani klik na touch ──────────────── */
 @media (max-width: 640px) {
-  .slider-btn,
+  .slajder-dugme,
   .nav-hamburger,
-  .btn-prim,
-  .btn-sek,
+  .dugme-prim,
+  .dugme-sek,
   .nav-prijava {
     min-height: 44px;
     min-width: 44px;
+  }
+}
+
+/* ── korisnik.html – Responzivnost ──────────────────────────── */
+@media (max-width: 1024px) {
+  .ep-raspored {
+    display: flex;
+    flex-direction: column;
+  }
+  .rang-lepljivi {
+    position: static;
+    order: -1;
   }
 }

@@ -21,15 +21,15 @@
 <link rel="stylesheet" href="css/animacije.css">
 
 <!-- ═══ LUCIDE ICONS CDN ═══ -->
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/vendor/lucide.min.js"></script>
 
 <style>
 /* Lucide icon helpers */
 .lucide-icon { display:inline-flex; align-items:center; justify-content:center; }
 .lucide-icon svg { width:1.1em; height:1.1em; vertical-align:middle; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-.muz-toggle .lucide-icon svg { width:1.4rem; height:1.4rem; }
-.play-btn-big .lucide-icon svg { width:3rem; height:3rem; stroke:var(--zlato,#D4AF37); fill:none; }
-.btn-acc .lucide-icon svg { width:1rem; height:1rem; }
+.muz-prekidac .lucide-icon svg { width:1.4rem; height:1.4rem; }
+.dugme-pusti-big .lucide-icon svg { width:3rem; height:3rem; stroke:var(--zlato,#D4AF37); fill:none; }
+.dugme-acc .lucide-icon svg { width:1rem; height:1rem; }
 .nav-desno .lucide-icon svg { width:1rem; height:1rem; }
 .dok-ikona .lucide-icon svg { width:2rem; height:2rem; stroke:var(--zlato,#D4AF37); }
 .m-ikona .lucide-icon { margin-right:4px; }
@@ -38,45 +38,45 @@
 </head>
 <body>
 
-<audio id="bg-audio" loop preload="none">
+<audio id="pozadinska-muzika" loop preload="none">
   <source src="video/muzika.mp3" type="audio/mpeg">
   <source src="video/muzika.ogg" type="audio/ogg">
   Vas browser ne podrzava audio element.
 </audio>
 
 <!-- Dugme za otvaranje muzickog plejera (Lucide Music icon) -->
-<button class="muz-toggle" id="muz-toggle" onclick="otvoriPlejer()" aria-label="Pusti muziku" title="Pusti pozadinsku muziku">
+<button class="muz-prekidac" id="muz-prekidac" onclick="otvoriPlejer()" aria-label="Pusti muziku" title="Pusti pozadinsku muziku">
   <span class="lucide-icon"><i data-lucide="music"></i></span>
 </button>
 
 <!-- Muzicki plejer bar -->
-<div class="muzika-bar" id="muzika-bar" role="region" aria-label="Muzicki plejer">
+<div class="muzika-traka" id="muzika-traka" role="region" aria-label="Muzicki plejer">
   <div class="muzika-info">
     <div class="muzika-ikona" id="muz-ikona">
       <span class="lucide-icon"><i data-lucide="music-2"></i></span>
     </div>
     <div>
       <div class="muzika-naziv" data-i18n="muzika.svira" id="muz-naziv">Sada svira</div>
-      <div class="muzika-artist" data-i18n="muzika.artist">SerijaStar Soundtrack</div>
+      <div class="muzika-umetnik" data-i18n="muzika.artist">SerijaStar Soundtrack</div>
     </div>
   </div>
   <div class="muzika-klizac">
     <span class="muz-vreme" id="muz-vreme-tek">0:00</span>
-    <input type="range" id="muz-progres" min="0" max="100" value="0"
+    <input type="range" id="muz-napredak" min="0" max="100" value="0"
       oninput="promeniPoziciju(this.value)" aria-label="Progres muzike">
     <span class="muz-vreme" id="muz-vreme-uk">0:00</span>
   </div>
   <div class="muzika-kontrole">
-    <button class="muz-btn" onclick="prethodna()" aria-label="Prethodna">
+    <button class="muz-dugme" onclick="prethodna()" aria-label="Prethodna">
       <span class="lucide-icon"><i data-lucide="skip-back"></i></span>
     </button>
-    <button class="muz-btn play-pause" id="muz-play" onclick="togglujMuziku()" aria-label="Pusti/Pauziraj">
-      <span class="lucide-icon" id="muz-play-icon"><i data-lucide="play"></i></span>
+    <button class="muz-dugme pusti-pauza" id="muz-pusti" onclick="togglujMuziku()" aria-label="Pusti/Pauziraj">
+      <span class="lucide-icon" id="muz-pusti-ikona"><i data-lucide="play"></i></span>
     </button>
-    <button class="muz-btn" onclick="sledeca()" aria-label="Sledeca">
+    <button class="muz-dugme" onclick="sledeca()" aria-label="Sledeca">
       <span class="lucide-icon"><i data-lucide="skip-forward"></i></span>
     </button>
-    <input type="range" id="muz-jac" min="0" max="1" step="0.05" value="0.5"
+    <input type="range" id="muz-jacina" min="0" max="1" step="0.05" value="0.5"
       oninput="promeniJacinu(this.value)" aria-label="Jacina zvuka" style="width:60px;accent-color:var(--zlato)">
   </div>
   <button class="muzika-zatvori" onclick="zatvoriPlejer()" aria-label="Zatvori plejer" data-i18n="muzika.zatvori">
@@ -90,25 +90,25 @@
     <img src="slike/logo.png" alt="SerijaStar logo" class="logo-img" width="36" height="36">
     <span class="logo-txt">SerijaStar</span>
   </div>
-  <ul class="nav-links" id="nav-links" role="menubar">
+  <ul class="nav-veze" id="nav-veze" role="menubar">
     <li>
       <a href="pocetna.html" class="aktivan" role="menuitem" data-i18n="nav.pocetna">Pocetna</a>
     </li>
     <li>
-      <a href="user.html" role="menuitem" aria-haspopup="true">
+      <a href="korisnik.html" role="menuitem" aria-haspopup="true">
         <span data-i18n="nav.epizode">Epizode</span>
         <span class="strelica"><span class="lucide-icon"><i data-lucide="chevron-down"></i></span></span>
       </a>
-      <div class="dropdown" role="menu">
-        <a href="user.html" role="menuitem">
+      <div class="padajuci-meni" role="menu">
+        <a href="korisnik.html" role="menuitem">
           <span class="m-ikona"><span class="lucide-icon"><i data-lucide="sparkles"></i></span></span>
           <span data-i18n="nav.mega_najnovije">Najnovije</span>
         </a>
-        <a href="user.html" role="menuitem">
+        <a href="korisnik.html" role="menuitem">
           <span class="m-ikona"><span class="lucide-icon"><i data-lucide="star"></i></span></span>
           <span data-i18n="nav.mega_ocenjivanje">Ocenjivanje</span>
         </a>
-        <a href="user.html#top10" role="menuitem">
+        <a href="korisnik.html#top10" role="menuitem">
           <span class="m-ikona"><span class="lucide-icon"><i data-lucide="trophy"></i></span></span>
           <span data-i18n="nav.mega_top10">Top 10 lista</span>
         </a>
@@ -133,15 +133,15 @@
         </div>
         <div class="mega-kolona">
           <h4 data-i18n="nav.epizode">Epizode</h4>
-          <a href="user.html" role="menuitem">
+          <a href="korisnik.html" role="menuitem">
             <span class="m-ikona"><span class="lucide-icon"><i data-lucide="tv-2"></i></span></span>
             <span data-i18n="nav.mega_najnovije">Najnovije</span>
           </a>
-          <a href="user.html" role="menuitem">
+          <a href="korisnik.html" role="menuitem">
             <span class="m-ikona"><span class="lucide-icon"><i data-lucide="star"></i></span></span>
             <span data-i18n="nav.mega_ocenjivanje">Ocenjivanje</span>
           </a>
-          <a href="user.html" role="menuitem">
+          <a href="korisnik.html" role="menuitem">
             <span class="m-ikona"><span class="lucide-icon"><i data-lucide="trophy"></i></span></span>
             <span data-i18n="nav.mega_top10">Top 10</span>
           </a>
@@ -169,16 +169,16 @@
   </ul>
 
   <div class="nav-desno">
-    <div class="acc-bar">
-      <button class="btn-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu" aria-label="Promena teme">
-        <span class="lucide-icon" id="tema-icon"><i data-lucide="sun"></i></span>
+    <div class="acc-traka">
+      <button class="dugme-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu" aria-label="Promena teme">
+        <span class="lucide-icon" id="tema-ikona"><i data-lucide="sun"></i></span>
       </button>
-      <button class="btn-acc" onclick="povecajFont()" title="Povecaj font" aria-label="Povecaj font">A+</button>
-      <button class="btn-acc" onclick="smanjiFont()" title="Smanji font" aria-label="Smanji font">A-</button>
+      <button class="dugme-acc" onclick="povecajFont()" title="Povecaj font" aria-label="Povecaj font">A+</button>
+      <button class="dugme-acc" onclick="smanjiFont()" title="Smanji font" aria-label="Smanji font">A-</button>
     </div>
-    <button class="btn-lang aktivan-lang" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski jezik">SR</button>
-    <button class="btn-lang" id="btn-en" onclick="postaviJezik('en')" aria-label="English language">EN</button>
-    <a href="index.html" class="btn-prim" style="font-size:.82rem;padding:8px 18px;" data-i18n="nav.prijava">
+    <button class="dugme-jezicki aktivan-jezik" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski jezik">SR</button>
+    <button class="dugme-jezicki" id="btn-en" onclick="postaviJezik('en')" aria-label="English language">EN</button>
+    <a href="prijava.html" class="dugme-prim" style="font-size:.82rem;padding:8px 18px;" data-i18n="nav.prijava">
       <span class="lucide-icon" style="margin-right:4px"><i data-lucide="log-in"></i></span>Prijavi se
     </a>
     <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Otvori meni" aria-expanded="false">
@@ -190,80 +190,80 @@
 <div class="zlatna-linija"></div>
 
 <!-- ═══ SLIDER ═══ -->
-<section class="slider-wrap" aria-label="Istaknute serije">
-  <div class="slider-track" id="slider">
-    <div class="slider-slide">
+<section class="slajder-omotac" aria-label="Istaknute serije">
+  <div class="slajder-traka" id="slajder">
+    <div class="slajder-slajd">
       <img src="slike/slider1.jpg" alt="Pilot epizoda" loading="eager">
-      <div class="slider-caption animuj-gore">
-        <h3 class="glow-zlato">Sezona 1 - Pilot epizoda</h3>
+      <div class="slajder-natpis animuj-gore">
+        <h3 class="sjaj-zlato">Sezona 1 - Pilot epizoda</h3>
         <p>Upoznajte likove u misterioznom gradu gde nista nije onakvo kakvim se cini</p>
       </div>
     </div>
-    <div class="slider-slide">
+    <div class="slajder-slajd">
       <img src="slike/slider2.jpg" alt="Ocenjuj i osvoji titulu kriticara" loading="lazy">
-      <div class="slider-caption animuj-gore">
-        <h3 class="glow-zlato">Ocenjuj i osvoji titulu Kriticara</h3>
+      <div class="slajder-natpis animuj-gore">
+        <h3 class="sjaj-zlato">Ocenjuj i osvoji titulu Kriticara</h3>
         <p>Sto vise ocenis i komentarises, to vise gradi tvoj glas u zajednici</p>
       </div>
     </div>
-    <div class="slider-slide">
+    <div class="slajder-slajd">
       <img src="slike/slider3.jpg" alt="Tvoje misljenje je vazno" loading="lazy">
-      <div class="slider-caption animuj-gore">
-        <h3 class="glow-zlato">Tvoje misljenje je vazno</h3>
+      <div class="slajder-natpis animuj-gore">
+        <h3 class="sjaj-zlato">Tvoje misljenje je vazno</h3>
         <p>Svaka ocena i komentar oblikuju rang listu najomiljenijih epizoda</p>
       </div>
     </div>
   </div>
-  <button class="slider-btn slider-prev" onclick="sliderPomeri(-1)" aria-label="Prethodna slika">
+  <button class="slajder-dugme slajder-prethodni" onclick="sliderPomeri(-1)" aria-label="Prethodna slika">
     <span class="lucide-icon"><i data-lucide="chevron-left"></i></span>
   </button>
-  <button class="slider-btn slider-next" onclick="sliderPomeri(1)" aria-label="Sledeca slika">
+  <button class="slajder-dugme slajder-sledeci" onclick="sliderPomeri(1)" aria-label="Sledeca slika">
     <span class="lucide-icon"><i data-lucide="chevron-right"></i></span>
   </button>
-  <div class="slider-dots" id="slider-dots" role="tablist"></div>
+  <div class="slajder-tacke" id="slajder-tacke" role="tablist"></div>
 </section>
 
 <!-- ═══ HERO ═══ -->
 <header class="hero" role="banner">
-  <div class="hero-badge animuj-gore ani-d1" data-i18n="hero.badge">Nova sezona dostupna</div>
+  <div class="hero-znacka animuj-gore ani-d1" data-i18n="hero.badge">Nova sezona dostupna</div>
   <h1 class="animuj-gore ani-d2" data-i18n-html="hero.naslov">
     Otkrij. Gledaj.<br><span class="zlatni-tekst">Oceni.</span>
   </h1>
   <p class="animuj-gore ani-d3" data-i18n="hero.opis">
     Tvoje misljenje oblikuje rang listu. Oceni epizode, ostavi komentar i priduzi se zajednici ljubitelja serija.
   </p>
-  <div class="hero-btns animuj-gore ani-d4">
-    <a href="user.html" class="btn-prim" data-i18n="hero.btn1">
+  <div class="hero-dugmad animuj-gore ani-d4">
+    <a href="korisnik.html" class="dugme-prim" data-i18n="hero.btn1">
       <span class="lucide-icon" style="margin-right:6px"><i data-lucide="tv-2"></i></span>Pregledaj epizode
     </a>
-    <a href="index.html" class="btn-sek" data-i18n="hero.btn2">
+    <a href="prijava.html" class="dugme-sek" data-i18n="hero.btn2">
       <span class="lucide-icon" style="margin-right:6px"><i data-lucide="user-plus"></i></span>Postani clan
     </a>
   </div>
 </header>
 
 <!-- Statistike -->
-<div class="stat-row" role="complementary" aria-label="Statistike platforme">
-  <div class="stat-k animuj-gore ani-d1"><span class="stat-n" id="s-ep">-</span><span class="stat-l" data-i18n="stat.epizode">Epizoda</span></div>
-  <div class="stat-k animuj-gore ani-d2"><span class="stat-n" id="s-oc">-</span><span class="stat-l" data-i18n="stat.ocene">Ocena</span></div>
-  <div class="stat-k animuj-gore ani-d3"><span class="stat-n" id="s-pr">-</span><span class="stat-l" data-i18n="stat.prosek">Prosecna ocena</span></div>
-  <div class="stat-k animuj-gore ani-d4"><span class="stat-n" id="s-ko">-</span><span class="stat-l" data-i18n="stat.komentari">Komentara</span></div>
+<div class="stat-red" role="complementary" aria-label="Statistike platforme">
+  <div class="stat-kartica animuj-gore ani-d1"><span class="stat-broj" id="s-ep">-</span><span class="stat-labela" data-i18n="stat.epizode">Epizoda</span></div>
+  <div class="stat-kartica animuj-gore ani-d2"><span class="stat-broj" id="s-oc">-</span><span class="stat-labela" data-i18n="stat.ocene">Ocena</span></div>
+  <div class="stat-kartica animuj-gore ani-d3"><span class="stat-broj" id="s-pr">-</span><span class="stat-labela" data-i18n="stat.prosek">Prosecna ocena</span></div>
+  <div class="stat-kartica animuj-gore ani-d4"><span class="stat-broj" id="s-ko">-</span><span class="stat-labela" data-i18n="stat.komentari">Komentara</span></div>
 </div>
 
 <!-- ═══ NAJNOVIJE EPIZODE ═══ -->
 <section class="kontejner" aria-labelledby="ep-hd">
-  <div class="sek-hd">
+  <div class="sek-naslov">
     <h2 id="ep-hd"><span data-i18n="sekcije.najnovije">Najnovije epizode</span></h2>
-    <a href="user.html" class="sek-vidi-sve" data-i18n="sekcije.vidi_sve">Vidi sve</a>
+    <a href="korisnik.html" class="sek-vidi-sve" data-i18n="sekcije.vidi_sve">Vidi sve</a>
   </div>
-  <div class="ep-grid" id="ep-grid" aria-label="Lista epizoda"></div>
+  <div class="ep-mreza" id="ep-mreza" aria-label="Lista epizoda"></div>
 </section>
 
 <!-- ═══ VIDEO SEKCIJA ═══ -->
-<section class="video-sekcija" aria-labelledby="vid-hd">
+<section class="video-sekcija" aria-labelledby="vid-naslov">
   <div class="kontejner">
-    <div class="sek-hd" style="margin-bottom:30px">
-      <h2 id="vid-hd"><span data-i18n="video.naslov">Video pregled</span></h2>
+    <div class="sek-naslov" style="margin-bottom:30px">
+      <h2 id="vid-naslov"><span data-i18n="video.naslov">Video pregled</span></h2>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start">
 
@@ -272,24 +272,24 @@
         <h3 style="font-family:var(--font-n);color:var(--zlato);margin-bottom:14px;font-size:1.1rem" data-i18n="video.mp4_naslov">
           Trejler serije
         </h3>
-        <div class="video-player-wrap sjaj-efekat">
+        <div class="video-plejer-omotac sjaj-efekat">
           <video id="mp4-video" preload="metadata" aria-label="Trejler serije">
             <source src="video/trejler.mp4" type="video/mp4">
             <source src="video/trejler.webm" type="video/webm">
             <p>Vas browser ne podrzava video. <a href="video/trejler.mp4">Preuzmi video</a>.</p>
           </video>
-          <div class="video-overlay" id="video-overlay" onclick="pustitiVideo()">
-            <div class="play-btn-big" aria-hidden="true">
+          <div class="video-prekrivac" id="video-prekrivac" onclick="pustitiVideo()">
+            <div class="dugme-pusti-big" aria-hidden="true">
               <span class="lucide-icon"><i data-lucide="play-circle"></i></span>
             </div>
-            <div class="video-naslov-overlay" data-i18n="video.mp4_naslov">Trejler serije</div>
+            <div class="video-natpis" data-i18n="video.mp4_naslov">Trejler serije</div>
           </div>
         </div>
         <div style="margin-top:8px;text-align:center">
-          <button onclick="pustitiVideo()" class="btn-sek" style="font-size:.82rem;padding:8px 18px;margin-right:8px">
+          <button onclick="pustitiVideo()" class="dugme-sek" style="font-size:.82rem;padding:8px 18px;margin-right:8px">
             <span class="lucide-icon" style="margin-right:4px"><i data-lucide="play"></i></span>Pusti
           </button>
-          <button onclick="document.getElementById('mp4-video').pause()" class="btn-sek" style="font-size:.82rem;padding:8px 18px">
+          <button onclick="document.getElementById('mp4-video').pause()" class="dugme-sek" style="font-size:.82rem;padding:8px 18px">
             <span class="lucide-icon" style="margin-right:4px"><i data-lucide="pause"></i></span>Pauza
           </button>
         </div>
@@ -308,7 +308,7 @@
           ║  Nikada te nece izneveru! :)                        ║
           ╚══════════════════════════════════════════════════════╝
         -->
-        <div class="video-wrap">
+        <div class="video-omotac">
           <iframe
             src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
             title="Rick Astley – Never Gonna Give You Up (Rick Roll)"
@@ -324,7 +324,7 @@
 
 <!-- ═══ DOKUMENTI ═══ -->
 <section class="kontejner" id="dokumenti" aria-labelledby="dok-hd">
-  <div class="sek-hd" style="margin-bottom:24px">
+  <div class="sek-naslov" style="margin-bottom:24px">
     <h2 id="dok-hd"><span data-i18n="sekcije.dokumenti">Dokumentacija</span></h2>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
@@ -375,33 +375,33 @@
 
 <!-- ═══ O PLATFORMI ═══ -->
 <section class="kontejner" aria-labelledby="o-hd" style="padding-top:0">
-  <div class="sek-hd" style="margin-bottom:24px">
+  <div class="sek-naslov" style="margin-bottom:24px">
     <h2 id="o-hd">O <span data-i18n="sekcije.o_platformi">platformi</span></h2>
     <a href="o-nama.html" class="sek-vidi-sve" data-i18n="sekcije.saznaj_vise">Saznaj vise</a>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
-    <div class="stat-k sjaj-efekat animuj-gore ani-d1" style="text-align:left;padding:28px">
+    <div class="stat-kartica sjaj-efekat animuj-gore ani-d1" style="text-align:left;padding:28px">
       <div style="font-size:2rem;margin-bottom:12px" class="plutanje">
         <span class="lucide-icon"><i data-lucide="star" style="width:2rem;height:2rem;stroke:#D4AF37"></i></span>
       </div>
       <div style="font-family:var(--font-n);font-size:1.1rem;margin-bottom:8px;color:var(--zlato)">Ocenjivanje</div>
       <div style="font-size:.88rem;color:var(--tekst2)">Ocenjuj epizode od 1 do 5 zvezdica. Tvoja ocena se instantno reflektuje u proseku.</div>
     </div>
-    <div class="stat-k sjaj-efekat animuj-gore ani-d2" style="text-align:left;padding:28px">
+    <div class="stat-kartica sjaj-efekat animuj-gore ani-d2" style="text-align:left;padding:28px">
       <div style="font-size:2rem;margin-bottom:12px" class="plutanje">
         <span class="lucide-icon"><i data-lucide="message-circle" style="width:2rem;height:2rem;stroke:#D4AF37"></i></span>
       </div>
       <div style="font-family:var(--font-n);font-size:1.1rem;margin-bottom:8px;color:var(--zlato)">Komentari</div>
       <div style="font-size:.88rem;color:var(--tekst2)">Ostavi komentar na svaku epizodu. Mozes ga izmeniti kad god pozelis.</div>
     </div>
-    <div class="stat-k sjaj-efekat animuj-gore ani-d3" style="text-align:left;padding:28px">
+    <div class="stat-kartica sjaj-efekat animuj-gore ani-d3" style="text-align:left;padding:28px">
       <div style="font-size:2rem;margin-bottom:12px" class="plutanje">
         <span class="lucide-icon"><i data-lucide="shield-check" style="width:2rem;height:2rem;stroke:#D4AF37"></i></span>
       </div>
       <div style="font-family:var(--font-n);font-size:1.1rem;margin-bottom:8px;color:var(--zlato)">Admin panel</div>
       <div style="font-size:.88rem;color:var(--tekst2)">Admin dodaje, menja i brise epizode. Upravlja korisnicima i komentarima.</div>
     </div>
-    <div class="stat-k sjaj-efekat animuj-gore ani-d4" style="text-align:left;padding:28px">
+    <div class="stat-kartica sjaj-efekat animuj-gore ani-d4" style="text-align:left;padding:28px">
       <div style="font-size:2rem;margin-bottom:12px" class="plutanje">
         <span class="lucide-icon"><i data-lucide="lock" style="width:2rem;height:2rem;stroke:#D4AF37"></i></span>
       </div>
@@ -414,12 +414,12 @@
 <!-- ═══ TOP 5 EPIZODA ═══ -->
 <section style="background:var(--bg2);padding:60px 0;position:relative;z-index:1" aria-labelledby="top5-hd">
   <div class="kontejner" style="padding-top:0;padding-bottom:0">
-    <div class="sek-hd" style="margin-bottom:28px">
+    <div class="sek-naslov" style="margin-bottom:28px">
       <h2 id="top5-hd">
         <span class="lucide-icon" style="margin-right:8px"><i data-lucide="trophy" style="stroke:#D4AF37"></i></span>
         <span data-i18n="sekcije.top5">Top 5 epizoda</span>
       </h2>
-      <a href="user.html" class="sek-vidi-sve" data-i18n="sekcije.vidi_top10">Vidi Top 10</a>
+      <a href="korisnik.html" class="sek-vidi-sve" data-i18n="sekcije.vidi_top10">Vidi Top 10</a>
     </div>
     <div id="top5-lista" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px" role="list"></div>
   </div>
@@ -428,7 +428,7 @@
 <!-- ═══ GOOGLE MAPS ═══ -->
 <section style="position:relative;z-index:1" aria-labelledby="mapa-hd">
   <div class="kontejner" style="padding-bottom:0">
-    <div class="sek-hd" style="margin-bottom:20px">
+    <div class="sek-naslov" style="margin-bottom:20px">
       <h2 id="mapa-hd">
         <span class="lucide-icon" style="margin-right:6px"><i data-lucide="map-pin" style="stroke:#D4AF37"></i></span>
         <span>Pronadji nas</span>
@@ -436,7 +436,7 @@
       <a href="kontakt.html" class="sek-vidi-sve">Kontaktiraj nas</a>
     </div>
   </div>
-  <div class="mapa-wrap" style="margin:0;border-radius:0;border-left:none;border-right:none">
+  <div class="mapa-omotac" style="margin:0;border-radius:0;border-left:none;border-right:none">
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.12!2d20.4612!3d44.8178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBeograd!5e0!3m2!1ssr!2srs!4v1234567890"
       title="SerijaStar lokacija – Beograd, Srbija | Google Maps"
@@ -447,37 +447,119 @@
   </div>
 </section>
 
+<!-- ═══ WEB HOSTING ═══ -->
+<section class="hosting-sekcija" aria-labelledby="hosting-naslov" id="hosting">
+  <div class="kontejner" style="padding-top:0;padding-bottom:0">
+    <div class="sek-naslov" style="margin-bottom:28px">
+      <h2 id="hosting-naslov">
+        <span class="lucide-icon" style="margin-right:8px"><i data-lucide="globe" style="stroke:#D4AF37"></i></span>
+        <span>Web Hosting</span>
+      </h2>
+      <a href="https://petarbpapic.github.io/WebSem/" target="_blank" rel="noopener" class="sek-vidi-sve">Otvori sajt ↗</a>
+    </div>
+
+    <div class="hosting-grid">
+
+      <!-- Kartica: GitHub Pages -->
+      <div class="hosting-kartica sjaj-efekat animuj-gore ani-d1">
+        <div class="hosting-ikona">
+          <span class="lucide-icon"><i data-lucide="github" style="width:2.5rem;height:2.5rem;stroke:#D4AF37"></i></span>
+        </div>
+        <h3 class="hosting-naziv">GitHub Pages</h3>
+        <p class="hosting-opis">Sajt je hostovan besplatno na GitHub Pages servisu. Svaka izmena push-ovana na <code>main</code> granu automatski ažurira živi sajt.</p>
+        <div class="hosting-url-blok">
+          <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="link"></i></span>
+          <a href="https://petarbpapic.github.io/WebSem/" target="_blank" rel="noopener" class="hosting-url">petarbpapic.github.io/WebSem</a>
+        </div>
+        <div class="hosting-status">
+          <span class="hosting-status-tacka"></span>
+          <span>Aktivan</span>
+        </div>
+      </div>
+
+      <!-- Kartica: Repozitorijum -->
+      <div class="hosting-kartica sjaj-efekat animuj-gore ani-d2">
+        <div class="hosting-ikona">
+          <span class="lucide-icon"><i data-lucide="git-branch" style="width:2.5rem;height:2.5rem;stroke:#D4AF37"></i></span>
+        </div>
+        <h3 class="hosting-naziv">Repozitorijum</h3>
+        <p class="hosting-opis">Kompletan izvorni kod projekta je javno dostupan na GitHub-u. Sadrži sve HTML, CSS, JavaScript fajlove, slike i fontove.</p>
+        <div class="hosting-url-blok">
+          <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="folder-open"></i></span>
+          <a href="https://github.com/PetarBPapic/WebSem" target="_blank" rel="noopener" class="hosting-url">github.com/PetarBPapic/WebSem</a>
+        </div>
+        <div class="hosting-detalji">
+          <span class="hosting-znacka"><span class="lucide-icon" style="margin-right:3px"><i data-lucide="git-commit"></i></span>Grana: main</span>
+          <span class="hosting-znacka"><span class="lucide-icon" style="margin-right:3px"><i data-lucide="folder"></i></span>Root: /</span>
+        </div>
+      </div>
+
+      <!-- Kartica: Tehničke info -->
+      <div class="hosting-kartica sjaj-efekat animuj-gore ani-d3">
+        <div class="hosting-ikona">
+          <span class="lucide-icon"><i data-lucide="server" style="width:2.5rem;height:2.5rem;stroke:#D4AF37"></i></span>
+        </div>
+        <h3 class="hosting-naziv">Tehničke informacije</h3>
+        <p class="hosting-opis">Statičan sajt – ne zahteva server ni bazu podataka. Svi podaci čuvaju se lokalno u browser-u korisnika.</p>
+        <ul class="hosting-lista">
+          <li>
+            <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="check-circle"></i></span>
+            Radi bez internet konekcije (offline)
+          </li>
+          <li>
+            <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="check-circle"></i></span>
+            Svi resursi lokalni (fontovi, ikone, Bootstrap)
+          </li>
+          <li>
+            <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="check-circle"></i></span>
+            Besplatan hosting – GitHub Pages
+          </li>
+          <li>
+            <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="check-circle"></i></span>
+            HTTPS – automatski SSL sertifikat
+          </li>
+          <li>
+            <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="check-circle"></i></span>
+            Automatski deploy pri svakom <code>git push</code>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ═══ FOOTER ═══ -->
 <footer role="contentinfo" style="margin-top:0">
-  <div class="footer-grid">
+  <div class="podnozje-mreza">
     <div>
-      <div class="footer-logo-txt">SerijaStar</div>
-      <p class="footer-opis" data-i18n="footer.opis">Platforma za ljubitelje TV serija. Ocenjuj, komentarisi i otkrivaj skrivene bisere televizije.</p>
+      <div class="podnozje-logo-tekst">SerijaStar</div>
+      <p class="podnozje-opis" data-i18n="footer.opis">Platforma za ljubitelje TV serija. Ocenjuj, komentarisi i otkrivaj skrivene bisere televizije.</p>
     </div>
     <div>
-      <div class="footer-hd" data-i18n="footer.nav_hd">Navigacija</div>
-      <nav class="footer-links">
+      <div class="podnozje-naslov" data-i18n="footer.nav_hd">Navigacija</div>
+      <nav class="podnozje-veze">
         <a href="pocetna.html" data-i18n="nav.pocetna">Pocetna</a>
         <a href="o-nama.html" data-i18n="nav.onama">O nama</a>
-        <a href="user.html" data-i18n="nav.epizode">Epizode</a>
+        <a href="korisnik.html" data-i18n="nav.epizode">Epizode</a>
         <a href="kontakt.html" data-i18n="nav.kontakt">Kontakt</a>
       </nav>
     </div>
     <div>
-      <div class="footer-hd" data-i18n="footer.nalog_hd">Nalog</div>
-      <nav class="footer-links">
-        <a href="index.html" data-i18n="nav.prijava">Prijava</a>
-        <a href="admin.html" data-i18n="nav.admin">Admin panel</a>
+      <div class="podnozje-naslov" data-i18n="footer.nalog_hd">Nalog</div>
+      <nav class="podnozje-veze">
+        <a href="prijava.html" data-i18n="nav.prijava">Prijava</a>
+        <a href="upravljanje.html" data-i18n="nav.admin">Admin panel</a>
       </nav>
     </div>
   </div>
-  <div class="footer-bottom">
+  <div class="podnozje-dno">
     <span data-i18n="footer.copy">2025 SerijaStar. Sva prava zadrzana.</span>
     <span style="color:var(--zlato)" data-i18n="footer.ljubav">Izgradjeno sa ljubavlju za ljubitelje serija</span>
   </div>
 </footer>
 
-<div id="toast" role="status" aria-live="polite"></div>
+<div id="obavestenje" role="status" aria-live="polite"></div>
 
 <!-- ═══ SKRIPTE ═══ -->
 <script src="js/core.js"></script>
@@ -486,7 +568,7 @@
 
 /* Inicijalizacija teme ikone */
 const tamna = (localStorage.getItem('ss_tema')||'tamna') === 'tamna';
-document.getElementById('tema-icon').innerHTML = tamna
+document.getElementById('tema-ikona').innerHTML = tamna
   ? '<i data-lucide="sun"></i>'
   : '<i data-lucide="moon"></i>';
 
@@ -494,18 +576,18 @@ ucitajJezik();
 
 /* ════ HAMBURGER ════ */
 function togglujMeni() {
-  const nl = document.getElementById('nav-links');
+  const nl = document.getElementById('nav-veze');
   const hb = document.getElementById('hamburger');
   const o = nl.classList.toggle('otvoreni');
   hb.classList.toggle('otvoren', o);
   hb.setAttribute('aria-expanded', o);
 }
 
-document.querySelectorAll('.nav-links > li > a').forEach(a => {
+document.querySelectorAll('.nav-veze > li > a').forEach(a => {
   a.addEventListener('click', function(e) {
     if (window.innerWidth > 768) return;
     const li = this.parentElement;
-    const ima = li.querySelector('.dropdown, .mega-meni');
+    const ima = li.querySelector('.padajuci-meni, .mega-meni');
     if (!ima) return;
     e.preventDefault();
     li.classList.toggle('mob-otvoren');
@@ -521,7 +603,7 @@ document.getElementById('s-ko').textContent = st.kom;
 
 /* ════ EPIZODE GRID ════ */
 const epizode = dajEpizode().slice(-3).reverse();
-const grid = document.getElementById('ep-grid');
+const grid = document.getElementById('ep-mreza');
 if (!epizode.length) {
   grid.innerHTML = '<p style="color:var(--tekst2);grid-column:1/-1">Admin jos nije dodao epizode.</p>';
 } else {
@@ -529,22 +611,22 @@ if (!epizode.length) {
     const oc = dajProsek(ep.id);
     const zv = '★'.repeat(Math.round(oc.p)) + '☆'.repeat(5 - Math.round(oc.p));
     return `
-    <article class="ep-k sjaj-efekat animuj-gore" tabindex="0" aria-label="Epizoda: ${ep.naziv}">
+    <article class="ep-kartica sjaj-efekat animuj-gore" tabindex="0" aria-label="Epizoda: ${ep.naziv}">
       ${ep.slika
-        ? `<img src="${ep.slika}" alt="Slika epizode: ${ep.naziv}" class="ep-img glow-slika" loading="lazy"
-            onerror="this.outerHTML='<div class=ep-img-ph>&#128250;</div>'">`
-        : `<div class="ep-img-ph">&#128250;</div>`}
-      <div class="ep-body">
+        ? `<img src="${ep.slika}" alt="Slika epizode: ${ep.naziv}" class="ep-slika sjaj-slika" loading="lazy"
+            onerror="this.outerHTML='<div class=ep-slika-ph>&#128250;</div>'">`
+        : `<div class="ep-slika-ph">&#128250;</div>`}
+      <div class="ep-telo">
         <div class="ep-naziv">${ep.naziv}</div>
         <div class="ep-datum">&#128197; ${ep.datum}</div>
         <div class="ep-opis">${ep.opis}</div>
-        <div class="ep-ocena-row">
+        <div class="ep-ocena-red">
           <span class="zv-prikaz">${oc.p > 0 ? zv : '☆☆☆☆☆'}</span>
           ${oc.n > 0
-            ? `<span class="ocena-n">${oc.p}</span><span class="ocena-br">(${oc.n})</span>`
+            ? `<span class="ocena-broj">${oc.p}</span><span class="ocena-br">(${oc.n})</span>`
             : `<span class="ocena-br">Bez ocena</span>`}
         </div>
-        <a href="user.html" class="btn-sek" style="font-size:.82rem;padding:8px 16px;display:inline-block">Oceni →</a>
+        <a href="korisnik.html" class="dugme-sek" style="font-size:.82rem;padding:8px 16px;display:inline-block">Oceni →</a>
       </div>
     </article>`;
   }).join('');
@@ -559,18 +641,18 @@ if (!epizode.length) {
     .slice(0, 5);
   const k = document.getElementById('top5-lista');
   if (!rangirane.length) {
-    k.innerHTML = '<div class="top5-prazno"><div style="font-size:2rem;margin-bottom:8px">📊</div><p>Nema ocenjenih epizoda. <a href="user.html" style="color:var(--zlato)">Budi prvi!</a></p></div>';
+    k.innerHTML = '<div class="top5-prazno"><div style="font-size:2rem;margin-bottom:8px">📊</div><p>Nema ocenjenih epizoda. <a href="korisnik.html" style="color:var(--zlato)">Budi prvi!</a></p></div>';
     return;
   }
   const klase = ['top5-m1','top5-m2','top5-m3','top5-mo','top5-mo'];
   const tekstMesta = ['&#129351;','&#129352;','&#129353;','4','5'];
   const zv = p => '★'.repeat(Math.round(p)) + '☆'.repeat(5 - Math.round(p));
   k.innerHTML = rangirane.map(({ep,oc},i) => `
-    <a class="top5-k sjaj-efekat" href="user.html" role="listitem">
+    <a class="top5-kartica sjaj-efekat" href="korisnik.html" role="listitem">
       <div class="top5-mesto ${klase[i]}">${tekstMesta[i]}</div>
       <div class="top5-info">
         <div class="top5-naziv" title="${ep.naziv}">${ep.naziv}</div>
-        <div class="top5-zv">${zv(oc.p)}</div>
+        <div class="top5-zvezdice">${zv(oc.p)}</div>
       </div>
       <div style="text-align:right;flex-shrink:0">
         <div class="top5-ocena">${oc.p}</div>
@@ -581,32 +663,32 @@ if (!epizode.length) {
 
 /* ════ SLIDER ════ */
 let slajd = 0;
-const ukupno = document.querySelectorAll('.slider-slide').length;
-const dotsEl = document.getElementById('slider-dots');
+const ukupno = document.querySelectorAll('.slajder-slajd').length;
+const dotsEl = document.getElementById('slajder-tacke');
 let slajdTimer;
 for (let i = 0; i < ukupno; i++) {
   const d = document.createElement('button');
-  d.className = 'slider-dot' + (i === 0 ? ' aktivan' : '');
+  d.className = 'slajder-tacka' + (i === 0 ? ' aktivan' : '');
   d.setAttribute('aria-label', `Slajd ${i+1}`);
   d.onclick = () => { slajd = i; osveziSlider(); resetTimer(); };
   dotsEl.appendChild(d);
 }
 function osveziSlider() {
-  document.getElementById('slider').style.transform = `translateX(-${slajd * 100}%)`;
-  document.querySelectorAll('.slider-dot').forEach((d,i) => d.classList.toggle('aktivan', i === slajd));
+  document.getElementById('slajder').style.transform = `translateX(-${slajd * 100}%)`;
+  document.querySelectorAll('.slajder-tacka').forEach((d,i) => d.classList.toggle('aktivan', i === slajd));
 }
 function sliderPomeri(smer) { slajd = (slajd + smer + ukupno) % ukupno; osveziSlider(); resetTimer(); }
 function resetTimer() { clearInterval(slajdTimer); slajdTimer = setInterval(() => sliderPomeri(1), 5000); }
 slajdTimer = setInterval(() => sliderPomeri(1), 5000);
 let startX = 0;
-const track = document.getElementById('slider');
+const track = document.getElementById('slajder');
 track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
 track.addEventListener('touchend', e => { const d = e.changedTouches[0].clientX - startX; if (Math.abs(d) > 50) sliderPomeri(d < 0 ? 1 : -1); }, {passive:true});
 
 /* ════ MP4 VIDEO ════ */
 function pustitiVideo() {
   const v = document.getElementById('mp4-video');
-  const o = document.getElementById('video-overlay');
+  const o = document.getElementById('video-prekrivac');
   v.play().then(() => { o.classList.add('skriven'); }).catch(() => {
     v.controls = true;
     o.classList.add('skriven');
@@ -614,18 +696,18 @@ function pustitiVideo() {
 }
 
 /* ════ MUZICKI PLEJER ════ */
-const audio = document.getElementById('bg-audio');
-const bar = document.getElementById('muzika-bar');
-const toggle = document.getElementById('muz-toggle');
-const playBtn = document.getElementById('muz-play');
-const playIcon = document.getElementById('muz-play-icon');
-const progres = document.getElementById('muz-progres');
+const audio = document.getElementById('pozadinska-muzika');
+const bar = document.getElementById('muzika-traka');
+const toggle = document.getElementById('muz-prekidac');
+const playBtn = document.getElementById('muz-pusti');
+const playIcon = document.getElementById('muz-pusti-ikona');
+const progres = document.getElementById('muz-napredak');
 const vremeTek = document.getElementById('muz-vreme-tek');
 const vremeUk = document.getElementById('muz-vreme-uk');
 const ikona = document.getElementById('muz-ikona');
 
 audio.volume = parseFloat(localStorage.getItem('ss_vol') || '0.5');
-document.getElementById('muz-jac').value = audio.volume;
+document.getElementById('muz-jacina').value = audio.volume;
 
 function otvoriPlejer() { bar.classList.add('vidljiva'); toggle.style.display = 'none'; }
 function zatvoriPlejer() {

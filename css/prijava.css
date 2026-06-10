@@ -1,0 +1,167 @@
+/* ═══════════════════════════════════════════════════════════════
+   prijava.css – Stilovi za prijava.html (login stranica)
+═══════════════════════════════════════════════════════════════ */
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* ── Animirane čestice ──────────────────────────────────────── */
+.cestica {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: letanje linear infinite;
+  opacity: 0;
+}
+@keyframes letanje {
+  0%   { transform: translateY(110vh) scale(0); opacity: 0; }
+  8%   { opacity: .6; }
+  92%  { opacity: .6; }
+  100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+
+/* ── Lucide helpers ─────────────────────────────────────────── */
+.lucide-ikona { display: inline-flex; align-items: center; justify-content: center; }
+.lucide-ikona svg { width:1em; height:1em; vertical-align:middle; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.logo-ikona-k .lucide-ikona svg { width: 2.2rem; height: 2.2rem; stroke: var(--zlato, #D4AF37); }
+.tab-dugme    .lucide-ikona svg { width: 1.2rem; height: 1.2rem; }
+.dugme-acc    .lucide-ikona svg { width: 1rem;   height: 1rem; }
+
+/* ── Prijava kartica ────────────────────────────────────────── */
+.prijava-kartica {
+  background: var(--kartica);
+  border: 1px solid rgba(212,175,55,.28);
+  border-radius: 20px;
+  padding: 50px 44px;
+  width: 100%; max-width: 460px;
+  position: relative; z-index: 10;
+  box-shadow: 0 0 0 1px rgba(212,175,55,.04),
+              0 20px 60px rgba(0,0,0,.7),
+              0 0 50px rgba(212,175,55,.07);
+  animation: pojavi .7s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes pojavi {
+  from { opacity: 0; transform: translateY(40px) scale(.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+.prijava-kartica::before {
+  content: '';
+  position: absolute; top: 0; left: 15%; right: 15%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--zlato), var(--zlato-sv), var(--zlato), transparent);
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 0 20px rgba(212,175,55,.5);
+}
+
+/* ── Logo ───────────────────────────────────────────────────── */
+.logo-z { text-align: center; margin-bottom: 30px; }
+.logo-ikona-k {
+  width: 70px; height: 70px;
+  background: linear-gradient(135deg, rgba(212,175,55,.14), rgba(212,175,55,.04));
+  border: 1px solid rgba(212,175,55,.3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+  animation: pulsiranje 3s ease-in-out infinite;
+}
+@keyframes pulsiranje {
+  0%, 100% { box-shadow: 0 0 20px rgba(212,175,55,.2); }
+  50%       { box-shadow: 0 0 35px rgba(212,175,55,.45); }
+}
+.logo-n {
+  font-family: var(--font-n); font-size: 2.2rem; font-weight: 900;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, var(--zlato-sv), var(--zlato), var(--srebro));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.logo-pod {
+  font-size: .7rem; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--srebro-t); margin-top: 4px;
+}
+.linija-razdvajac {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,.35), transparent);
+  margin: 22px 0;
+}
+
+/* ── Tabovi ─────────────────────────────────────────────────── */
+.tab-nav {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+  background: rgba(5,5,12,.6); padding: 5px; border-radius: 12px;
+  border: 1px solid rgba(212,175,55,.1); margin-bottom: 26px;
+}
+.tab-dugme {
+  padding: 10px 8px 8px; border: none; background: transparent;
+  color: var(--tekst2); font-family: var(--font-t); font-size: .85rem;
+  font-weight: 500; border-radius: 8px; transition: var(--tr);
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  cursor: pointer;
+}
+.tab-dugme .ik { font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
+.tab-dugme.ak {
+  background: linear-gradient(135deg, rgba(160,124,32,.85), rgba(212,175,55,.85));
+  color: #07070F; font-weight: 700;
+  box-shadow: 0 2px 15px rgba(212,175,55,.25);
+}
+.tab-dugme:not(.ak):hover { background: rgba(212,175,55,.08); color: var(--zlato); }
+.tab-sadrzaj { display: none; }
+.tab-sadrzaj.vidljiv-blok { display: block; animation: postepeno .35s ease; }
+@keyframes postepeno {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Dugme za prijavu ───────────────────────────────────────── */
+.dugme-prijava {
+  width: 100%; padding: 15px;
+  background: linear-gradient(135deg, var(--zlato-t), var(--zlato), var(--zlato-sv));
+  border: none; border-radius: 10px;
+  color: #07070F; font-family: var(--font-t); font-size: .93rem;
+  font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  transition: var(--tr); position: relative; overflow: hidden;
+  margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 8px;
+  cursor: pointer;
+}
+.dugme-prijava::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+  transform: translateX(-100%); transition: transform .5s ease;
+}
+.dugme-prijava:hover::after { transform: translateX(100%); }
+.dugme-prijava:hover { box-shadow: 0 6px 30px rgba(212,175,55,.5); transform: translateY(-2px); }
+.dugme-prijava .lucide-ikona svg { width: 1rem; height: 1rem; stroke: #07070F; }
+
+/* ── Greška ─────────────────────────────────────────────────── */
+.greska-poruka {
+  background: rgba(180,40,40,.12); border: 1px solid rgba(220,60,60,.35);
+  border-radius: 10px; padding: 11px 15px; color: #FF8080;
+  font-size: .88rem; margin-bottom: 14px; display: none;
+  animation: treskanje .4s ease;
+}
+@keyframes treskanje {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-6px); }
+  75%       { transform: translateX(6px); }
+}
+.greska-p { border-color: rgba(220,60,60,.6) !important; animation: treskanje .4s ease; }
+
+/* ── Demo info ──────────────────────────────────────────────── */
+.demo-z {
+  margin-top: 22px; padding: 15px 18px;
+  background: rgba(212,175,55,.04); border: 1px solid rgba(212,175,55,.12);
+  border-radius: 12px; text-align: center; font-size: .8rem;
+  color: var(--tekst2); line-height: 2;
+}
+.demo-z strong { color: var(--zlato); font-weight: 600; }
+.demo-z em { color: var(--srebro-t); font-style: italic; font-size: .72rem; }
+
+/* ── Pristupačnost ──────────────────────────────────────────── */
+.acc-prijava {
+  position: fixed; top: 16px; right: 16px;
+  display: flex; gap: 8px; z-index: 200;
+}

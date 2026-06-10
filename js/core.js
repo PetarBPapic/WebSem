@@ -52,14 +52,14 @@ function dodajKorisnikaTxt(username, password, uloga) {
 function sacuvajSesiju(u, uloga) { localStorage.setItem('ss_k',u); localStorage.setItem('ss_u',uloga); }
 function citajSesiju()           { return {k:localStorage.getItem('ss_k'), u:localStorage.getItem('ss_u')}; }
 function obrisiSesiju()          { localStorage.removeItem('ss_k'); localStorage.removeItem('ss_u'); }
-function odjava()                { obrisiSesiju(); window.location.href='index.html'; }
+function odjava()                { obrisiSesiju(); window.location.href='prijava.html'; }
 
 /* ------- Zaštita stranice ---------------------------------- */
 function zastiti(potrebnaUloga) {
   const s = citajSesiju();
-  if (!s.k) { window.location.href='index.html'; return false; }
+  if (!s.k) { window.location.href='prijava.html'; return false; }
   if (s.u !== potrebnaUloga) {
-    window.location.href = s.u==='admin' ? 'admin.html' : 'user.html';
+    window.location.href = s.u==='admin' ? 'upravljanje.html' : 'korisnik.html';
     return false;
   }
   return true;
@@ -100,7 +100,7 @@ function dajStatistike()   { const d=ucitajDB(); const n=d.ocene.length; const p
 
 /* ------- Toast helper ------------------------------------- */
 function prikaziToast(msg, boja) {
-  const t = document.getElementById('toast');
+  const t = document.getElementById('obavestenje');
   if (!t) return;
   t.textContent = msg;
   t.style.borderColor = boja||'var(--zlato)';
@@ -285,8 +285,8 @@ function primeniJezik(kod) {
 
   const btnSr = document.getElementById('btn-sr');
   const btnEn = document.getElementById('btn-en');
-  if (btnSr) btnSr.classList.toggle('aktivan-lang', kod === 'sr');
-  if (btnEn) btnEn.classList.toggle('aktivan-lang', kod === 'en');
+  if (btnSr) btnSr.classList.toggle('aktivan-jezik', kod === 'sr');
+  if (btnEn) btnEn.classList.toggle('aktivan-jezik', kod === 'en');
 
   document.documentElement.lang = kod;
 }

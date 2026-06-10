@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="slike/logo-64.png" type="image/png">
+  <title>Upravljanje – SerijaStar</title>
+  <link rel="stylesheet" href="css/stil.css">
+  <link rel="stylesheet" href="css/Komponente.css">
+  <link rel="stylesheet" href="css/upravljanje.css">
+</head>
+<body>
+
+<!-- ═══ NAVIGACIJA ═══ -->
+<nav role="navigation" aria-label="Glavna navigacija">
+  <div class="nav-logo">
+    <img src="slike/logo.png" alt="SerijaStar logo" class="logo-img" width="36" height="36">
+    <span class="logo-txt">SerijaStar</span>
+  </div>
+  <ul class="nav-veze" id="nav-veze">
+    <li><a href="pocetna.html" data-i18n="nav.pocetna">Početna</a></li>
+    <li><a href="upravljanje.html" class="aktivan">Upravljanje</a></li>
+    <li><a href="kontakt.html" data-i18n="nav.kontakt">Kontakt</a></li>
+  </ul>
+  <div class="nav-desno">
+    <div class="acc-traka">
+      <button class="dugme-acc" id="dug-tema" onclick="togglujTemu()" title="Promeni temu">☀️</button>
+      <button class="dugme-acc" onclick="povecajFont()" title="Povećaj font">A+</button>
+      <button class="dugme-acc" onclick="smanjiFont()"  title="Smanji font">A-</button>
+    </div>
+    <span class="nav-uloga" id="nav-korisnik" aria-label="Ulogovani korisnik"></span>
+    <button class="dugme-odjava" onclick="odjava()" aria-label="Odjava">Odjava</button>
+    <button class="dugme-jezicki aktivan-jezik" id="dug-sr" onclick="postaviJezik('sr')" aria-label="Srpski">SR</button>
+    <button class="dugme-jezicki"               id="dug-en" onclick="postaviJezik('en')" aria-label="English">EN</button>
+    <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Meni" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="zlatna-linija"></div>
+
+<!-- ═══ ZAGLAVLJE ═══ -->
+<div class="panel-naslov">
+  <h1>👑 Upravljanje</h1>
+  <p>Upravljanje epizodama, korisnicima i komentarima</p>
+</div>
+
+<!-- ═══ STATISTIKE ═══ -->
+<div class="stat-red">
+  <div class="stat-kartica"><span class="stat-broj" id="stat-ep">–</span><span class="stat-labela">Epizoda</span></div>
+  <div class="stat-kartica"><span class="stat-broj" id="stat-oc">–</span><span class="stat-labela">Ocena</span></div>
+  <div class="stat-kartica"><span class="stat-broj" id="stat-ko">–</span><span class="stat-labela">Komentara</span></div>
+  <div class="stat-kartica"><span class="stat-broj" id="stat-pr">–</span><span class="stat-labela">Prosek</span></div>
+</div>
+
+<div class="kontejner">
+
+  <!-- ═══ TABOVI ═══ -->
+  <div class="admin-tabovi" role="tablist">
+    <button class="admin-tab-dugme ak" onclick="prikaziTab('ep')"  data-tab="ep"  role="tab" aria-selected="true">📺 Epizode</button>
+    <button class="admin-tab-dugme"    onclick="prikaziTab('kom')" data-tab="kom" role="tab" aria-selected="false">💬 Komentari</button>
+    <button class="admin-tab-dugme"    onclick="prikaziTab('kor')" data-tab="kor" role="tab" aria-selected="false">👥 Korisnici</button>
+    <button class="admin-tab-dugme"    onclick="prikaziTab('por')" data-tab="por" role="tab" aria-selected="false">📬 Poruke</button>
+  </div>
+
+  <!-- ═══ TAB: EPIZODE ═══ -->
+  <div id="tab-ep" class="tab-sadrzaj vidljiv-blok" role="tabpanel">
+    <div class="tab-naslov">
+      <h2>Lista epizoda</h2>
+      <button class="dugme-dodaj" onclick="otvoriFormu()" aria-label="Dodaj novu epizodu">+ Dodaj epizodu</button>
+    </div>
+
+    <!-- Forma (skrivena) -->
+    <div class="admin-forma" id="admin-forma" role="form" aria-label="Forma za epizodu">
+      <h3 id="forma-naslov">+ Dodaj novu epizodu</h3>
+      <div class="greska-msg" id="forma-greska" role="alert"></div>
+      <div class="forma-red">
+        <div class="polje-g">
+          <label for="f-naziv">Naziv epizode <span aria-hidden="true" class="obavezno">*</span></label>
+          <input type="text" id="f-naziv" placeholder="Npr. Pilot – Početak svega" aria-required="true">
+        </div>
+        <div class="polje-g">
+          <label for="f-datum">Datum emitovanja <span aria-hidden="true" class="obavezno">*</span></label>
+          <input type="date" id="f-datum" aria-required="true">
+        </div>
+      </div>
+      <div class="polje-g">
+        <label for="f-opis">Opis epizode <span aria-hidden="true" class="obavezno">*</span></label>
+        <textarea id="f-opis" placeholder="Kratki opis radnje..." aria-required="true"></textarea>
+      </div>
+      <div class="polje-g">
+        <label for="f-slika">Putanja do slike (opciono)</label>
+        <input type="text" id="f-slika" placeholder="slike/ep4.jpg">
+        <div class="polje-pomoc">💡 Dodaj sliku u folder <code>slike/</code> i unesi relativnu putanju</div>
+      </div>
+      <div class="forma-dugmad">
+        <button class="dugme-snimi" id="forma-dug" onclick="sacuvajEpizodu()">Dodaj epizodu</button>
+        <button class="dugme-otk"   onclick="otkaziFormu()">Otkaži</button>
+      </div>
+    </div>
+
+    <div id="ep-tabela" role="region" aria-label="Tabela epizoda"></div>
+  </div>
+
+  <!-- ═══ TAB: KOMENTARI ═══ -->
+  <div id="tab-kom" class="tab-sadrzaj" role="tabpanel">
+    <div class="tab-naslov"><h2>Svi komentari</h2></div>
+    <div id="kom-tabela"></div>
+  </div>
+
+  <!-- ═══ TAB: KORISNICI ═══ -->
+  <div id="tab-kor" class="tab-sadrzaj" role="tabpanel">
+    <div class="tab-naslov"><h2>Upravljanje korisnicima</h2></div>
+
+    <div class="dodaj-korisnika-sekcija">
+      <h3>+ Dodaj novog korisnika</h3>
+      <div class="forma-red">
+        <div class="polje-g">
+          <label for="nu-korisnicko">Korisničko ime <span aria-hidden="true" class="obavezno">*</span></label>
+          <input type="text" id="nu-korisnicko" placeholder="npr. novak123" aria-required="true">
+        </div>
+        <div class="polje-g">
+          <label for="nu-lozinka">Lozinka <span aria-hidden="true" class="obavezno">*</span></label>
+          <input type="password" id="nu-lozinka" placeholder="min. 4 karaktera" aria-required="true">
+        </div>
+      </div>
+      <div class="polje-g">
+        <label for="nu-uloga">Uloga</label>
+        <select id="nu-uloga">
+          <option value="user">👤 Korisnik</option>
+          <option value="admin">👑 Administrator</option>
+        </select>
+      </div>
+      <div class="greska-msg" id="nu-greska" role="alert"></div>
+      <button class="dugme-snimi" onclick="dodajKorisnika()">Dodaj korisnika</button>
+    </div>
+
+    <div class="korisnici-mreza">
+      <div>
+        <h3 class="naslov-admini">👑 Administratori</h3>
+        <div id="lista-admina"></div>
+      </div>
+      <div>
+        <h3 class="naslov-korisnici">👤 Korisnici</h3>
+        <div id="lista-korisnika"></div>
+      </div>
+    </div>
+    <div class="napomena-blok">
+      ℹ️ <strong>Napomena:</strong> Korisnici se čuvaju u localStorage vašeg browsera.
+    </div>
+  </div>
+
+  <!-- ═══ TAB: PORUKE ═══ -->
+  <div id="tab-por" class="tab-sadrzaj" role="tabpanel">
+    <div class="tab-naslov"><h2>Poruke sa kontakt forme</h2></div>
+    <div id="por-tabela"></div>
+  </div>
+
+</div>
+
+<!-- ═══ MODAL ZA BRISANJE ═══ -->
+<div class="modal-pozadina" id="modal-brisanje" role="dialog" aria-modal="true" aria-labelledby="modal-naslov">
+  <div class="modal-brisanje-sadrzaj">
+    <h3 id="modal-naslov">Potvrda brisanja</h3>
+    <p id="modal-tekst"></p>
+    <div class="modal-dugmad">
+      <button id="modal-potvrda" class="dugme-obrisi-potvrda">Obriši</button>
+      <button class="dugme-otk" onclick="zatvoriModal()">Otkaži</button>
+    </div>
+  </div>
+</div>
+
+<div id="obavestenje" role="status" aria-live="polite"></div>
+
+<footer role="contentinfo">
+  <div class="podnozje-dno">
+    <span class="podnozje-logo-tekst">SerijaStar</span> Upravljanje · © 2025
+  </div>
+</footer>
+
+<script src="js/core.js"></script>
+<script src="js/upravljanje.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* ═══════════════════════════════════════════════════════════════
+   upravljanje.css – Stilovi za upravljanje.html (Admin panel)
+═══════════════════════════════════════════════════════════════ */
+
+.dugme-jezicki {
+  background: transparent;
+  border: 1px solid rgba(212,175,55,.3);
+  color: var(--tekst2); font-size: .75rem; font-weight: 700;
+  letter-spacing: 1px; padding: 5px 10px; border-radius: 6px;
+  cursor: pointer; transition: .2s;
+}
+.dugme-jezicki:hover         { border-color: var(--zlato); color: var(--zlato); }
+.dugme-jezicki.aktivan-jezik { background: var(--zlato); color: #07070F; border-color: var(--zlato); }
+
+/* ── Forma za epizodu ───────────────────────────────────────── */
+.forma-red {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 600px) { .forma-red { grid-template-columns: 1fr; } }
+
+/* ── Modal za brisanje ──────────────────────────────────────── */
+.modal-brisanje-sadrzaj {
+  background: var(--bg3);
+  border: 1px solid rgba(212,175,55,.25);
+  border-radius: 16px;
+  padding: 36px 32px;
+  max-width: 400px; width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,.7);
+}
+.modal-brisanje-sadrzaj h3 {
+  font-family: var(--font-n);
+  color: var(--tekst);
+  margin-bottom: 12px;
+}
+.modal-brisanje-sadrzaj p {
+  color: var(--tekst2);
+  font-size: .9rem;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+.modal-dugmad { display: flex; gap: 12px; }
+.dugme-obrisi-potvrda {
+  padding: 10px 24px;
+  background: rgba(200,50,50,.15);
+  border: 1px solid rgba(200,50,50,.5);
+  border-radius: 9px; color: #FF7070;
+  font-family: var(--font-t); cursor: pointer;
+  transition: var(--tr);
+}
+.dugme-obrisi-potvrda:hover { background: rgba(200,50,50,.3); }
+
+/* ── Korisnik red ───────────────────────────────────────────── */
+.korisnik-red {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--kartica);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  margin-bottom: 8px;
+  font-size: .86rem;
+}
+
+/* ── Tema znacka ────────────────────────────────────────────── */
+.tema-znacka {
+  background: rgba(212,175,55,.1);
+  border: 1px solid rgba(212,175,55,.25);
+  border-radius: 6px; padding: 2px 8px;
+  font-size: .75rem; color: var(--zlato);
+}
+
+/* ── Sekcija za dodavanje korisnika ────────────────────────── */
+.dodaj-korisnika-sekcija {
+  background: var(--kartica);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.dodaj-korisnika-sekcija h3 {
+  font-family: var(--font-n);
+  color: var(--zlato);
+  margin-bottom: 18px;
+  font-size: 1.1rem;
+}
+
+/* ── Mreža korisnika ────────────────────────────────────────── */
+.korisnici-mreza {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 640px) { .korisnici-mreza { grid-template-columns: 1fr; } }
+
+/* ── Napomena ───────────────────────────────────────────────── */
+.napomena-blok {
+  margin-top: 16px; padding: 14px;
+  background: rgba(212,175,55,.06);
+  border: 1px solid rgba(212,175,55,.15);
+  border-radius: 10px;
+  font-size: .82rem; color: var(--tekst2);
+}
+
+/* ── Tabovi zaglavlja ───────────────────────────────────────── */
+.tab-naslov {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap; gap: 10px;
+}
+.tab-naslov h2 {
+  font-family: var(--font-n);
+  font-size: 1.3rem;
+  color: var(--tekst);
+}
+
+/* ── Obavezno polje oznaka ──────────────────────────────────── */
+.obavezno { color: #FF7070; }
+
+/* ── Naslovi lista korisnika ────────────────────────────────── */
+.naslov-admini  { font-family: var(--font-n); color: var(--zlato);  margin-bottom: 14px; font-size: 1rem; }
+.naslov-korisnici { font-family: var(--font-n); color: var(--srebro); margin-bottom: 14px; font-size: 1rem; }

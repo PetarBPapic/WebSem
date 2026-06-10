@@ -51,16 +51,16 @@
       font-weight: 600;
       margin-bottom: 6px;
     }
-    .btn-lang { background:transparent; border:1px solid rgba(212,175,55,.3); color:var(--tekst2,#9A9080); font-size:.75rem; font-weight:700; letter-spacing:1px; padding:5px 10px; border-radius:6px; cursor:pointer; transition:.2s; }
-    .btn-lang:hover { border-color:var(--zlato,#D4AF37); color:var(--zlato,#D4AF37); }
-    .btn-lang.aktivan-lang { background:var(--zlato,#D4AF37); color:#07070F; border-color:var(--zlato,#D4AF37); }
+    .dugme-jezicki { background:transparent; border:1px solid rgba(212,175,55,.3); color:var(--tekst2,#9A9080); font-size:.75rem; font-weight:700; letter-spacing:1px; padding:5px 10px; border-radius:6px; cursor:pointer; transition:.2s; }
+    .dugme-jezicki:hover { border-color:var(--zlato,#D4AF37); color:var(--zlato,#D4AF37); }
+    .dugme-jezicki.aktivan-jezik { background:var(--zlato,#D4AF37); color:#07070F; border-color:var(--zlato,#D4AF37); }
     .kontakt-stavka { display:flex; align-items:flex-start; gap:14px; margin-bottom:20px; }
     .kontakt-stavka-i { font-size:1.4rem; min-width:36px; text-align:center; }
-    .mapa-wrap { border-radius: var(--radius); overflow:hidden; border:1px solid var(--border); margin-top:20px; }
-    .mapa-wrap iframe { width:100%; height:260px; border:none; display:block; }
-    .uspeh-msg { background:rgba(40,160,80,.12); border:1px solid rgba(60,200,100,.3); border-radius:10px; padding:16px; color:#80FF80; font-size:.9rem; display:none; text-align:center; }
+    .mapa-omotac { border-radius: var(--radius); overflow:hidden; border:1px solid var(--border); margin-top:20px; }
+    .mapa-omotac iframe { width:100%; height:260px; border:none; display:block; }
+    .uspeh-poruka { background:rgba(40,160,80,.12); border:1px solid rgba(60,200,100,.3); border-radius:10px; padding:16px; color:#80FF80; font-size:.9rem; display:none; text-align:center; }
     .greska-msg { background:rgba(180,40,40,.12); border:1px solid rgba(220,60,60,.35); border-radius:10px; padding:11px 15px; color:#FF8080; font-size:.88rem; margin-bottom:14px; display:none; }
-    .char-count { font-size:.72rem; color:var(--tekst2); text-align:right; margin-top:4px; }
+    .broj-karaktera { font-size:.72rem; color:var(--tekst2); text-align:right; margin-top:4px; }
     .greska-p { border-color: rgba(220,60,60,.6) !important; }
   </style>
 </head>
@@ -71,20 +71,20 @@
     <span aria-hidden="true" style="font-size:1.4rem">▶</span>
     <span class="logo-txt">SerijaStar</span>
   </div>
-  <ul class="nav-links" id="nav-links">
+  <ul class="nav-veze" id="nav-veze">
     <li><a href="pocetna.html" data-i18n="nav.pocetna">Početna</a></li>
     <li><a href="o-nama.html" data-i18n="nav.onama">O nama</a></li>
-    <li><a href="user.html" data-i18n="nav.epizode">Epizode</a></li>
+    <li><a href="korisnik.html" data-i18n="nav.epizode">Epizode</a></li>
     <li><a href="kontakt.html" class="aktivan" data-i18n="nav.kontakt">Kontakt</a></li>
   </ul>
   <div class="nav-desno">
-    <div class="acc-bar">
-      <button class="btn-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu">☀️</button>
-      <button class="btn-acc" onclick="povecajFont()" title="Povećaj font">A+</button>
-      <button class="btn-acc" onclick="smanjiFont()"  title="Smanji font">A-</button>
-      <button class="btn-lang aktivan-lang" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski">SR</button>
-      <button class="btn-lang" id="btn-en" onclick="postaviJezik('en')" aria-label="English">EN</button>
-      <a href="index.html" class="btn-prim" style="font-size:.82rem;padding:8px 18px;" data-i18n="nav.prijava">Prijavi se</a>
+    <div class="acc-traka">
+      <button class="dugme-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu">☀️</button>
+      <button class="dugme-acc" onclick="povecajFont()" title="Povećaj font">A+</button>
+      <button class="dugme-acc" onclick="smanjiFont()"  title="Smanji font">A-</button>
+      <button class="dugme-jezicki aktivan-jezik" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski">SR</button>
+      <button class="dugme-jezicki" id="btn-en" onclick="postaviJezik('en')" aria-label="English">EN</button>
+      <a href="prijava.html" class="dugme-prim" style="font-size:.82rem;padding:8px 18px;" data-i18n="nav.prijava">Prijavi se</a>
       <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Meni" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -93,7 +93,7 @@
 </nav>
 <div class="zlatna-linija"></div>
 
-<div class="panel-hd">
+<div class="panel-naslov">
   <h1>Kontakt</h1>
   <p>Pišite nam – odgovaramo u roku od 24 sata</p>
 </div>
@@ -129,7 +129,7 @@
       </div>
 
       <!-- Mapa -->
-      <div class="mapa-wrap" role="region" aria-label="Mapa lokacije SerijaStar">
+      <div class="mapa-omotac" role="region" aria-label="Mapa lokacije SerijaStar">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.1234567890123!2d20.4612!3d44.8178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7aa3a3a3a3a3%3A0x0!2sBeograd%2C+Srbija!5e0!3m2!1ssr!2srs!4v1234567890!5m2!1ssr!2srs"
           title="Mapa – Beograd, Srbija"
@@ -146,7 +146,7 @@
         <h3 style="font-family:var(--font-n);color:var(--zlato);margin-bottom:22px;font-size:1.4rem">Pošaljite poruku</h3>
 
         <div class="greska-msg" id="forma-greska" role="alert" aria-live="polite"></div>
-        <div class="uspeh-msg" id="forma-uspeh" role="status" aria-live="polite">
+        <div class="uspeh-poruka" id="forma-uspeh" role="status" aria-live="polite">
           ✅ Poruka je uspešno poslata! Odgovorićemo vam uskoro.
         </div>
 
@@ -194,7 +194,7 @@
             placeholder="Napišite vašu poruku..." maxlength="1000"
             aria-required="true" rows="6"
             oninput="azurirajBrojac()"></textarea>
-          <div class="char-count"><span id="brojac">0</span>/1000 karaktera</div>
+          <div class="broj-karaktera"><span id="brojac">0</span>/1000 karaktera</div>
         </div>
 
         <!-- Bootstrap checkbox – saglasnost -->
@@ -209,7 +209,7 @@
         </div>
 
         <!-- Bootstrap dugme -->
-        <button class="btn-prim w-100 d-flex justify-content-center"
+        <button class="dugme-prim w-100 d-flex justify-content-center"
           onclick="posaljiFormu()"
           aria-label="Pošalji kontakt poruku">
           ✦ Pošalji poruku
@@ -271,29 +271,29 @@
 </div>
 
 <footer role="contentinfo">
-  <div class="footer-grid">
+  <div class="podnozje-mreza">
     <div>
-      <div class="footer-logo-txt">SerijaStar</div>
-      <p class="footer-opis">Platforma za ljubitelje TV serija. Proof-of-concept projekat.</p>
+      <div class="podnozje-logo-tekst">SerijaStar</div>
+      <p class="podnozje-opis">Platforma za ljubitelje TV serija. Proof-of-concept projekat.</p>
     </div>
     <div>
-      <div class="footer-hd" data-i18n="footer.nav_hd">Navigacija</div>
-      <nav class="footer-links">
+      <div class="podnozje-naslov" data-i18n="footer.nav_hd">Navigacija</div>
+      <nav class="podnozje-veze">
         <a href="pocetna.html" data-i18n="nav.pocetna">Početna</a>
         <a href="o-nama.html" data-i18n="nav.onama">O nama</a>
-        <a href="user.html" data-i18n="nav.epizode">Epizode</a>
+        <a href="korisnik.html" data-i18n="nav.epizode">Epizode</a>
         <a href="kontakt.html" data-i18n="nav.kontakt">Kontakt</a>
       </nav>
     </div>
     <div>
-      <div class="footer-hd" data-i18n="footer.nalog_hd">Nalog</div>
-      <nav class="footer-links">
-        <a href="index.html" data-i18n="nav.prijava">Prijava</a>
-        <a href="admin.html" data-i18n="nav.admin">Admin panel</a>
+      <div class="podnozje-naslov" data-i18n="footer.nalog_hd">Nalog</div>
+      <nav class="podnozje-veze">
+        <a href="prijava.html" data-i18n="nav.prijava">Prijava</a>
+        <a href="upravljanje.html" data-i18n="nav.admin">Admin panel</a>
       </nav>
     </div>
   </div>
-  <div class="footer-bottom">
+  <div class="podnozje-dno">
     <span data-i18n="footer.copy">© 2025 SerijaStar.</span>
     <span style="color:var(--zlato)" data-i18n="footer.ljubav">Izrađeno sa ♥</span>
   </div>
@@ -305,7 +305,7 @@
     (localStorage.getItem('ss_tema')||'tamna')==='tamna'?'☀️':'🌙';
 
   function togglujMeni() {
-    const nl=document.getElementById('nav-links'), hb=document.getElementById('hamburger');
+    const nl=document.getElementById('nav-veze'), hb=document.getElementById('hamburger');
     const o=nl.classList.toggle('otvoreni');
     hb.classList.toggle('otvoren',o); hb.setAttribute('aria-expanded',o);
   }

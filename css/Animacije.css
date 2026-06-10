@@ -59,14 +59,14 @@
 .ani-d5 { animation-delay: .5s !important; }
 
 /* ════════════ GLOW EFEKAT – tekst i slike ════════════ */
-.glow-zlato {
+.sjaj-zlato {
   text-shadow:
     0 0 10px rgba(212,175,55,0.6),
     0 0 20px rgba(212,175,55,0.4),
     0 0 40px rgba(212,175,55,0.2);
   transition: text-shadow .3s ease;
 }
-.glow-zlato:hover {
+.sjaj-zlato:hover {
   text-shadow:
     0 0 15px rgba(212,175,55,0.9),
     0 0 30px rgba(212,175,55,0.6),
@@ -74,11 +74,11 @@
 }
 
 /* Glow na slikama */
-.glow-slika {
+.sjaj-slika {
   transition: box-shadow .4s ease, filter .4s ease;
   filter: brightness(0.9);
 }
-.glow-slika:hover {
+.sjaj-slika:hover {
   box-shadow: 0 0 30px rgba(212,175,55,0.4), 0 0 60px rgba(212,175,55,0.15);
   filter: brightness(1.05);
 }
@@ -111,7 +111,7 @@
 .sjaj-efekat:hover::after { left: 120%; }
 
 /* ════════════ MP4 VIDEO PLAYER ════════════ */
-.video-player-wrap {
+.video-plejer-omotac {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
@@ -119,22 +119,22 @@
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
 }
-.video-player-wrap video {
+.video-plejer-omotac video {
   width: 100%;
   display: block;
   max-height: 480px;
   object-fit: cover;
 }
 /* Overlay sa play dugmetom pre pokretanja */
-.video-overlay {
+.video-prekrivac {
   position: absolute; inset: 0;
   background: rgba(0,0,0,0.55);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; transition: background .3s ease;
 }
-.video-overlay:hover { background: rgba(0,0,0,0.35); }
-.video-overlay.skriven { display: none; }
-.play-btn-big {
+.video-prekrivac:hover { background: rgba(0,0,0,0.35); }
+.video-prekrivac.skriven { display: none; }
+.dugme-pusti-big {
   width: 80px; height: 80px; border-radius: 50%;
   background: rgba(212,175,55,0.9);
   border: 3px solid #fff;
@@ -143,11 +143,11 @@
   transition: transform .3s ease, box-shadow .3s ease;
   animation: pulsiranje 2s ease-in-out infinite;
 }
-.video-overlay:hover .play-btn-big {
+.video-prekrivac:hover .dugme-pusti-big {
   transform: scale(1.1);
   box-shadow: 0 0 30px rgba(212,175,55,0.6);
 }
-.video-naslov-overlay {
+.video-natpis {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 20px 24px;
   background: linear-gradient(transparent, rgba(0,0,0,0.8));
@@ -155,7 +155,7 @@
 }
 
 /* ════════════ MP3 MUZIČKI PLEJER ════════════ */
-.muzika-bar {
+.muzika-traka {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
   background: rgba(7,7,15,0.97);
   border-top: 1px solid var(--border);
@@ -165,8 +165,8 @@
   transform: translateY(100%);
   transition: transform .4s ease;
 }
-.muzika-bar.vidljiva { transform: translateY(0); }
-[data-tema="svetla"] .muzika-bar { background: rgba(235,228,210,0.97); }
+.muzika-traka.vidljiva { transform: translateY(0); }
+[data-tema="svetla"] .muzika-traka { background: rgba(235,228,210,0.97); }
 
 .muzika-info { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
 .muzika-ikona {
@@ -177,17 +177,17 @@
 }
 .muzika-ikona.svira { animation-play-state: running; }
 .muzika-naziv { font-size: .84rem; font-weight: 600; color: var(--tekst); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.muzika-artist{ font-size: .74rem; color: var(--tekst2); }
+.muzika-umetnik{ font-size: .74rem; color: var(--tekst2); }
 
 .muzika-kontrole { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.muz-btn {
+.muz-dugme {
   width: 36px; height: 36px; border-radius: 50%;
   background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3);
   color: var(--zlato); font-size: 1rem;
   transition: var(--tr); display: flex; align-items: center; justify-content: center;
 }
-.muz-btn:hover { background: rgba(212,175,55,0.25); }
-.muz-btn.play-pause { width: 44px; height: 44px; font-size: 1.2rem; background: rgba(212,175,55,0.2); }
+.muz-dugme:hover { background: rgba(212,175,55,0.25); }
+.muz-dugme.pusti-pauza { width: 44px; height: 44px; font-size: 1.2rem; background: rgba(212,175,55,0.2); }
 
 .muzika-klizac { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 120px; max-width: 300px; }
 .muzika-klizac input[type="range"] {
@@ -203,7 +203,7 @@
 .muzika-zatvori:hover { color: var(--zlato); }
 
 /* Dugme za otvaranje muzičkog plejera */
-.muz-toggle {
+.muz-prekidac {
   position: fixed; bottom: 20px; left: 20px; z-index: 149;
   width: 48px; height: 48px; border-radius: 50%;
   background: linear-gradient(135deg, var(--zlato-t), var(--zlato));
@@ -212,7 +212,7 @@
   transition: var(--tr); animation: pulsiranje 3s ease-in-out infinite;
   display: flex; align-items: center; justify-content: center;
 }
-.muz-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(212,175,55,0.6); }
+.muz-prekidac:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(212,175,55,0.6); }
 
 /* ════════════ DOKUMENT / LINK SEKCIJA ════════════ */
 .dokument-kartica {
@@ -256,13 +256,13 @@
   92%  { opacity: .6; }
   100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
 }
-.login-k {
+.prijava-kartica {
   background: var(--kartica); border: 1px solid rgba(212,175,55,.28); border-radius: 20px;
   padding: 50px 44px; width: 100%; max-width: 460px; position: relative; z-index: 10;
   box-shadow: 0 0 0 1px rgba(212,175,55,.04), 0 20px 60px rgba(0,0,0,.7), 0 0 50px rgba(212,175,55,.07);
   animation: pojavi .7s cubic-bezier(.16,1,.3,1) forwards;
 }
-.login-k::before {
+.prijava-kartica::before {
   content: ''; position: absolute; top: 0; left: 15%; right: 15%; height: 2px;
   background: linear-gradient(90deg, transparent, var(--zlato), var(--zlato-sv), var(--zlato), transparent);
   border-radius: 0 0 4px 4px; box-shadow: 0 0 20px rgba(212,175,55,.5);
@@ -277,16 +277,16 @@
   animation: pulsiranje 3s ease-in-out infinite;
 }
 .logo-n   { font-family: var(--font-n); font-size: 2.2rem; font-weight: 900; letter-spacing: 3px; }
-.logo-sub { font-size: .7rem; letter-spacing: 5px; text-transform: uppercase; color: var(--srebro-t); margin-top: 4px; }
-.div-linija { height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,.35), transparent); margin: 22px 0; }
+.logo-pod { font-size: .7rem; letter-spacing: 5px; text-transform: uppercase; color: var(--srebro-t); margin-top: 4px; }
+.linija-razdvajac { height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,.35), transparent); margin: 22px 0; }
 .tab-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: rgba(5,5,12,.6); padding: 5px; border-radius: 12px; border: 1px solid rgba(212,175,55,.1); margin-bottom: 26px; }
-.tab-b { padding: 10px 8px 8px; border: none; background: transparent; color: var(--tekst2); font-family: var(--font-t); font-size: .85rem; font-weight: 500; border-radius: 8px; transition: var(--tr); display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.tab-b .ik { font-size: 1.2rem; }
-.tab-b.ak { background: linear-gradient(135deg, rgba(160,124,32,.85), rgba(212,175,55,.85)); color: #07070F; font-weight: 700; box-shadow: 0 2px 15px rgba(212,175,55,.25); }
-.tab-b:not(.ak):hover { background: rgba(212,175,55,.08); color: var(--zlato); }
+.tab-dugme { padding: 10px 8px 8px; border: none; background: transparent; color: var(--tekst2); font-family: var(--font-t); font-size: .85rem; font-weight: 500; border-radius: 8px; transition: var(--tr); display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.tab-dugme .ik { font-size: 1.2rem; }
+.tab-dugme.ak { background: linear-gradient(135deg, rgba(160,124,32,.85), rgba(212,175,55,.85)); color: #07070F; font-weight: 700; box-shadow: 0 2px 15px rgba(212,175,55,.25); }
+.tab-dugme:not(.ak):hover { background: rgba(212,175,55,.08); color: var(--zlato); }
 .tab-sadrzaj { display: none; }
-.tab-sadrzaj.vis { display: block; animation: fadeIn .35s ease; }
-.btn-login {
+.tab-sadrzaj.vidljiv-blok { display: block; animation: fadeIn .35s ease; }
+.dugme-prijava {
   width: 100%; padding: 15px;
   background: linear-gradient(135deg, var(--zlato-t), var(--zlato), var(--zlato-sv));
   border: none; border-radius: 10px; color: #07070F;
@@ -294,22 +294,22 @@
   letter-spacing: 2px; text-transform: uppercase; transition: var(--tr);
   position: relative; overflow: hidden; margin-top: 6px;
 }
-.btn-login::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent); transform: translateX(-100%); transition: transform .5s ease; }
-.btn-login:hover::after { transform: translateX(100%); }
-.btn-login:hover { box-shadow: 0 6px 30px rgba(212,175,55,.5); transform: translateY(-2px); }
-.greska-b { background: rgba(180,40,40,.12); border: 1px solid rgba(220,60,60,.35); border-radius: 10px; padding: 11px 15px; color: #FF8080; font-size: .88rem; margin-bottom: 14px; display: none; animation: treskanje .4s ease; }
+.dugme-prijava::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent); transform: translateX(-100%); transition: transform .5s ease; }
+.dugme-prijava:hover::after { transform: translateX(100%); }
+.dugme-prijava:hover { box-shadow: 0 6px 30px rgba(212,175,55,.5); transform: translateY(-2px); }
+.greska-poruka { background: rgba(180,40,40,.12); border: 1px solid rgba(220,60,60,.35); border-radius: 10px; padding: 11px 15px; color: #FF8080; font-size: .88rem; margin-bottom: 14px; display: none; animation: treskanje .4s ease; }
 .greska-p { border-color: rgba(220,60,60,.6) !important; animation: treskanje .4s ease; }
 .demo-z { margin-top: 22px; padding: 15px 18px; background: rgba(212,175,55,.04); border: 1px solid rgba(212,175,55,.12); border-radius: 12px; text-align: center; font-size: .8rem; color: var(--tekst2); line-height: 2; }
 .demo-z strong { color: var(--zlato); font-weight: 600; }
 
 /* ════════════ TOP 5 KARTICE ════════════ */
-.top5-k {
+.top5-kartica {
   background: var(--kartica); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 18px 20px;
   display: flex; align-items: center; gap: 16px;
   transition: var(--tr); text-decoration: none; color: inherit;
 }
-.top5-k:hover { border-color: var(--zlato); box-shadow: 0 0 22px rgba(212,175,55,.18); transform: translateY(-3px); text-decoration: none; color: inherit; }
+.top5-kartica:hover { border-color: var(--zlato); box-shadow: 0 0 22px rgba(212,175,55,.18); transform: translateY(-3px); text-decoration: none; color: inherit; }
 .top5-mesto { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-n); font-weight: 700; font-size: 1rem; flex-shrink: 0; }
 .top5-m1 { background: linear-gradient(135deg,#B8960C,#FFD700); color: #07070F; box-shadow: 0 0 16px rgba(255,215,0,.4); }
 .top5-m2 { background: linear-gradient(135deg,#606060,#C0C0C0); color: #07070F; }
@@ -317,7 +317,7 @@
 .top5-mo { background: rgba(212,175,55,.08); border: 1px solid rgba(212,175,55,.2); color: var(--tekst2); }
 .top5-info { flex: 1; min-width: 0; }
 .top5-naziv  { font-weight: 600; font-size: .93rem; color: var(--tekst); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
-.top5-zv     { font-size: .78rem; color: var(--zlato-s); letter-spacing: 1px; }
+.top5-zvezdice     { font-size: .78rem; color: var(--zlato-s); letter-spacing: 1px; }
 .top5-ocena  { font-family: var(--font-n); font-size: 1.5rem; font-weight: 700; color: var(--zlato); line-height: 1; }
 .top5-glasovi{ font-size: .72rem; color: var(--tekst2); }
 .top5-prazno { grid-column: 1/-1; text-align: center; padding: 30px; color: var(--tekst2); font-size: .9rem; }

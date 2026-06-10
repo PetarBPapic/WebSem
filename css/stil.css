@@ -60,15 +60,15 @@ p{font-size:clamp(.88rem,1.2vw,1rem)}
   background:linear-gradient(90deg,transparent,var(--zlato),var(--zlato-sv),var(--zlato),transparent);
   box-shadow:0 0 12px rgba(212,175,55,.4);
 }
-.sek-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:10px}
-.sek-hd h2 span{color:var(--zlato)}
+.sek-naslov{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:10px}
+.sek-naslov h2 span{color:var(--zlato)}
 .sek-vidi-sve{font-size:.85rem;color:var(--zlato)}
-.panel-hd{padding:55px 40px 35px;text-align:center;position:relative;z-index:1}
-.panel-hd h1{
+.panel-naslov{padding:55px 40px 35px;text-align:center;position:relative;z-index:1}
+.panel-naslov h1{
   background:linear-gradient(135deg,var(--zlato-sv),var(--zlato),var(--srebro));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px;
 }
-.panel-hd p{color:var(--tekst2);letter-spacing:2px;font-size:.85rem;text-transform:uppercase}
+.panel-naslov p{color:var(--tekst2);letter-spacing:2px;font-size:.85rem;text-transform:uppercase}
 
 /* ════════════ NAVIGACIJA – horizontalni + padajući + mega meni ════════════ */
 nav{
@@ -94,20 +94,20 @@ nav:hover .logo-img{filter:drop-shadow(0 0 14px rgba(212,175,55,.9))}
 }
 
 /* Horizontalni meni */
-.nav-links{display:flex;align-items:center;gap:0;height:100%}
-.nav-links>li{position:relative;height:100%;display:flex;align-items:center}
-.nav-links>li>a{
+.nav-veze{display:flex;align-items:center;gap:0;height:100%}
+.nav-veze>li{position:relative;height:100%;display:flex;align-items:center}
+.nav-veze>li>a{
   padding:0 14px;height:100%;display:flex;align-items:center;gap:4px;
   font-size:.88rem;font-weight:500;letter-spacing:.5px;
   color:var(--tekst2);text-decoration:none;transition:var(--tr);white-space:nowrap;
 }
-.nav-links>li>a:hover,.nav-links>li>a.aktivan{color:var(--zlato)}
-.nav-links>li>a.aktivan{border-bottom:2px solid var(--zlato)}
+.nav-veze>li>a:hover,.nav-veze>li>a.aktivan{color:var(--zlato)}
+.nav-veze>li>a.aktivan{border-bottom:2px solid var(--zlato)}
 .strelica{font-size:.6rem;transition:transform .3s ease}
-.nav-links>li:hover>a .strelica{transform:rotate(180deg)}
+.nav-veze>li:hover>a .strelica{transform:rotate(180deg)}
 
 /* Padajući meni */
-.dropdown{
+.padajuci-meni{
   position:absolute;top:100%;left:0;min-width:200px;
   background:rgba(10,10,20,.98);border:1px solid var(--border);
   border-top:2px solid var(--zlato);border-radius:0 0 12px 12px;
@@ -115,13 +115,13 @@ nav:hover .logo-img{filter:drop-shadow(0 0 14px rgba(212,175,55,.9))}
   opacity:0;visibility:hidden;transform:translateY(-8px);
   transition:all .25s ease;box-shadow:0 20px 40px rgba(0,0,0,.5);z-index:300;
 }
-[data-tema="svetla"] .dropdown{background:rgba(240,234,218,.98)}
-.nav-links>li:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
-.dropdown a{
+[data-tema="svetla"] .padajuci-meni{background:rgba(240,234,218,.98)}
+.nav-veze>li:hover .padajuci-meni{opacity:1;visibility:visible;transform:translateY(0)}
+.padajuci-meni a{
   display:block;padding:10px 20px;font-size:.86rem;color:var(--tekst2);
   text-decoration:none;transition:var(--tr);border-left:2px solid transparent;
 }
-.dropdown a:hover{color:var(--zlato);background:rgba(212,175,55,.07);border-left-color:var(--zlato)}
+.padajuci-meni a:hover{color:var(--zlato);background:rgba(212,175,55,.07);border-left-color:var(--zlato)}
 
 /* Mega meni – višekolonski */
 .mega-meni{
@@ -133,7 +133,7 @@ nav:hover .logo-img{filter:drop-shadow(0 0 14px rgba(212,175,55,.9))}
   transition:all .25s ease;box-shadow:0 20px 50px rgba(0,0,0,.6);z-index:300;
 }
 [data-tema="svetla"] .mega-meni{background:rgba(240,234,218,.98)}
-.nav-links>li:hover .mega-meni{opacity:1;visibility:visible;transform:translateY(0)}
+.nav-veze>li:hover .mega-meni{opacity:1;visibility:visible;transform:translateY(0)}
 .mega-kolona h4{
   font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   color:var(--zlato);margin-bottom:12px;padding-bottom:8px;
@@ -153,25 +153,25 @@ nav:hover .logo-img{filter:drop-shadow(0 0 14px rgba(212,175,55,.9))}
   border-radius:20px;padding:3px 12px;
   color:var(--zlato);font-size:.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;
 }
-.acc-bar{display:flex;align-items:center;gap:5px}
-.btn-acc{
+.acc-traka{display:flex;align-items:center;gap:5px}
+.dugme-acc{
   width:32px;height:32px;background:rgba(212,175,55,.08);
   border:1px solid var(--border);border-radius:8px;
   color:var(--tekst2);font-size:.82rem;transition:var(--tr);
 }
-.btn-acc:hover{background:rgba(212,175,55,.18);color:var(--zlato)}
-.btn-lang{
+.dugme-acc:hover{background:rgba(212,175,55,.18);color:var(--zlato)}
+.dugme-jezicki{
   padding:5px 10px;background:rgba(212,175,55,.08);border:1px solid var(--border);
   border-radius:8px;color:var(--tekst2);font-size:.78rem;font-weight:700;
   transition:var(--tr);letter-spacing:1px;
 }
-.btn-lang:hover,.btn-lang.aktivan-lang{background:rgba(212,175,55,.2);color:var(--zlato);border-color:var(--zlato)}
-.btn-odjava{
+.dugme-jezicki:hover,.dugme-jezicki.aktivan-jezik{background:rgba(212,175,55,.2);color:var(--zlato);border-color:var(--zlato)}
+.dugme-odjava{
   padding:7px 14px;background:transparent;
   border:1px solid rgba(192,192,192,.25);border-radius:8px;
   color:var(--tekst2);font-size:.82rem;transition:var(--tr);
 }
-.btn-odjava:hover{border-color:var(--zlato);color:var(--zlato)}
+.dugme-odjava:hover{border-color:var(--zlato);color:var(--zlato)}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:6px}
 .hamburger span{display:block;width:24px;height:2px;background:var(--zlato);border-radius:2px;transition:var(--tr)}
 .hamburger.otvoren span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -179,7 +179,7 @@ nav:hover .logo-img{filter:drop-shadow(0 0 14px rgba(212,175,55,.9))}
 .hamburger.otvoren span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ════════════ DUGMAD ════════════ */
-.btn-prim{
+.dugme-prim{
   padding:13px 32px;
   background:linear-gradient(135deg,var(--zlato-t),var(--zlato),var(--zlato-sv));
   border:none;border-radius:10px;color:#07070F;
@@ -188,53 +188,53 @@ nav:hover .logo-img{filter:drop-shadow(0 0 14px rgba(212,175,55,.9))}
   transition:var(--tr);position:relative;overflow:hidden;
   display:inline-flex;align-items:center;gap:8px;
 }
-.btn-prim::after{
+.dugme-prim::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
   transform:translateX(-100%);transition:transform .5s ease;
 }
-.btn-prim:hover::after{transform:translateX(100%)}
-.btn-prim:hover{box-shadow:0 6px 30px rgba(212,175,55,.5);transform:translateY(-2px);text-decoration:none;color:#07070F}
-.btn-sek{
+.dugme-prim:hover::after{transform:translateX(100%)}
+.dugme-prim:hover{box-shadow:0 6px 30px rgba(212,175,55,.5);transform:translateY(-2px);text-decoration:none;color:#07070F}
+.dugme-sek{
   padding:13px 32px;background:transparent;
   border:1px solid rgba(212,175,55,.4);border-radius:10px;color:var(--zlato);
   font-family:var(--font-t);font-size:.9rem;font-weight:600;
   letter-spacing:1px;text-decoration:none;
   transition:var(--tr);display:inline-flex;align-items:center;gap:8px;
 }
-.btn-sek:hover{background:rgba(212,175,55,.12);border-color:var(--zlato);text-decoration:none}
+.dugme-sek:hover{background:rgba(212,175,55,.12);border-color:var(--zlato);text-decoration:none}
 
 /* ════════════ STATISTIKE ════════════ */
-.stat-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;padding:0 40px 60px;position:relative;z-index:1}
-.stat-k{
+.stat-red{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;padding:0 40px 60px;position:relative;z-index:1}
+.stat-kartica{
   flex:1;min-width:130px;max-width:200px;
   background:var(--kartica);border:1px solid var(--border);border-radius:var(--radius);
   padding:24px;text-align:center;transition:var(--tr);
 }
-.stat-k:hover{border-color:var(--zlato);box-shadow:0 0 25px rgba(212,175,55,.2);transform:translateY(-3px)}
-.stat-n{display:block;font-family:var(--font-n);font-size:2.4rem;font-weight:700;color:var(--zlato)}
-.stat-l{display:block;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--tekst2);margin-top:6px}
+.stat-kartica:hover{border-color:var(--zlato);box-shadow:0 0 25px rgba(212,175,55,.2);transform:translateY(-3px)}
+.stat-broj{display:block;font-family:var(--font-n);font-size:2.4rem;font-weight:700;color:var(--zlato)}
+.stat-labela{display:block;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--tekst2);margin-top:6px}
 
 /* ════════════ FOOTER ════════════ */
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 40px 30px;position:relative;z-index:1}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
-.footer-logo-txt{
+.podnozje-mreza{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.podnozje-logo-tekst{
   font-family:var(--font-n);font-size:1.5rem;font-weight:900;letter-spacing:2px;
   background:linear-gradient(135deg,var(--zlato-sv),var(--zlato));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;
 }
-.footer-opis{font-size:.88rem;color:var(--tekst2);line-height:1.7}
-.footer-hd{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--zlato);margin-bottom:14px;font-weight:600}
-.footer-links a{display:block;font-size:.88rem;color:var(--tekst2);margin-bottom:8px;transition:var(--tr)}
-.footer-links a:hover{color:var(--zlato);padding-left:4px;text-decoration:none}
-.footer-bottom{
+.podnozje-opis{font-size:.88rem;color:var(--tekst2);line-height:1.7}
+.podnozje-naslov{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--zlato);margin-bottom:14px;font-weight:600}
+.podnozje-veze a{display:block;font-size:.88rem;color:var(--tekst2);margin-bottom:8px;transition:var(--tr)}
+.podnozje-veze a:hover{color:var(--zlato);padding-left:4px;text-decoration:none}
+.podnozje-dno{
   display:flex;justify-content:space-between;align-items:center;
   padding-top:24px;border-top:1px solid rgba(212,175,55,.1);
   font-size:.8rem;color:var(--tekst2);flex-wrap:wrap;gap:10px;
 }
 
 /* ════════════ TOAST ════════════ */
-#toast{
+#obavestenje{
   position:fixed;bottom:28px;right:28px;z-index:9999;
   background:var(--bg3);border:1px solid var(--zlato);border-radius:12px;
   padding:13px 22px;color:var(--zlato);font-size:.9rem;
@@ -254,31 +254,31 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 40p
 }
 @media(max-width:768px){
   nav{padding:0 20px}
-  .nav-links{
+  .nav-veze{
     display:none;position:fixed;top:68px;left:0;right:0;bottom:0;
     background:rgba(7,7,15,.98);flex-direction:column;
     align-items:center;justify-content:flex-start;
     padding-top:20px;gap:0;z-index:199;overflow-y:auto;
   }
-  [data-tema="svetla"] .nav-links{background:rgba(235,228,210,.99)}
-  .nav-links.otvoreni{display:flex;animation:fadeIn .3s ease}
-  .nav-links>li{height:auto;width:100%;justify-content:center;flex-direction:column}
-  .nav-links>li>a{height:auto;padding:14px 20px;font-size:1.05rem;width:100%;justify-content:center;border-bottom:none!important}
-  .dropdown,.mega-meni{
+  [data-tema="svetla"] .nav-veze{background:rgba(235,228,210,.99)}
+  .nav-veze.otvoreni{display:flex;animation:fadeIn .3s ease}
+  .nav-veze>li{height:auto;width:100%;justify-content:center;flex-direction:column}
+  .nav-veze>li>a{height:auto;padding:14px 20px;font-size:1.05rem;width:100%;justify-content:center;border-bottom:none!important}
+  .padajuci-meni,.mega-meni{
     position:static;opacity:1;visibility:visible;transform:none;
     box-shadow:none;border:none;border-top:1px solid rgba(212,175,55,.15);
     border-radius:0;width:100%;background:rgba(0,0,0,.15);
     padding:4px 0;display:none;grid-template-columns:1fr;
   }
-  .nav-links>li.mob-otvoren .dropdown,
-  .nav-links>li.mob-otvoren .mega-meni{display:block}
+  .nav-veze>li.mob-otvoren .padajuci-meni,
+  .nav-veze>li.mob-otvoren .mega-meni{display:block}
   .mega-kolona{padding:0 10px}
   .hamburger{display:flex}
-  .panel-hd{padding:40px 20px 25px}
-  .kontejner,.kontejner-uski,.stat-row{padding-left:20px;padding-right:20px}
-  .footer-grid{grid-template-columns:1fr}
+  .panel-naslov{padding:40px 20px 25px}
+  .kontejner,.kontejner-uski,.stat-red{padding-left:20px;padding-right:20px}
+  .podnozje-mreza{grid-template-columns:1fr}
 }
 @media(max-width:480px){
-  .stat-n{font-size:1.8rem}
-  .btn-prim,.btn-sek{padding:10px 18px;font-size:.82rem}
+  .stat-broj{font-size:1.8rem}
+  .dugme-prim,.dugme-sek{padding:10px 18px;font-size:.82rem}
 }

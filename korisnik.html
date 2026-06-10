@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pregledaj i ocenjuj TV serije – SerijaStar epizode.">
+  <meta name="keywords" content="oceni seriju, komentari, epizode, SerijaStar">
+  <meta name="author" content="SerijaStar Tim">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#D4AF37">
+  <link rel="icon" href="slike/logo-64.png" type="image/png">
+  <title>Epizode – SerijaStar</title>
+
+  <link rel="stylesheet" href="css/stil.css">
+  <link rel="stylesheet" href="css/Komponente.css">
+  <link rel="stylesheet" href="css/Animacije.css">
+  <link rel="stylesheet" href="css/responzivan.css">
+</head>
+<body>
+
+<!-- ═══ NAVIGACIJA ═══ -->
+<nav id="nav" role="navigation" aria-label="Glavna navigacija">
+  <div class="nav-logo">
+    <img src="slike/logo.png" alt="SerijaStar logo" class="logo-img" width="36" height="36">
+    <span class="logo-txt">SerijaStar</span>
+  </div>
+  <ul class="nav-veze" id="nav-veze" role="menubar">
+    <li><a href="pocetna.html" role="menuitem" data-i18n="nav.pocetna">Početna</a></li>
+    <li><a href="korisnik.html" class="aktivan" role="menuitem" data-i18n="nav.epizode">Epizode</a></li>
+    <li><a href="o-nama.html" role="menuitem" data-i18n="nav.onama">O nama</a></li>
+    <li><a href="kontakt.html" role="menuitem" data-i18n="nav.kontakt">Kontakt</a></li>
+  </ul>
+  <div class="nav-desno">
+    <div class="acc-traka">
+      <button class="dugme-acc" id="dug-tema" onclick="togglujTemu()" title="Promeni temu" aria-label="Promena teme">☀️</button>
+      <button class="dugme-acc" onclick="povecajFont()" title="Povećaj font" aria-label="Povećaj font">A+</button>
+      <button class="dugme-acc" onclick="smanjiFont()"  title="Smanji font"  aria-label="Smanji font">A-</button>
+    </div>
+    <button class="dugme-jezicki aktivan-jezik" id="dug-sr" onclick="postaviJezik('sr')" aria-label="Srpski jezik">SR</button>
+    <button class="dugme-jezicki"               id="dug-en" onclick="postaviJezik('en')" aria-label="English">EN</button>
+    <div id="nav-zona"></div>
+    <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Otvori meni" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="zlatna-linija"></div>
+
+<!-- ═══ ZAGLAVLJE PANELA ═══ -->
+<div class="panel-naslov">
+  <div class="pozdrav-traka" id="pozdrav">📺 Pregledaj sve epizode</div>
+  <h1>Sve epizode</h1>
+  <p id="podnaslov" data-i18n="epizode.podnaslov">Prijavi se da bi mogao/la da ocenjuješ i komentarišeš</p>
+</div>
+
+<!-- ═══ SADRŽAJ ═══ -->
+<div class="kontejner">
+
+  <!-- Baner za goste -->
+  <div class="gost-baner" id="gost-baner" role="alert">
+    <p>👋 Gledaš kao gost. <strong>Prijavi se</strong> da ocenjuješ i komentarišeš!</p>
+    <a href="prijava.html" class="dugme-prim">Prijavi se →</a>
+  </div>
+
+  <!-- Dvostubačni raspored: epizode levo | rang lista desno -->
+  <div class="ep-raspored">
+
+    <!-- LISTA EPIZODA -->
+    <main>
+      <div class="ep-mreza" id="ep-mreza" aria-label="Lista epizoda" aria-live="polite">
+        <p>Učitavanje...</p>
+      </div>
+    </main>
+
+    <!-- TOP 10 RANG LISTA -->
+    <aside class="rang-lepljivi" aria-label="Top 10 epizoda po oceni">
+      <div class="rang-lista">
+        <div class="rang-naslov">
+          <span aria-hidden="true">🏆</span>
+          <h2>Top 10 epizoda</h2>
+        </div>
+        <div id="rang10" role="list"></div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<!-- ═══ MODAL: Prijava potrebna ═══ -->
+<div class="modal-pozadina" id="modal-prijava" role="dialog" aria-modal="true" aria-labelledby="modal-naslov">
+  <div class="prijava-modal">
+    <button class="modal-zatvori" onclick="zatvoriModal()" aria-label="Zatvori modal">✕</button>
+    <div class="prijava-modal-ikona" aria-hidden="true">⭐</div>
+    <h3 id="modal-naslov">Prijava potrebna</h3>
+    <p>Da bi ocenjivao/la epizode i pisao/la komentare, potrebno je da se prijaviš na <strong>SerijaStar</strong>.</p>
+    <div class="modal-dugmad">
+      <a href="prijava.html" class="dugme-prim">👤 Prijavi se</a>
+      <button class="dugme-sek" onclick="zatvoriModal()">Nastavi bez prijave</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ OBAVEŠTENJE (toast) ═══ -->
+<div id="obavestenje" role="status" aria-live="polite"></div>
+
+<!-- ═══ PODNOŽJE ═══ -->
+<footer role="contentinfo">
+  <div class="podnozje-mreza">
+    <div>
+      <div class="podnozje-logo-tekst">SerijaStar</div>
+      <p class="podnozje-opis" data-i18n="footer.opis">Platforma za ljubitelje TV serija.</p>
+    </div>
+    <div>
+      <div class="podnozje-naslov" data-i18n="footer.nav_hd">Navigacija</div>
+      <nav class="podnozje-veze">
+        <a href="pocetna.html" data-i18n="nav.pocetna">Početna</a>
+        <a href="korisnik.html" data-i18n="nav.epizode">Epizode</a>
+        <a href="o-nama.html"  data-i18n="nav.onama">O nama</a>
+        <a href="kontakt.html" data-i18n="nav.kontakt">Kontakt</a>
+      </nav>
+    </div>
+    <div>
+      <div class="podnozje-naslov" data-i18n="footer.nalog_hd">Nalog</div>
+      <nav class="podnozje-veze">
+        <a href="prijava.html" data-i18n="nav.prijava">Prijava</a>
+        <a href="upravljanje.html" data-i18n="nav.admin">Admin panel</a>
+      </nav>
+    </div>
+  </div>
+  <div class="podnozje-dno">
+    <span data-i18n="footer.copy">© 2025 SerijaStar.</span>
+    <span data-i18n="footer.ljubav">Izrađeno sa ♥</span>
+  </div>
+</footer>
+
+<!-- ═══ SKRIPTE ═══ -->
+<script src="js/core.js"></script>
+<script src="js/korisnik.js"></script>
+</body>
+</html>
