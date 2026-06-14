@@ -21,7 +21,6 @@
 <link rel="stylesheet" href="css/animacije.css">
 
 <!-- ═══ LUCIDE ICONS CDN ═══ -->
-<script src="js/vendor/lucide.min.js"></script>
 
 <style>
 /* Lucide icon helpers */
@@ -34,6 +33,86 @@
 .dok-ikona .lucide-icon svg { width:2rem; height:2rem; stroke:var(--zlato,#D4AF37); }
 .m-ikona .lucide-icon { margin-right:4px; }
 .m-ikona .lucide-icon svg { width:1em; height:1em; }
+  /* SVG Ikonice iz slike/ikone/ */
+  .svg-ikona { width:1em; height:1em; vertical-align:middle; display:inline-block; }
+  .m-ikona .svg-ikona { width:1em; height:1em; margin-right:4px; }
+  .nav-desno .svg-ikona { width:1rem; height:1rem; }
+  .dugme-acc .svg-ikona { width:1rem; height:1rem; }
+  .btn-login .svg-ikona { width:1rem; height:1rem; }
+
+  /* ===== MUZICKI PLEJER ===== */
+  .muz-prekidac {
+    position: fixed; bottom: 30px; left: 20px; z-index: 9999;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--zlato-t, #A07C20), var(--zlato, #D4AF37));
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(212,175,55,.4); transition: transform .2s, box-shadow .2s;
+  }
+  .muz-prekidac:hover { transform: scale(1.1); box-shadow: 0 6px 25px rgba(212,175,55,.6); }
+  .muz-prekidac .svg-ikona { width: 1.4rem; height: 1.4rem; filter: invert(1); }
+
+  .muzika-traka {
+    position: fixed; bottom: 92px; left: 20px; z-index: 9999;
+    background: var(--kartica, #12121E); border: 1px solid rgba(212,175,55,.3);
+    border-radius: 16px; padding: 14px 18px; width: 340px; max-width: calc(100vw - 40px);
+    box-shadow: 0 8px 30px rgba(0,0,0,.6), 0 0 0 1px rgba(212,175,55,.08);
+    display: none; flex-direction: column; gap: 10px;
+    animation: pojavi-plejer .3s ease;
+  }
+  @keyframes pojavi-plejer { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+  .muzika-traka.otvorena { display: flex; }
+
+  .muzika-info { display: flex; align-items: center; gap: 12px; }
+  .muzika-ikona {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, rgba(212,175,55,.2), rgba(212,175,55,.05));
+    border: 1px solid rgba(212,175,55,.3);
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  }
+  .muzika-ikona.svira { animation: rotacija 4s linear infinite; }
+  @keyframes rotacija { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .muzika-naziv { font-weight: 700; font-size: .88rem; color: var(--tekst, #E8DCC8); }
+  .muzika-umetnik { font-size: .75rem; color: var(--tekst2, #9A9080); margin-top: 2px; }
+
+  .muzika-klizac { display: flex; align-items: center; gap: 8px; }
+  .muz-vreme { font-size: .72rem; color: var(--tekst2, #9A9080); min-width: 32px; }
+  .muzika-klizac input[type=range] {
+    flex: 1; height: 4px; -webkit-appearance: none; appearance: none;
+    background: rgba(212,175,55,.2); border-radius: 2px; cursor: pointer;
+  }
+  .muzika-klizac input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%;
+    background: var(--zlato, #D4AF37); cursor: pointer;
+  }
+
+  .muzika-kontrole { display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .muz-dugme {
+    background: rgba(212,175,55,.08); border: 1px solid rgba(212,175,55,.2);
+    border-radius: 50%; width: 34px; height: 34px;
+    color: var(--zlato, #D4AF37); cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center; transition: .2s;
+  }
+  .muz-dugme:hover { background: rgba(212,175,55,.2); }
+  .muz-dugme.pusti-pauza { width: 42px; height: 42px; font-size: 1.2rem;
+    background: linear-gradient(135deg, var(--zlato-t, #A07C20), var(--zlato, #D4AF37)); color: #07070F; border: none; }
+
+  .muzika-jacina { display: flex; align-items: center; gap: 8px; font-size: .75rem; color: var(--tekst2, #9A9080); }
+  .muzika-jacina input[type=range] {
+    width: 70px; height: 4px; -webkit-appearance: none; appearance: none;
+    background: rgba(212,175,55,.2); border-radius: 2px; cursor: pointer;
+  }
+  .muzika-jacina input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--zlato, #D4AF37); cursor: pointer;
+  }
+  .muzika-zatvori {
+    position: absolute; top: 10px; right: 12px;
+    background: none; border: none; color: var(--tekst2, #9A9080);
+    cursor: pointer; font-size: 1rem; line-height: 1; padding: 2px 6px;
+  }
+  .muzika-zatvori:hover { color: var(--zlato, #D4AF37); }
+  .muzika-traka { position: fixed !important; bottom: 92px !important; left: 20px !important; z-index: 9999 !important; }
+
 </style>
 </head>
 <body>
@@ -46,14 +125,14 @@
 
 <!-- Dugme za otvaranje muzickog plejera (Lucide Music icon) -->
 <button class="muz-prekidac" id="muz-prekidac" onclick="otvoriPlejer()" aria-label="Pusti muziku" title="Pusti pozadinsku muziku">
-  <span class="lucide-icon"><i data-lucide="music"></i></span>
+  <img src="slike/ikone/clapperboard.svg" class="svg-ikona" alt="muzika">
 </button>
 
 <!-- Muzicki plejer bar -->
 <div class="muzika-traka" id="muzika-traka" role="region" aria-label="Muzicki plejer">
   <div class="muzika-info">
     <div class="muzika-ikona" id="muz-ikona">
-      <span class="lucide-icon"><i data-lucide="music-2"></i></span>
+      <img src="slike/ikone/clapperboard.svg" class="svg-ikona" alt="muzika">
     </div>
     <div>
       <div class="muzika-naziv" data-i18n="muzika.svira" id="muz-naziv">Sada svira</div>
@@ -68,19 +147,19 @@
   </div>
   <div class="muzika-kontrole">
     <button class="muz-dugme" onclick="prethodna()" aria-label="Prethodna">
-      <span class="lucide-icon"><i data-lucide="skip-back"></i></span>
+      <span aria-hidden="true">⏮</span>
     </button>
     <button class="muz-dugme pusti-pauza" id="muz-pusti" onclick="togglujMuziku()" aria-label="Pusti/Pauziraj">
-      <span class="lucide-icon" id="muz-pusti-ikona"><i data-lucide="play"></i></span>
+      <span aria-hidden="true">▶</span>
     </button>
     <button class="muz-dugme" onclick="sledeca()" aria-label="Sledeca">
-      <span class="lucide-icon"><i data-lucide="skip-forward"></i></span>
+      <span aria-hidden="true">⏭</span>
     </button>
     <input type="range" id="muz-jacina" min="0" max="1" step="0.05" value="0.5"
       oninput="promeniJacinu(this.value)" aria-label="Jacina zvuka" style="width:60px;accent-color:var(--zlato)">
   </div>
   <button class="muzika-zatvori" onclick="zatvoriPlejer()" aria-label="Zatvori plejer" data-i18n="muzika.zatvori">
-    <span class="lucide-icon"><i data-lucide="x"></i></span>
+    <span aria-hidden="true">✕</span>
   </button>
 </div>
 
@@ -97,19 +176,21 @@
     <li>
       <a href="korisnik.html" role="menuitem" aria-haspopup="true">
         <span data-i18n="nav.epizode">Epizode</span>
-        <span class="strelica"><span class="lucide-icon"><i data-lucide="chevron-down"></i></span></span>
+        <span class="strelica">
+    <img src="slike/ikone/chevron-down.svg" class="svg-ikona" alt="">
+</span>
       </a>
       <div class="padajuci-meni" role="menu">
         <a href="korisnik.html" role="menuitem">
-          <span class="m-ikona"><span class="lucide-icon"><i data-lucide="sparkles"></i></span></span>
+          <span class="m-ikona"><span aria-hidden="true">✦</span></span>
           <span data-i18n="nav.mega_najnovije">Najnovije</span>
         </a>
         <a href="korisnik.html" role="menuitem">
-          <span class="m-ikona"><span class="lucide-icon"><i data-lucide="star"></i></span></span>
+          <span class="m-ikona"><img src="slike/ikone/star.svg" class="svg-ikona" alt="zvezda"></span>
           <span data-i18n="nav.mega_ocenjivanje">Ocenjivanje</span>
         </a>
         <a href="korisnik.html#top10" role="menuitem">
-          <span class="m-ikona"><span class="lucide-icon"><i data-lucide="trophy"></i></span></span>
+          <span class="m-ikona"><img src="slike/ikone/trophy.svg" class="svg-ikona" alt="trofej"></span>
           <span data-i18n="nav.mega_top10">Top 10 lista</span>
         </a>
       </div>
@@ -117,47 +198,53 @@
     <li>
       <a href="o-nama.html" role="menuitem" aria-haspopup="true">
         <span data-i18n="nav.onama">O nama</span>
-        <span class="strelica"><span class="lucide-icon"><i data-lucide="chevron-down"></i></span></span>
+        <span class="strelica"><span aria-hidden="true">▾</span></span>
       </a>
       <div class="mega-meni" role="menu">
         <div class="mega-kolona">
           <h4 data-i18n="nav.onama">O nama</h4>
           <a href="o-nama.html" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="users"></i></span></span>
+            <span class="m-ikona"><img src="slike/ikone/user.svg" class="svg-ikona" alt="tim"></span>
             <span data-i18n="nav.mega_tim">Nas tim</span>
           </a>
           <a href="o-nama.html#misija" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="target"></i></span></span>
+            <span class="m-ikona">
+    <img src="slike/ikone/target.svg" class="svg-ikona" alt="misija">
+</span>
             <span data-i18n="nav.mega_misija">Misija</span>
           </a>
         </div>
         <div class="mega-kolona">
           <h4 data-i18n="nav.epizode">Epizode</h4>
           <a href="korisnik.html" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="tv-2"></i></span></span>
+            <span class="m-ikona"><img src="slike/ikone/tv.svg" class="svg-ikona" alt="TV"></span>
             <span data-i18n="nav.mega_najnovije">Najnovije</span>
           </a>
           <a href="korisnik.html" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="star"></i></span></span>
+            <span class="m-ikona"><img src="slike/ikone/star.svg" class="svg-ikona" alt="zvezda"></span>
             <span data-i18n="nav.mega_ocenjivanje">Ocenjivanje</span>
           </a>
           <a href="korisnik.html" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="trophy"></i></span></span>
+            <span class="m-ikona"><img src="slike/ikone/trophy.svg" class="svg-ikona" alt="trofej"></span>
             <span data-i18n="nav.mega_top10">Top 10</span>
           </a>
         </div>
         <div class="mega-kolona">
           <h4 data-i18n="nav.kontakt">Kontakt</h4>
           <a href="kontakt.html" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="mail"></i></span></span>
+            <span class="m-ikona"><img src="slike/ikone/mail.svg" class="svg-ikona" alt="pošta"></span>
             <span data-i18n="nav.mega_kontakt">Kontakt forma</span>
           </a>
           <a href="kontakt.html#mapa" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="map-pin"></i></span></span>
+            <span class="m-ikona">
+    <img src="slike/ikone/map-pin.svg" class="svg-ikona" alt="lokacija">
+</span>
             <span data-i18n="nav.mega_mapa">Lokacija</span>
           </a>
           <a href="pocetna.html#dokumenti" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="file-text"></i></span></span>
+            <span class="m-ikona">
+    <img src="slike/ikone/file-text.svg" class="svg-ikona" alt="dokument">
+</span>
             <span data-i18n="nav.mega_dokument">Dokumentacija</span>
           </a>
         </div>
@@ -171,15 +258,15 @@
   <div class="nav-desno">
     <div class="acc-traka">
       <button class="dugme-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu" aria-label="Promena teme">
-        <span class="lucide-icon" id="tema-ikona"><i data-lucide="sun"></i></span>
+        <img src="slike/ikone/sun.svg" class="svg-ikona" alt="sunce">
       </button>
-      <button class="dugme-acc" onclick="povecajFont()" title="Povecaj font" aria-label="Povecaj font">A+</button>
-      <button class="dugme-acc" onclick="smanjiFont()" title="Smanji font" aria-label="Smanji font">A-</button>
+      <button class="dugme-acc" onclick="povecajFont()" title="Povecaj font" aria-label="Povecaj font"><img src="slike/ikone/a-arrow-up.svg" class="svg-ikona" alt="veći font"></button>
+      <button class="dugme-acc" onclick="smanjiFont()" title="Smanji font" aria-label="Smanji font"><img src="slike/ikone/a-arrow-down.svg" class="svg-ikona" alt="manji font"></button>
     </div>
     <button class="dugme-jezicki aktivan-jezik" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski jezik">SR</button>
     <button class="dugme-jezicki" id="btn-en" onclick="postaviJezik('en')" aria-label="English language">EN</button>
     <a href="prijava.html" class="dugme-prim" style="font-size:.82rem;padding:8px 18px;" data-i18n="nav.prijava">
-      <span class="lucide-icon" style="margin-right:4px"><i data-lucide="log-in"></i></span>Prijavi se
+      <img src="slike/ikone/log-in.svg" class="svg-ikona" alt="prijava">Prijavi se
     </a>
     <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Otvori meni" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -215,10 +302,10 @@
     </div>
   </div>
   <button class="slajder-dugme slajder-prethodni" onclick="sliderPomeri(-1)" aria-label="Prethodna slika">
-    <span class="lucide-icon"><i data-lucide="chevron-left"></i></span>
+    <span aria-hidden="true"><img src="slike/ikone/chevron-left.svg" class="svg-ikona" alt=""></span>
   </button>
   <button class="slajder-dugme slajder-sledeci" onclick="sliderPomeri(1)" aria-label="Sledeca slika">
-    <span class="lucide-icon"><i data-lucide="chevron-right"></i></span>
+    <span aria-hidden="true"><img src="slike/ikone/chevron-right.svg" class="svg-ikona" alt=""></span>
   </button>
   <div class="slajder-tacke" id="slajder-tacke" role="tablist"></div>
 </section>
@@ -234,10 +321,10 @@
   </p>
   <div class="hero-dugmad animuj-gore ani-d4">
     <a href="korisnik.html" class="dugme-prim" data-i18n="hero.btn1">
-      <span class="lucide-icon" style="margin-right:6px"><i data-lucide="tv-2"></i></span>Pregledaj epizode
+      <img src="slike/ikone/tv.svg" class="svg-ikona" alt="TV">Pregledaj epizode
     </a>
     <a href="prijava.html" class="dugme-sek" data-i18n="hero.btn2">
-      <span class="lucide-icon" style="margin-right:6px"><i data-lucide="user-plus"></i></span>Postani clan
+      <img src="slike/ikone/user-plus.svg" class="svg-ikona" alt="novi korisnik">Postani clan
     </a>
   </div>
 </header>
@@ -280,17 +367,17 @@
           </video>
           <div class="video-prekrivac" id="video-prekrivac" onclick="pustitiVideo()">
             <div class="dugme-pusti-big" aria-hidden="true">
-              <span class="lucide-icon"><i data-lucide="play-circle"></i></span>
+              <span aria-hidden="true">▶</span>
             </div>
             <div class="video-natpis" data-i18n="video.mp4_naslov">Trejler serije</div>
           </div>
         </div>
         <div style="margin-top:8px;text-align:center">
           <button onclick="pustitiVideo()" class="dugme-sek" style="font-size:.82rem;padding:8px 18px;margin-right:8px">
-            <span class="lucide-icon" style="margin-right:4px"><i data-lucide="play"></i></span>Pusti
+            <span aria-hidden="true">▶</span>Pusti
           </button>
           <button onclick="document.getElementById('mp4-video').pause()" class="dugme-sek" style="font-size:.82rem;padding:8px 18px">
-            <span class="lucide-icon" style="margin-right:4px"><i data-lucide="pause"></i></span>Pauza
+            <span aria-hidden="true">⏸</span>Pauza
           </button>
         </div>
       </div>
@@ -331,27 +418,27 @@
 
     <a href="video/vodic.pdf" download="SerijaStar-vodic.pdf" class="dokument-kartica animuj-gore ani-d1" aria-label="Preuzmi korisnicki vodic PDF">
       <div class="dok-ikona">
-        <span class="lucide-icon"><i data-lucide="file-down"></i></span>
+        <span aria-hidden="true">⬇</span>
       </div>
       <div class="dok-info">
         <div class="dok-naziv" data-i18n="sekcije.preuzmi_vodic">Preuzmi korisnicki vodic</div>
         <div class="dok-opis">PDF dokument - Korisnicko uputstvo za SerijaStar platformu</div>
       </div>
       <div class="dok-strelica">
-        <span class="lucide-icon"><i data-lucide="arrow-right"></i></span>
+        <span aria-hidden="true">→</span>
       </div>
     </a>
 
     <a href="video/pravilnik.pdf" download="SerijaStar-pravilnik.pdf" class="dokument-kartica animuj-gore ani-d2" aria-label="Pravilnik koriscenja">
       <div class="dok-ikona">
-        <span class="lucide-icon"><i data-lucide="clipboard-list"></i></span>
+        <span aria-hidden="true"><img src="slike/ikone/shield-check.svg" class="svg-ikona" alt="pravilnik"></span>
       </div>
       <div class="dok-info">
         <div class="dok-naziv" data-i18n="sekcije.pravilnik">Pravilnik koriscenja</div>
         <div class="dok-opis">PDF dokument - Uslovi koriscenja platforme i pravila zajednice</div>
       </div>
       <div class="dok-strelica">
-        <span class="lucide-icon"><i data-lucide="arrow-right"></i></span>
+        <span aria-hidden="true">→</span>
       </div>
     </a>
 
@@ -359,14 +446,14 @@
     <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener"
        class="dokument-kartica animuj-gore ani-d3" aria-label="Posebna preporuka – otvara se u novom tabu">
       <div class="dok-ikona">
-        <span class="lucide-icon"><i data-lucide="external-link"></i></span>
+        <span aria-hidden="true">↗</span>
       </div>
       <div class="dok-info">
         <div class="dok-naziv" data-i18n="sekcije.api_docs">Posebna preporuka</div>
         <div class="dok-opis">Eksterni link - Otvara se u novom tabu</div>
       </div>
       <div class="dok-strelica">
-        <span class="lucide-icon"><i data-lucide="arrow-up-right"></i></span>
+        <span aria-hidden="true">↗</span>
       </div>
     </a>
 
@@ -382,28 +469,28 @@
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
     <div class="stat-kartica sjaj-efekat animuj-gore ani-d1" style="text-align:left;padding:28px">
       <div style="font-size:2rem;margin-bottom:12px" class="plutanje">
-        <span class="lucide-icon"><i data-lucide="star" style="width:2rem;height:2rem;stroke:#D4AF37"></i></span>
+        <img src="slike/ikone/star.svg" class="svg-ikona" alt="zvezda">
       </div>
       <div style="font-family:var(--font-n);font-size:1.1rem;margin-bottom:8px;color:var(--zlato)">Ocenjivanje</div>
       <div style="font-size:.88rem;color:var(--tekst2)">Ocenjuj epizode od 1 do 5 zvezdica. Tvoja ocena se instantno reflektuje u proseku.</div>
     </div>
     <div class="stat-kartica sjaj-efekat animuj-gore ani-d2" style="text-align:left;padding:28px">
       <div style="font-size:2rem;margin-bottom:12px" class="plutanje">
-        <span class="lucide-icon"><i data-lucide="message-circle" style="width:2rem;height:2rem;stroke:#D4AF37"></i></span>
+        <img src="slike/ikone/message-square.svg" class="svg-ikona" alt="poruka">
       </div>
       <div style="font-family:var(--font-n);font-size:1.1rem;margin-bottom:8px;color:var(--zlato)">Komentari</div>
       <div style="font-size:.88rem;color:var(--tekst2)">Ostavi komentar na svaku epizodu. Mozes ga izmeniti kad god pozelis.</div>
     </div>
     <div class="stat-kartica sjaj-efekat animuj-gore ani-d3" style="text-align:left;padding:28px">
       <div style="font-size:2rem;margin-bottom:12px" class="plutanje">
-        <span class="lucide-icon"><i data-lucide="shield-check" style="width:2rem;height:2rem;stroke:#D4AF37"></i></span>
+        <img src="slike/ikone/lock.svg" class="svg-ikona" alt="admin">
       </div>
       <div style="font-family:var(--font-n);font-size:1.1rem;margin-bottom:8px;color:var(--zlato)">Admin panel</div>
       <div style="font-size:.88rem;color:var(--tekst2)">Admin dodaje, menja i brise epizode. Upravlja korisnicima i komentarima.</div>
     </div>
     <div class="stat-kartica sjaj-efekat animuj-gore ani-d4" style="text-align:left;padding:28px">
       <div style="font-size:2rem;margin-bottom:12px" class="plutanje">
-        <span class="lucide-icon"><i data-lucide="lock" style="width:2rem;height:2rem;stroke:#D4AF37"></i></span>
+        <img src="slike/ikone/lock.svg" class="svg-ikona" alt="katanac">
       </div>
       <div style="font-family:var(--font-n);font-size:1.1rem;margin-bottom:8px;color:var(--zlato)">Privatnost</div>
       <div style="font-size:.88rem;color:var(--tekst2)">Svi podaci se cuvaju lokalno u tvom browseru. Nista se ne salje na server.</div>
@@ -416,7 +503,7 @@
   <div class="kontejner" style="padding-top:0;padding-bottom:0">
     <div class="sek-naslov" style="margin-bottom:28px">
       <h2 id="top5-hd">
-        <span class="lucide-icon" style="margin-right:8px"><i data-lucide="trophy" style="stroke:#D4AF37"></i></span>
+        <img src="slike/ikone/trophy.svg" class="svg-ikona" alt="trofej">
         <span data-i18n="sekcije.top5">Top 5 epizoda</span>
       </h2>
       <a href="korisnik.html" class="sek-vidi-sve" data-i18n="sekcije.vidi_top10">Vidi Top 10</a>
@@ -430,7 +517,7 @@
   <div class="kontejner" style="padding-bottom:0">
     <div class="sek-naslov" style="margin-bottom:20px">
       <h2 id="mapa-hd">
-        <span class="lucide-icon" style="margin-right:6px"><i data-lucide="map-pin" style="stroke:#D4AF37"></i></span>
+        <span aria-hidden="true"><img src="slike/ikone/map-pin.svg" class="svg-ikona" alt="lokacija"></span>
         <span>Pronadji nas</span>
       </h2>
       <a href="kontakt.html" class="sek-vidi-sve">Kontaktiraj nas</a>
@@ -452,7 +539,7 @@
   <div class="kontejner" style="padding-top:0;padding-bottom:0">
     <div class="sek-naslov" style="margin-bottom:28px">
       <h2 id="hosting-naslov">
-        <span class="lucide-icon" style="margin-right:8px"><i data-lucide="globe" style="stroke:#D4AF37"></i></span>
+        <span aria-hidden="true">🌐</span>
         <span>Web Hosting</span>
       </h2>
       <a href="https://petarbpapic.github.io/WebSem/" target="_blank" rel="noopener" class="sek-vidi-sve">Otvori sajt ↗</a>
@@ -463,12 +550,12 @@
       <!-- Kartica: GitHub Pages -->
       <div class="hosting-kartica sjaj-efekat animuj-gore ani-d1">
         <div class="hosting-ikona">
-          <span class="lucide-icon"><i data-lucide="github" style="width:2.5rem;height:2.5rem;stroke:#D4AF37"></i></span>
+          <span aria-hidden="true"><img src="slike/ikone/sparkles.svg" class="svg-ikona" alt=""></span>
         </div>
         <h3 class="hosting-naziv">GitHub Pages</h3>
         <p class="hosting-opis">Sajt je hostovan besplatno na GitHub Pages servisu. Svaka izmena push-ovana na <code>main</code> granu automatski ažurira živi sajt.</p>
         <div class="hosting-url-blok">
-          <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="link"></i></span>
+          <span aria-hidden="true">🔗</span>
           <a href="https://petarbpapic.github.io/WebSem/" target="_blank" rel="noopener" class="hosting-url">petarbpapic.github.io/WebSem</a>
         </div>
         <div class="hosting-status">
@@ -480,46 +567,46 @@
       <!-- Kartica: Repozitorijum -->
       <div class="hosting-kartica sjaj-efekat animuj-gore ani-d2">
         <div class="hosting-ikona">
-          <span class="lucide-icon"><i data-lucide="git-branch" style="width:2.5rem;height:2.5rem;stroke:#D4AF37"></i></span>
+          <span aria-hidden="true"><img src="slike/ikone/file-text.svg" class="svg-ikona" alt=""></span>
         </div>
         <h3 class="hosting-naziv">Repozitorijum</h3>
         <p class="hosting-opis">Kompletan izvorni kod projekta je javno dostupan na GitHub-u. Sadrži sve HTML, CSS, JavaScript fajlove, slike i fontove.</p>
         <div class="hosting-url-blok">
-          <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="folder-open"></i></span>
+          <span aria-hidden="true">●</span>
           <a href="https://github.com/PetarBPapic/WebSem" target="_blank" rel="noopener" class="hosting-url">github.com/PetarBPapic/WebSem</a>
         </div>
         <div class="hosting-detalji">
-          <span class="hosting-znacka"><span class="lucide-icon" style="margin-right:3px"><i data-lucide="git-commit"></i></span>Grana: main</span>
-          <span class="hosting-znacka"><span class="lucide-icon" style="margin-right:3px"><i data-lucide="folder"></i></span>Root: /</span>
+          <span class="hosting-znacka"><span aria-hidden="true">●</span>Grana: main</span>
+          <span class="hosting-znacka"><span aria-hidden="true">📁</span>Root: /</span>
         </div>
       </div>
 
       <!-- Kartica: Tehničke info -->
       <div class="hosting-kartica sjaj-efekat animuj-gore ani-d3">
         <div class="hosting-ikona">
-          <span class="lucide-icon"><i data-lucide="server" style="width:2.5rem;height:2.5rem;stroke:#D4AF37"></i></span>
+          <span aria-hidden="true">🖥</span>
         </div>
         <h3 class="hosting-naziv">Tehničke informacije</h3>
         <p class="hosting-opis">Statičan sajt – ne zahteva server ni bazu podataka. Svi podaci čuvaju se lokalno u browser-u korisnika.</p>
         <ul class="hosting-lista">
           <li>
-            <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="check-circle"></i></span>
+            <span aria-hidden="true">✓</span>
             Radi bez internet konekcije (offline)
           </li>
           <li>
-            <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="check-circle"></i></span>
+            <span aria-hidden="true">✓</span>
             Svi resursi lokalni (fontovi, ikone, Bootstrap)
           </li>
           <li>
-            <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="check-circle"></i></span>
+            <span aria-hidden="true">✓</span>
             Besplatan hosting – GitHub Pages
           </li>
           <li>
-            <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="check-circle"></i></span>
+            <span aria-hidden="true">✓</span>
             HTTPS – automatski SSL sertifikat
           </li>
           <li>
-            <span class="lucide-icon" style="margin-right:6px;color:var(--zlato)"><i data-lucide="check-circle"></i></span>
+            <span aria-hidden="true">✓</span>
             Automatski deploy pri svakom <code>git push</code>
           </li>
         </ul>
@@ -564,23 +651,29 @@
 <!-- ═══ SKRIPTE ═══ -->
 <script src="js/core.js"></script>
 <script>
-/* jezik je u core.js */
+/* ════ INICIJALIZACIJA TEME I IKONE ════ */
+const tamna = (localStorage.getItem('ss_tema') || 'tamna') === 'tamna';
+const dugmeTema = document.getElementById('btn-tema'); // Popravljen ID sa 'tema-ikona' na 'btn-tema'
+if (dugmeTema) {
+  dugmeTema.innerHTML = tamna 
+    ? '<img src="slike/ikone/sun.svg" class="svg-ikona" alt="sunce">' 
+    : '<img src="slike/ikone/moon.svg" class="svg-ikona" alt="mesec">';
+}
 
-/* Inicijalizacija teme ikone */
-const tamna = (localStorage.getItem('ss_tema')||'tamna') === 'tamna';
-document.getElementById('tema-ikona').innerHTML = tamna
-  ? '<i data-lucide="sun"></i>'
-  : '<i data-lucide="moon"></i>';
+/* ════ UCITAVANJE PREVODA (Usklađeno sa core.js) ════ */
+if (typeof ucitajPrevod === 'function') {
+  ucitajPrevod();
+}
 
-ucitajJezik();
-
-/* ════ HAMBURGER ════ */
+/* ════ HAMBURGER MENI ════ */
 function togglujMeni() {
   const nl = document.getElementById('nav-veze');
   const hb = document.getElementById('hamburger');
-  const o = nl.classList.toggle('otvoreni');
-  hb.classList.toggle('otvoren', o);
-  hb.setAttribute('aria-expanded', o);
+  if(nl && hb) {
+    const o = nl.classList.toggle('otvoreni');
+    hb.classList.toggle('otvoren', o);
+    hb.setAttribute('aria-expanded', o);
+  }
 }
 
 document.querySelectorAll('.nav-veze > li > a').forEach(a => {
@@ -594,173 +687,193 @@ document.querySelectorAll('.nav-veze > li > a').forEach(a => {
   });
 });
 
-/* ════ STATISTIKE ════ */
-const st = dajStatistike();
-document.getElementById('s-ep').textContent = st.ep;
-document.getElementById('s-oc').textContent = st.oc;
-document.getElementById('s-pr').textContent = st.p || '-';
-document.getElementById('s-ko').textContent = st.kom;
-
-/* ════ EPIZODE GRID ════ */
-const epizode = dajEpizode().slice(-3).reverse();
-const grid = document.getElementById('ep-mreza');
-if (!epizode.length) {
-  grid.innerHTML = '<p style="color:var(--tekst2);grid-column:1/-1">Admin jos nije dodao epizode.</p>';
-} else {
-  grid.innerHTML = epizode.map(ep => {
-    const oc = dajProsek(ep.id);
-    const zv = '★'.repeat(Math.round(oc.p)) + '☆'.repeat(5 - Math.round(oc.p));
-    return `
-    <article class="ep-kartica sjaj-efekat animuj-gore" tabindex="0" aria-label="Epizoda: ${ep.naziv}">
-      ${ep.slika
-        ? `<img src="${ep.slika}" alt="Slika epizode: ${ep.naziv}" class="ep-slika sjaj-slika" loading="lazy"
-            onerror="this.outerHTML='<div class=ep-slika-ph>&#128250;</div>'">`
-        : `<div class="ep-slika-ph">&#128250;</div>`}
-      <div class="ep-telo">
-        <div class="ep-naziv">${ep.naziv}</div>
-        <div class="ep-datum">&#128197; ${ep.datum}</div>
-        <div class="ep-opis">${ep.opis}</div>
-        <div class="ep-ocena-red">
-          <span class="zv-prikaz">${oc.p > 0 ? zv : '☆☆☆☆☆'}</span>
-          ${oc.n > 0
-            ? `<span class="ocena-broj">${oc.p}</span><span class="ocena-br">(${oc.n})</span>`
-            : `<span class="ocena-br">Bez ocena</span>`}
-        </div>
-        <a href="korisnik.html" class="dugme-sek" style="font-size:.82rem;padding:8px 16px;display:inline-block">Oceni →</a>
-      </div>
-    </article>`;
-  }).join('');
+/* ════ STATISTIKE (Usklađeno sa dajStatistiku u core.js) ════ */
+if (typeof dajStatistiku === 'function') {
+  const st = dajStatistiku();
+  if(document.getElementById('s-ep')) document.getElementById('s-ep').textContent = st.brojEpizoda;
+  if(document.getElementById('s-oc')) document.getElementById('s-oc').textContent = st.brojOcena;
+  if(document.getElementById('s-pr')) document.getElementById('s-pr').textContent = st.pr.toFixed(1);
+  if(document.getElementById('s-ko')) document.getElementById('s-ko').textContent = st.ko;
 }
 
-/* ════ TOP 5 ════ */
-(function renderTop5() {
-  const rangirane = dajEpizode()
-    .map(ep => ({ ep, oc: dajProsek(ep.id) }))
-    .filter(x => x.oc.n > 0)
-    .sort((a,b) => b.oc.p !== a.oc.p ? b.oc.p - a.oc.p : b.oc.n - a.oc.n)
-    .slice(0, 5);
-  const k = document.getElementById('top5-lista');
-  if (!rangirane.length) {
-    k.innerHTML = '<div class="top5-prazno"><div style="font-size:2rem;margin-bottom:8px">📊</div><p>Nema ocenjenih epizoda. <a href="korisnik.html" style="color:var(--zlato)">Budi prvi!</a></p></div>';
+/* ════ RENDER NAJNOVIJIH EPIZODA (Usklađeno sa dajSveEpizode u core.js) ════ */
+function renderujPocetnu() {
+  const mreza = document.getElementById('ep-mreza');
+  if (!mreza || typeof dajSveEpizode !== 'function') return;
+  
+  const sveEp = dajSveEpizode();
+  // Uzimamo poslednje 3 unete epizode
+  const najnovije = sveEp.slice(-3).reverse();
+  
+  if (najnovije.length === 0) {
+    mreza.innerHTML = '<p>Nema unetih epizoda.</p>';
     return;
   }
-  const klase = ['top5-m1','top5-m2','top5-m3','top5-mo','top5-mo'];
-  const tekstMesta = ['&#129351;','&#129352;','&#129353;','4','5'];
-  const zv = p => '★'.repeat(Math.round(p)) + '☆'.repeat(5 - Math.round(p));
-  k.innerHTML = rangirane.map(({ep,oc},i) => `
-    <a class="top5-kartica sjaj-efekat" href="korisnik.html" role="listitem">
-      <div class="top5-mesto ${klase[i]}">${tekstMesta[i]}</div>
-      <div class="top5-info">
-        <div class="top5-naziv" title="${ep.naziv}">${ep.naziv}</div>
-        <div class="top5-zvezdice">${zv(oc.p)}</div>
+  
+  mreza.innerHTML = najnovije.map(ep => `
+    <article class="ep-kartica animuj-gore">
+      <div class="ep-slika-omotac">
+        <img src="${ep.slika || 'slike/default.jpg'}" alt="${ep.naslov}" loading="lazy">
+        <div class="ep-ocena-znacka">★ ${(ep.prosek || 0).toFixed(1)}</div>
       </div>
-      <div style="text-align:right;flex-shrink:0">
-        <div class="top5-ocena">${oc.p}</div>
-        <div class="top5-glasovi">${oc.n} ${oc.n===1?'glas':'glasova'}</div>
+      <div class="ep-sadrzaj">
+        <div class="ep-metrika">S${ep.sezona} • Ep ${ep.broj}</div>
+        <h3 class="ep-naslov">${ep.naslov}</h3>
+        <p class="ep-opis">${(ep.opis || '').substring(0, 100)}...</p>
+        <div style="margin-top: 15px;">
+          <a href="korisnik.html" class="dugme-sek" style="display: block; text-align: center; font-size: 0.85rem; padding: 8px;">
+            Pogledaj detalje i komentare →
+          </a>
+        </div>
       </div>
-    </a>`).join('');
-})();
-
-/* ════ SLIDER ════ */
-let slajd = 0;
-const ukupno = document.querySelectorAll('.slajder-slajd').length;
-const dotsEl = document.getElementById('slajder-tacke');
-let slajdTimer;
-for (let i = 0; i < ukupno; i++) {
-  const d = document.createElement('button');
-  d.className = 'slajder-tacka' + (i === 0 ? ' aktivan' : '');
-  d.setAttribute('aria-label', `Slajd ${i+1}`);
-  d.onclick = () => { slajd = i; osveziSlider(); resetTimer(); };
-  dotsEl.appendChild(d);
-}
-function osveziSlider() {
-  document.getElementById('slajder').style.transform = `translateX(-${slajd * 100}%)`;
-  document.querySelectorAll('.slajder-tacka').forEach((d,i) => d.classList.toggle('aktivan', i === slajd));
-}
-function sliderPomeri(smer) { slajd = (slajd + smer + ukupno) % ukupno; osveziSlider(); resetTimer(); }
-function resetTimer() { clearInterval(slajdTimer); slajdTimer = setInterval(() => sliderPomeri(1), 5000); }
-slajdTimer = setInterval(() => sliderPomeri(1), 5000);
-let startX = 0;
-const track = document.getElementById('slajder');
-track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
-track.addEventListener('touchend', e => { const d = e.changedTouches[0].clientX - startX; if (Math.abs(d) > 50) sliderPomeri(d < 0 ? 1 : -1); }, {passive:true});
-
-/* ════ MP4 VIDEO ════ */
-function pustitiVideo() {
-  const v = document.getElementById('mp4-video');
-  const o = document.getElementById('video-prekrivac');
-  v.play().then(() => { o.classList.add('skriven'); }).catch(() => {
-    v.controls = true;
-    o.classList.add('skriven');
-  });
+    </article>
+  `).join('');
 }
 
-/* ════ MUZICKI PLEJER ════ */
-const audio = document.getElementById('pozadinska-muzika');
-const bar = document.getElementById('muzika-traka');
-const toggle = document.getElementById('muz-prekidac');
-const playBtn = document.getElementById('muz-pusti');
-const playIcon = document.getElementById('muz-pusti-ikona');
-const progres = document.getElementById('muz-napredak');
+/* ════ RENDER TOP 5 EPIZODA ════ */
+function renderujTop5() {
+  const lista = document.getElementById('top5-lista');
+  if (!lista || typeof dajSveEpizode !== 'function') return;
+  
+  const sveEp = dajSveEpizode();
+  const top5 = [...sveEp].sort((a, b) => (b.prosek || 0) - (a.prosek || 0)).slice(0, 5);
+  
+  if (top5.length === 0) {
+    lista.innerHTML = '<p>Nema dostupnih podataka.</p>';
+    return;
+  }
+  
+  lista.innerHTML = top5.map((ep, indeks) => `
+    <div class="rang-stavka" style="background: var(--kartica); padding: 15px; border-radius: var(--radius); border: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-weight: bold; color: var(--zlato); font-size: 1.2rem;">#${indeks + 1}</span>
+        <div>
+          <strong style="color: var(--tekst);">${ep.naslov}</strong>
+          <div style="font-size: 0.8rem; color: var(--tekst2);">Sezona ${ep.sezona}, Epizoda ${ep.broj}</div>
+        </div>
+      </div>
+      <span style="font-weight: bold; color: #2ecc71;">★ ${(ep.prosek || 0).toFixed(1)}</span>
+    </div>
+  `).join('');
+}
+
+// Pokretanje rendera na startu
+renderujPocetnu();
+renderujTop5();
+
+/* ════ AUDIO PLAYER KONTROLE ════ */
+const zvuk = document.getElementById('pozadinska-muzika');
+const prekidac = document.getElementById('muz-prekidac');
+const traka = document.getElementById('muzika-traka');
+const dugmePusti = document.getElementById('muz-pusti');
+const napredak = document.getElementById('muz-napredak');
 const vremeTek = document.getElementById('muz-vreme-tek');
 const vremeUk = document.getElementById('muz-vreme-uk');
-const ikona = document.getElementById('muz-ikona');
+const ikonaElement = document.getElementById('muz-ikona');
 
-audio.volume = parseFloat(localStorage.getItem('ss_vol') || '0.5');
-document.getElementById('muz-jacina').value = audio.volume;
-
-function otvoriPlejer() { bar.classList.add('vidljiva'); toggle.style.display = 'none'; }
-function zatvoriPlejer() {
-  bar.classList.remove('vidljiva'); toggle.style.display = 'flex';
-  audio.pause();
-  playIcon.innerHTML = '<i data-lucide="play"></i>';
-  lucide.createIcons();
-  ikona.classList.remove('svira');
+function osveziDugmePusti() {
+  if(!dugmePusti || !zvuk) return;
+  dugmePusti.innerHTML = zvuk.paused ? '▶' : '⏸';
+  if(ikonaElement) { zvuk.paused ? ikonaElement.classList.remove('svira') : ikonaElement.classList.add('svira'); }
 }
+
+function otvoriPlejer() { if(traka && prekidac) { traka.classList.add('otvorena'); prekidac.style.display = 'none'; if(zvuk && zvuk.paused) zvuk.play().catch(()=>{}); osveziDugmePusti(); } }
+function zatvoriPlejer() { if(traka && prekidac) { traka.classList.remove('otvorena'); prekidac.style.display = 'flex'; } }
+
 function togglujMuziku() {
-  if (audio.paused) {
-    audio.play().catch(() => { if(typeof prikaziToast==='function') prikaziToast('Dodaj muzika.mp3 u folder video/', '#FF8080'); });
-    playIcon.innerHTML = '<i data-lucide="pause"></i>';
-    lucide.createIcons();
+  if(!zvuk || !dugmePusti || !ikonaElement) return;
+  if (zvuk.paused) {
+    zvuk.play();
+    dugmePusti.innerHTML = '<span aria-hidden="true">⏸</span>';
     ikona.classList.add('svira');
   } else {
-    audio.pause();
-    playIcon.innerHTML = '<i data-lucide="play"></i>';
-    lucide.createIcons();
+    zvuk.pause();
+    dugmePusti.innerHTML = '<span aria-hidden="true">▶</span>';
     ikona.classList.remove('svira');
   }
 }
-function promeniPoziciju(val) { if (audio.duration) audio.currentTime = (val / 100) * audio.duration; }
-function promeniJacinu(val) { audio.volume = val; localStorage.setItem('ss_vol', val); }
-function prethodna() { audio.currentTime = 0; }
-function sledeca() { audio.currentTime = 0; }
+function promeniPoziciju(val) { if (zvuk && zvuk.duration) zvuk.currentTime = (val / 100) * zvuk.duration; }
+function promeniJacinu(val) { if(zvuk) { zvuk.volume = val; localStorage.setItem('ss_vol', val); } }
+function prethodna() { if(zvuk) zvuk.currentTime = 0; }
+function sledeca() { if(zvuk) zvuk.currentTime = 0; }
 function formatirajVreme(sec) {
   const m = Math.floor(sec / 60);
   const s = Math.floor(sec % 60).toString().padStart(2, '0');
   return `${m}:${s}`;
 }
-audio.addEventListener('timeupdate', () => {
-  if (!audio.duration) return;
-  progres.value = (audio.currentTime / audio.duration) * 100;
-  vremeTek.textContent = formatirajVreme(audio.currentTime);
-});
-audio.addEventListener('loadedmetadata', () => { vremeUk.textContent = formatirajVreme(audio.duration); });
-audio.addEventListener('ended', () => {
-  playIcon.innerHTML = '<i data-lucide="play"></i>';
-  lucide.createIcons();
-  ikona.classList.remove('svira'); progres.value = 0;
-});
-
-/* ════ ANIMACIJE ════ */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('vidljiv'); observer.unobserve(e.target); }
+if (zvuk) {
+  zvuk.addEventListener('timeupdate', () => {
+    if (!zvuk.duration || !napredak || !vremeTek) return;
+    napredak.value = (zvuk.currentTime / zvuk.duration) * 100;
+    vremeTek.textContent = formatirajVreme(zvuk.currentTime);
   });
-}, { threshold: 0.15 });
-document.querySelectorAll('.animuj-levo, .animuj-desno, .animuj-gore').forEach(el => observer.observe(el));
+  zvuk.addEventListener('loadedmetadata', () => { if(vremeUk) vremeUk.textContent = formatirajVreme(zvuk.duration); });
+  zvuk.addEventListener('ended', () => {
+    if(playIcon && ikona && progres) {
+      dugmePusti.innerHTML = '<span aria-hidden="true">▶</span>';
+      ikona.classList.remove('svira'); progres.value = 0;
+    }
+  });
+}
 
-/* ════ INICIJALIZUJ LUCIDE IKONE ════ */
-lucide.createIcons();
+/* ════ LOKALNI MP4 VIDEO ════ */
+function pustitiVideo() {
+  const v = document.getElementById('mp4-video');
+  const p = document.getElementById('video-prekrivac');
+  if(v) { v.play(); v.controls = true; }
+  if(p) p.style.display = 'none';
+}
+
+/* ════ SLAJDER KOD ════ */
+let slajdIndeks = 0;
+const slajdovi = document.querySelectorAll('.slajder-slajd');
+const tackeKontejner = document.getElementById('slajder-tacke');
+
+if (slajdovi.length > 0) {
+  slajdovi.forEach((_, i) => {
+    const t = document.createElement('button');
+    t.className = 'slajder-tacka';
+    t.setAttribute('role', 'tab');
+    t.setAttribute('aria-label', `Slajd ${i+1}`);
+    t.onclick = () => prikaziSlajd(i);
+    if(tackeKontejner) tackeKontejner.appendChild(t);
+  });
+  
+  function prikaziSlajd(n) {
+    if (n >= slajdovi.length) slajdIndeks = 0;
+    else if (n < 0) slajdIndeks = slajdovi.length - 1;
+    else slajdIndeks = n;
+    
+    const slajderTraka = document.getElementById('slajder');
+    if (slajderTraka) {
+      slajderTraka.style.transform = `translateX(-${slajdIndeks * 100}%)`;
+    }
+    
+    const t = document.querySelectorAll('.slajder-tacka');
+    t.forEach((tk, i) => tk.classList.toggle('aktivna', i === slajdIndeks));
+  }
+  
+  function sliderPomeri(korak) { prikaziSlajd(slajdIndeks + korak); }
+  
+  let slajderInterval = setInterval(() => sliderPomeri(1), 3000);
+  const omotac = document.querySelector('.slajder-omotac');
+  if (omotac) {
+    omotac.addEventListener('mouseenter', () => clearInterval(slajderInterval));
+    omotac.addEventListener('mouseleave', () => slajderInterval = setInterval(() => sliderPomeri(1), 3000));
+  }
+  prikaziSlajd(0);
+}
+
+/* ════ ANIMACIJE PRI SKROLOVANJU ════ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('vidljiv');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.animuj-gore, .animuj-levo, .animuj-desno').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>

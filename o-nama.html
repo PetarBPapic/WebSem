@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="css/stil.css">
   <link rel="stylesheet" href="css/Komponente.css">
 
-  <!-- Lucide za ikonice u mega meniju -->
-  <script src="js/vendor/lucide.min.js"></script>
-
   <style>
     .dugme-jezicki { background:transparent; border:1px solid rgba(212,175,55,.3); color:var(--tekst2,#9A9080); font-size:.75rem; font-weight:700; letter-spacing:1px; padding:5px 10px; border-radius:6px; cursor:pointer; transition:.2s; }
     .dugme-jezicki:hover { border-color:var(--zlato,#D4AF37); color:var(--zlato,#D4AF37); }
@@ -24,11 +21,16 @@
     .m-ikona .lucide-icon svg { width:1em; height:1em; }
     .nav-desno .lucide-icon svg { width:1rem; height:1rem; }
     .dugme-acc .lucide-icon svg { width:1rem; height:1rem; }
-  </style>
+    /* SVG Ikonice iz slike/ikone/ */
+  .svg-ikona { width:1em; height:1em; vertical-align:middle; display:inline-block; }
+  .svg-ikona.svg-zlato { filter: invert(75%) sepia(40%) saturate(600%) hue-rotate(5deg) brightness(95%); }
+  .m-ikona .svg-ikona { width:1em; height:1em; margin-right:4px; }
+  .nav-desno .svg-ikona { width:1rem; height:1rem; }
+  .dugme-acc .svg-ikona { width:1rem; height:1rem; }
+</style>
 </head>
 <body>
 
-<!-- ═══ NAVIGACIJA SA MEGA MENIJEM ═══ -->
 <nav id="nav" role="navigation" aria-label="Glavna navigacija">
   <div class="nav-logo">
     <img src="slike/logo.png" alt="SerijaStar logo" class="logo-img" width="36" height="36">
@@ -41,19 +43,19 @@
     <li>
       <a href="korisnik.html" role="menuitem" aria-haspopup="true">
         <span data-i18n="nav.epizode">Epizode</span>
-        <span class="strelica"><span class="lucide-icon"><i data-lucide="chevron-down"></i></span></span>
+        <span class="strelica"><span aria-hidden="true">▾</span></span>
       </a>
       <div class="padajuci-meni" role="menu">
         <a href="korisnik.html" role="menuitem">
-          <span class="m-ikona"><span class="lucide-icon"><i data-lucide="sparkles"></i></span></span>
+          <span class="m-ikona"><span aria-hidden="true">✦</span></span>
           <span data-i18n="nav.mega_najnovije">Najnovije</span>
         </a>
         <a href="korisnik.html" role="menuitem">
-          <span class="m-ikona"><span class="lucide-icon"><i data-lucide="star"></i></span></span>
+          <span class="m-ikona"><img src="slike/ikone/star.svg" class="svg-ikona" alt="zvezda"></span>
           <span data-i18n="nav.mega_ocenjivanje">Ocenjivanje</span>
         </a>
         <a href="korisnik.html#top10" role="menuitem">
-          <span class="m-ikona"><span class="lucide-icon"><i data-lucide="trophy"></i></span></span>
+          <span class="m-ikona"><img src="slike/ikone/trophy.svg" class="svg-ikona" alt="trofej"></span>
           <span data-i18n="nav.mega_top10">Top 10 lista</span>
         </a>
       </div>
@@ -61,47 +63,47 @@
     <li>
       <a href="o-nama.html" class="aktivan" role="menuitem" aria-haspopup="true">
         <span data-i18n="nav.onama">O nama</span>
-        <span class="strelica"><span class="lucide-icon"><i data-lucide="chevron-down"></i></span></span>
+        <span class="strelica"><span aria-hidden="true">▾</span></span>
       </a>
       <div class="mega-meni" role="menu">
         <div class="mega-kolona">
           <h4 data-i18n="nav.onama">O nama</h4>
           <a href="o-nama.html" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="users"></i></span></span>
+            <span class="m-ikona"><img src="slike/ikone/user.svg" class="svg-ikona" alt="tim"></span>
             <span data-i18n="nav.mega_tim">Naš tim</span>
           </a>
           <a href="o-nama.html#misija" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="target"></i></span></span>
+            <span class="m-ikona"><span aria-hidden="true">◎</span></span>
             <span data-i18n="nav.mega_misija">Misija</span>
           </a>
         </div>
         <div class="mega-kolona">
           <h4 data-i18n="nav.epizode">Epizode</h4>
           <a href="korisnik.html" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="tv-2"></i></span></span>
+            <span class="m-ikona"><img src="slike/ikone/tv.svg" class="svg-ikona" alt="TV"></span>
             <span data-i18n="nav.mega_najnovije">Najnovije</span>
           </a>
           <a href="korisnik.html" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="star"></i></span></span>
+            <span class="m-ikona"><img src="slike/ikone/star.svg" class="svg-ikona" alt="zvezda"></span>
             <span data-i18n="nav.mega_ocenjivanje">Ocenjivanje</span>
           </a>
           <a href="korisnik.html" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="trophy"></i></span></span>
+            <span class="m-ikona"><img src="slike/ikone/trophy.svg" class="svg-ikona" alt="trofej"></span>
             <span data-i18n="nav.mega_top10">Top 10</span>
           </a>
         </div>
         <div class="mega-kolona">
           <h4 data-i18n="nav.kontakt">Kontakt</h4>
           <a href="kontakt.html" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="mail"></i></span></span>
+            <span class="m-ikona"><img src="slike/ikone/mail.svg" class="svg-ikona" alt="pošta"></span>
             <span data-i18n="nav.mega_kontakt">Kontakt forma</span>
           </a>
           <a href="kontakt.html#mapa" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="map-pin"></i></span></span>
+            <span class="m-ikona"><span aria-hidden="true">📍</span></span>
             <span data-i18n="nav.mega_mapa">Lokacija</span>
           </a>
           <a href="pocetna.html#dokumenti" role="menuitem">
-            <span class="m-ikona"><span class="lucide-icon"><i data-lucide="file-text"></i></span></span>
+            <span class="m-ikona"><span aria-hidden="true">📄</span></span>
             <span data-i18n="nav.mega_dokument">Dokumentacija</span>
           </a>
         </div>
@@ -115,15 +117,16 @@
   <div class="nav-desno">
     <div class="acc-traka">
       <button class="dugme-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu" aria-label="Promena teme">
-        <span class="lucide-icon" id="tema-ikona"><i data-lucide="sun"></i></span>
+        <img src="slike/ikone/sun.svg" class="svg-ikona" alt="sunce">
       </button>
       <button class="dugme-acc" onclick="povecajFont()" title="Povecaj font" aria-label="Povecaj font">A+</button>
       <button class="dugme-acc" onclick="smanjiFont()" title="Smanji font" aria-label="Smanji font">A-</button>
     </div>
     <button class="dugme-jezicki aktivan-jezik" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski">SR</button>
     <button class="dugme-jezicki" id="btn-en" onclick="postaviJezik('en')" aria-label="English">EN</button>
-    <a href="prijava.html" class="dugme-prim" style="font-size:.82rem;padding:8px 18px;" data-i18n="nav.prijava">
-      <span class="lucide-icon" style="margin-right:4px"><i data-lucide="log-in"></i></span>Prijavi se
+    <a href="prijava.html" class="dugme-prim" style="font-size:.82rem;padding:8px 18px;">
+      <img src="slike/ikone/log-in.svg" class="svg-ikona" alt="prijava">
+      <span data-i18n="nav.prijava">Prijavi se</span>
     </a>
     <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Otvori meni" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -132,64 +135,60 @@
 </nav>
 <div class="zlatna-linija"></div>
 
-<!-- ZAGLAVLJE -->
 <div class="panel-naslov">
-  <h1>O nama</h1>
-  <p>Ko smo i šta nas pokreće</p>
+  <h1 data-i18n="onama.naslov">O nama</h1>
+  <p data-i18n="onama.podnaslov">Ko smo i šta nas pokreće</p>
 </div>
 
-<!-- O NAMA SEKCIJA -->
 <section class="kontejner">
   <div class="o-nama-mreza">
     <div>
       <div class="o-nama-slika-ph" role="img" aria-label="Slika tima SerijaStar">🎬</div>
     </div>
     <div class="o-nama-sadrzaj">
-      <h2>Naša <span style="color:var(--zlato)">priča</span></h2>
-      <p>SerijaStar je nastao iz jednostavne ideje: svaki gledaoc zaslužuje da ima glas. Premešten između hiljada epizoda i nebrojenih serija, prosečan fan nema gde da ostavi smislenu ocenu ili komentar koji će čuti pravi ljudi.</p>
-      <p>Naša platforma je odgovor na taj problem. Ovde tvoje mišljenje nije broj u statistici – ono oblikuje rang liste, pomaže drugima da odluče šta da gledaju i gradi zajednicu koja zaista voli televiziju.</p>
-      <p>Projekat je zamišljen kao proof-of-concept, ali sa vizijom koja daleko prevazilazi to – zamislite mesto gde se svi fanovi serija sreću.</p>
-      <a href="kontakt.html" class="dugme-prim" style="display:inline-flex;margin-top:8px">Kontaktirajte nas →</a>
+      <h2><span data-i18n="onama.prica_naslov1">Naša</span> <span style="color:var(--zlato)" data-i18n="onama.prica_naslov2">priča</span></h2>
+      <p data-i18n="onama.prica_p1">SerijaStar je nastao iz jednostavne ideje: svaki gledaoc zaslužuje da ima glas. Premešten između hiljada epizoda i nebrojenih serija, prosečan fan nema gde da ostavi smislenu ocenu ili komentar koji će čuti pravi ljudi.</p>
+      <p data-i18n="onama.prica_p2">Naša platforma je odgovor na taj problem. Ovde tvoje mišljenje nije broj u statistici – ono oblikuje rang liste, pomaže drugima da odluče šta da gledaju i gradi zajednicu koja zaista voli televiziju.</p>
+      <p data-i18n="onama.prica_p3">Projekat je zamišljen kao proof-of-concept, ali sa vizijom koja daleko prevazilazi to – zamislite mesto gde se svi fanovi serija sreću.</p>
+      <a href="kontakt.html" class="dugme-prim" style="display:inline-flex;margin-top:8px" data-i18n="onama.prica_btn">Kontaktirajte nas →</a>
     </div>
   </div>
 </section>
 
-<!-- TIM -->
 <section class="kontejner" style="padding-top:0">
   <div class="sek-naslov">
-    <h2>Naš <span style="color:var(--zlato)">tim</span></h2>
+    <h2><span data-i18n="onama.tim_naslov1">Naš</span> <span style="color:var(--zlato)" data-i18n="onama.tim_naslov2">tim</span></h2>
   </div>
   <div class="tim-mreza">
     <div class="tim-kartica">
       <div class="tim-avatar" aria-hidden="true">👨‍💻</div>
       <div class="tim-ime">Petar P.</div>
-      <div class="tim-uloga">Osnivač &amp; Developer</div>
+      <div class="tim-uloga" data-i18n="onama.tim_uloga1">Osnivač &amp; Developer</div>
     </div>
     <div class="tim-kartica">
       <div class="tim-avatar" aria-hidden="true">🎨</div>
       <div class="tim-ime">Ana M.</div>
-      <div class="tim-uloga">UI/UX Dizajner</div>
+      <div class="tim-uloga" data-i18n="onama.tim_uloga2">UI/UX Dizajner</div>
     </div>
     <div class="tim-kartica">
       <div class="tim-avatar" aria-hidden="true">📝</div>
       <div class="tim-ime">Marko J.</div>
-      <div class="tim-uloga">Content Manager</div>
+      <div class="tim-uloga" data-i18n="onama.tim_uloga3">Content Manager</div>
     </div>
     <div class="tim-kartica">
       <div class="tim-avatar" aria-hidden="true">📊</div>
       <div class="tim-ime">Sara L.</div>
-      <div class="tim-uloga">Marketing &amp; SEO</div>
+      <div class="tim-uloga" data-i18n="onama.tim_uloga4">Marketing &amp; SEO</div>
     </div>
   </div>
 </section>
 
-<!-- MISIJA -->
 <section id="misija" style="background:var(--bg2);padding:60px 0;position:relative;z-index:1">
   <div class="kontejner" style="padding-top:0;padding-bottom:0">
     <div style="text-align:center;max-width:700px;margin:0 auto">
       <div style="font-size:3rem;margin-bottom:16px">✦</div>
-      <h2 style="font-family:var(--font-n);font-size:2rem;color:var(--zlato);margin-bottom:16px">Naša misija</h2>
-      <p style="color:var(--tekst2);font-size:1.05rem;line-height:1.8">Verujem da svaka serija zaslužuje poštenu ocenu, a svaki gledaoc zaslužuje da bude čuven. SerijaStar je platforma gde se ta dva sveta sreću – transparentno, fer i sa ljubavlju prema televizijskoj umetnosti.</p>
+      <h2 style="font-family:var(--font-n);font-size:2rem;color:var(--zlato);margin-bottom:16px" data-i18n="onama.misija_naslov">Naša misija</h2>
+      <p style="color:var(--tekst2);font-size:1.05rem;line-height:1.8" data-i18n="onama.misija_tekst">Verujem da svaka serija zaslužuje poštenu ocenu, a svaki gledaoc zaslužuje da bude čuven. SerijaStar je platforma gde se ta dva sveta sreću – transparentno, fer i sa ljubavlju prema televizijskoj umetnosti.</p>
     </div>
   </div>
 </section>
@@ -198,7 +197,7 @@
   <div class="podnozje-mreza">
     <div>
       <div class="podnozje-logo-tekst">SerijaStar</div>
-      <p class="podnozje-opis">Platforma za ljubitelje TV serija. Ocenjuj, komentariši i otkrivaj skrivene bisere televizije.</p>
+      <p class="podnozje-opis" data-i18n="footer.opis">Platforma za ljubitelje TV serija. Ocenjuj, komentariši i otkrivaj skrivene bisere televizije.</p>
     </div>
     <div>
       <div class="podnozje-naslov" data-i18n="footer.nav_hd">Navigacija</div>
@@ -227,8 +226,8 @@
 <script>
   const tamna = (localStorage.getItem('ss_tema')||'tamna') === 'tamna';
   document.getElementById('tema-ikona').innerHTML = tamna
-    ? '<i data-lucide="sun"></i>'
-    : '<i data-lucide="moon"></i>';
+    ? '<img src="slike/ikone/sun.svg" class="svg-ikona" alt="sunce">'
+    : '<img src="slike/ikone/moon.svg" class="svg-ikona" alt="mesec">';
 
   function togglujMeni() {
     const nl=document.getElementById('nav-veze'), hb=document.getElementById('hamburger');
@@ -248,7 +247,6 @@
   });
 
   ucitajJezik();
-  lucide.createIcons();
 </script>
 </body>
 </html>

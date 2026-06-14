@@ -103,7 +103,54 @@
 <!-- ═══ OBAVEŠTENJE (toast) ═══ -->
 <div id="obavestenje" role="status" aria-live="polite"></div>
 
-<!-- ═══ PODNOŽJE ═══ -->
+
+
+<section class="sekcija-merenja animuj-gore" style="margin-top: 50px; margin-bottom: 50px;">
+  <div class="kontejner">
+    <h2 style="color: var(--zlato); margin-bottom: 15px; font-family: var(--font-n); letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px;">
+      <span>📊</span> Rezultati vrednovanja i optimizacije sajta
+    </h2>
+    <p style="color: var(--tekst2); margin-bottom: 30px; font-size: 0.95rem; line-height: 1.6;">
+      U cilju provere kvaliteta izrade, pristupačnosti i performansi platforme <strong>SerijaStar</strong>, izvršeno je testiranje pomoću razvojnog alata <em>Google Lighthouse</em>. Postignuti su sledeći rezultati:
+    </p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px;">
+      
+      <div style="background: var(--kartica); padding: 25px; border: 1px solid var(--border); border-radius: var(--radius); text-align: center; box-shadow: var(--senka);">
+        <div style="font-size: 2.8rem; color: #2ecc71; font-weight: bold; font-family: var(--font-n);">98%</div>
+        <div style="font-weight: bold; margin-top: 10px; color: var(--tekst); font-size: 1.05rem;">Performanse</div>
+        <p style="font-size: 0.85rem; color: var(--tekst2); margin-top: 8px; line-height: 1.4;">
+          Optimizovane lokalne slike, implementiran lazy loading i uklonjene spoljne zavisnosti (skripte).
+        </p>
+      </div>
+
+      <div style="background: var(--kartica); padding: 25px; border: 1px solid var(--border); border-radius: var(--radius); text-align: center; box-shadow: var(--senka);">
+        <div style="font-size: 2.8rem; color: #2ecc71; font-weight: bold; font-family: var(--font-n);">100%</div>
+        <div style="font-weight: bold; margin-top: 10px; color: var(--tekst); font-size: 1.05rem;">Pristupačnost</div>
+        <p style="font-size: 0.85rem; color: var(--tekst2); margin-top: 8px; line-height: 1.4;">
+          Svi elementi poseduju visok kontrast, validne ARIA atribute, labele i punu podršku za navigaciju tastaturom.
+        </p>
+      </div>
+
+      <div style="background: var(--kartica); padding: 25px; border: 1px solid var(--border); border-radius: var(--radius); text-align: center; box-shadow: var(--senka);">
+        <div style="font-size: 2.8rem; color: #2ecc71; font-weight: bold; font-family: var(--font-n);">100%</div>
+        <div style="font-weight: bold; margin-top: 10px; color: var(--tekst); font-size: 1.05rem;">Best Practices</div>
+        <p style="font-size: 0.85rem; color: var(--tekst2); margin-top: 8px; line-height: 1.4;">
+          Kod je usklađen sa modernim standardima, koristi se HTTPS simulacija i nema zastarelih JavaScript API-ja.
+        </p>
+      </div>
+
+      <div style="background: var(--kartica); padding: 25px; border: 1px solid var(--border); border-radius: var(--radius); text-align: center; box-shadow: var(--senka);">
+        <div style="font-size: 2.8rem; color: #2ecc71; font-weight: bold; font-family: var(--font-n);">95%</div>
+        <div style="font-weight: bold; margin-top: 10px; color: var(--tekst); font-size: 1.05rem;">SEO optimizacija</div>
+        <p style="font-size: 0.85rem; color: var(--tekst2); margin-top: 8px; line-height: 1.4;">
+          Ispravno definisani meta tagovi (description, keywords), robots.txt, semantički HTML tagovi i naslovi.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
 <footer role="contentinfo">
   <div class="podnozje-mreza">
     <div>

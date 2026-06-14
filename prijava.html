@@ -1,112 +1,269 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SerijaStar – platforma za ocenjivanje TV serija.">
-  <meta name="keywords" content="serije, ocenjivanje, TV epizode, SerijaStar">
-  <meta name="author" content="SerijaStar Tim">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="SerijaStar – Prijava">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="slike/logo-64.png" type="image/png">
-  <title>SerijaStar – Prijava</title>
-  <link rel="stylesheet" href="css/stil.css">
-  <link rel="stylesheet" href="css/prijava.css">
+<!-- ===== SEO META TAGOVI ===== -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SerijaStar – platforma za ocenjivanje TV serija i epizoda.">
+<meta name="keywords" content="serije, ocenjivanje serija, TV epizode, komentari serija, SerijaStar">
+<meta name="author" content="SerijaStar Tim">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="SerijaStar – Ocenjivanje serija">
+<meta property="og:type" content="website">
+<link rel="icon" href="slike/logo-64.png" type="image/png">
+
+<title>SerijaStar – Prijava</title>
+<link rel="stylesheet" href="css/stil.css">
+
+<style>
+body { display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px; overflow:hidden; }
+
+/* Lucide helpers */
+.lucide-icon { display:inline-flex; align-items:center; justify-content:center; }
+.lucide-icon svg { width:1em; height:1em; vertical-align:middle; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.logo-ikona-k .lucide-icon svg { width:2.2rem; height:2.2rem; stroke:var(--zlato,#D4AF37); }
+.tab-b .lucide-icon svg { width:1.2rem; height:1.2rem; }
+.btn-acc .lucide-icon svg { width:1rem; height:1rem; }
+
+/* Animirane cestice */
+.cestica { position:fixed; border-radius:50%; pointer-events:none; animation:letanje linear infinite; opacity:0; }
+@keyframes letanje { 0%{transform:translateY(110vh) scale(0);opacity:0} 8%{opacity:.6} 92%{opacity:.6} 100%{transform:translateY(-10vh) scale(1.5);opacity:0} }
+
+/* Login kartica */
+.login-k {
+  background:var(--kartica); border:1px solid rgba(212,175,55,.28); border-radius:20px;
+  padding:50px 44px; width:100%; max-width:460px; position:relative; z-index:10;
+  box-shadow:0 0 0 1px rgba(212,175,55,.04), 0 20px 60px rgba(0,0,0,.7), 0 0 50px rgba(212,175,55,.07);
+  animation:pojavi .7s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes pojavi { from{opacity:0;transform:translateY(40px) scale(.96)} to{opacity:1;transform:translateY(0) scale(1)} }
+.login-k::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,var(--zlato),var(--zlato-sv),var(--zlato),transparent); border-radius:0 0 4px 4px; box-shadow:0 0 20px rgba(212,175,55,.5); }
+
+/* Logo */
+.logo-z { text-align:center; margin-bottom:30px; }
+.logo-ikona-k { width:70px; height:70px; background:linear-gradient(135deg,rgba(212,175,55,.14),rgba(212,175,55,.04)); border:1px solid rgba(212,175,55,.3); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 14px; animation:puls 3s ease-in-out infinite; }
+@keyframes puls { 0%,100%{box-shadow:0 0 20px rgba(212,175,55,.2)} 50%{box-shadow:0 0 35px rgba(212,175,55,.45)} }
+.logo-n { font-family:var(--font-n); font-size:2.2rem; font-weight:900; letter-spacing:3px; background:linear-gradient(135deg,var(--zlato-sv),var(--zlato),var(--srebro)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.logo-sub { font-size:.7rem; letter-spacing:5px; text-transform:uppercase; color:var(--srebro-t); margin-top:4px; }
+.div-linija { height:1px; background:linear-gradient(90deg,transparent,rgba(212,175,55,.35),transparent); margin:22px 0; }
+
+/* Tabovi */
+.tab-nav { display:grid; grid-template-columns:1fr 1fr; gap:6px; background:rgba(5,5,12,.6); padding:5px; border-radius:12px; border:1px solid rgba(212,175,55,.1); margin-bottom:26px; }
+.tab-b { padding:10px 8px 8px; border:none; background:transparent; color:var(--tekst2); font-family:var(--font-t); font-size:.85rem; font-weight:500; border-radius:8px; transition:var(--tr); display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; }
+.tab-b .ik { font-size:1.2rem; display:flex; align-items:center; justify-content:center; }
+.tab-b.ak { background:linear-gradient(135deg,rgba(160,124,32,.85),rgba(212,175,55,.85)); color:#07070F; font-weight:700; box-shadow:0 2px 15px rgba(212,175,55,.25); }
+.tab-b:not(.ak):hover { background:rgba(212,175,55,.08); color:var(--zlato); }
+.tab-sadrzaj { display:none; }
+.tab-sadrzaj.vis { display:block; animation:fadeIn .35s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+/* Polja */
+.polje-g { margin-bottom:16px; }
+.polje-g label { display:block; font-size:.8rem; font-weight:600; letter-spacing:.5px; color:var(--tekst2); margin-bottom:6px; text-transform:uppercase; }
+.polje-g input { width:100%; padding:13px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(212,175,55,.18); border-radius:10px; color:var(--tekst); font-family:var(--font-t); font-size:.95rem; transition:var(--tr); box-sizing:border-box; }
+.polje-g input:focus { outline:none; border-color:var(--zlato); background:rgba(212,175,55,.05); box-shadow:0 0 0 3px rgba(212,175,55,.1); }
+.polje-g input.greska-p { border-color:rgba(220,60,60,.6); animation:treskanje .4s ease; }
+
+/* Prijava dugme */
+.btn-login { width:100%; padding:15px; background:linear-gradient(135deg,var(--zlato-t),var(--zlato),var(--zlato-sv)); border:none; border-radius:10px; color:#07070F; font-family:var(--font-t); font-size:.93rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; transition:var(--tr); position:relative; overflow:hidden; margin-top:6px; display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; }
+.btn-login::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent); transform:translateX(-100%); transition:transform .5s ease; }
+.btn-login:hover::after { transform:translateX(100%); }
+.btn-login:hover { box-shadow:0 6px 30px rgba(212,175,55,.5); transform:translateY(-2px); }
+.btn-login .lucide-icon svg { width:1rem; height:1rem; stroke:#07070F; }
+
+/* Greska */
+.greska-b { background:rgba(180,40,40,.12); border:1px solid rgba(220,60,60,.35); border-radius:10px; padding:11px 15px; color:#FF8080; font-size:.88rem; margin-bottom:14px; display:none; animation:treskanje .4s ease; }
+@keyframes treskanje { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+/* Pristupacnost */
+.acc-login { position:fixed; top:16px; right:16px; display:flex; gap:8px; z-index:200; }
+.btn-acc { background:rgba(212,175,55,.08); border:1px solid rgba(212,175,55,.2); color:var(--tekst2); padding:7px 12px; border-radius:8px; font-size:.82rem; font-weight:600; cursor:pointer; transition:var(--tr); display:flex; align-items:center; gap:4px; }
+.btn-acc:hover { background:rgba(212,175,55,.15); color:var(--zlato); }
+
+/* Link na pocetnu */
+.na-pocetnu { text-align:center; margin-top:18px; font-size:.82rem; color:var(--tekst2); }
+.na-pocetnu a { color:var(--zlato); text-decoration:none; font-weight:600; }
+.na-pocetnu a:hover { text-decoration:underline; }
+  /* SVG Ikonice iz slike/ikone/ */
+  .svg-ikona { width:1em; height:1em; vertical-align:middle; display:inline-block; }
+  .svg-ikona.svg-zlato { filter: invert(75%) sepia(40%) saturate(600%) hue-rotate(5deg) brightness(95%); }
+  .m-ikona .svg-ikona { width:1em; height:1em; margin-right:4px; }
+  .nav-desno .svg-ikona { width:1rem; height:1rem; }
+  .dugme-acc .svg-ikona { width:1rem; height:1rem; }
+</style>
 </head>
 <body>
 
-<!-- Pristupačnost: tema i font -->
-<div class="acc-prijava">
-  <button class="dugme-acc" id="dug-tema" onclick="togglujTemu()" title="Promeni temu">
-    <span class="lucide-ikona" id="tema-ikona"><i data-lucide="sun"></i></span>
+<!-- Pristupacnost: tema i font -->
+<div class="acc-login">
+  <button class="btn-acc" id="btn-tema" onclick="togglujTemu()" title="Promeni temu" aria-label="Promena teme">
+    <img src="slike/ikone/sun.svg" class="svg-ikona" alt="sunce">
   </button>
-  <button class="dugme-acc" onclick="povecajFont()" title="Povećaj font">A+</button>
-  <button class="dugme-acc" onclick="smanjiFont()"  title="Smanji font">A-</button>
+  <button class="btn-acc" onclick="povecajFont()" title="Povecaj font" aria-label="Povecaj font">A+</button>
+  <button class="btn-acc" onclick="smanjiFont()" title="Smanji font" aria-label="Smanji font">A-</button>
 </div>
 
-<!-- Čestice u pozadini -->
+<!-- Cestice u pozadini -->
 <div id="cestice-k"></div>
 
-<!-- PRIJAVA KARTICA -->
-<div class="prijava-kartica">
+<!-- LOGIN KARTICA -->
+<div class="login-k">
 
-  <!-- Logo -->
+  <!-- LOGO -->
   <div class="logo-z">
     <div class="logo-ikona-k" aria-label="SerijaStar logo">
-      <span class="lucide-ikona"><i data-lucide="film"></i></span>
+      <span aria-hidden="true">🎬</span>
     </div>
     <div class="logo-n">SerijaStar</div>
-    <div class="logo-pod">Ocenjivanje serija</div>
+    <div class="logo-sub">Ocenjivanje serija</div>
   </div>
 
-  <div class="linija-razdvajac"></div>
+  <div class="div-linija"></div>
 
-  <!-- Tabovi -->
+  <!-- TABOVI -->
   <div class="tab-nav" role="tablist" aria-label="Izbor uloge">
-    <button class="tab-dugme ak" role="tab" aria-selected="true"
-      onclick="prikaziTab('admin')" id="tb-admin">
-      <span class="ik"><span class="lucide-ikona"><i data-lucide="shield-check"></i></span></span>
+    <button class="tab-b ak" role="tab" aria-selected="true" onclick="prikaziTab('admin')" id="tb-admin">
+      <span class="ik"><img src="slike/ikone/lock.svg" class="svg-ikona" alt="admin"></span>
       Admin
     </button>
-    <button class="tab-dugme" role="tab" aria-selected="false"
-      onclick="prikaziTab('user')" id="tb-user">
-      <span class="ik"><span class="lucide-ikona"><i data-lucide="user"></i></span></span>
+    <button class="tab-b" role="tab" aria-selected="false" onclick="prikaziTab('korisnik')" id="tb-korisnik">
+      <span class="ik"><img src="slike/ikone/user.svg" class="svg-ikona" alt="korisnik"></span>
       Korisnik
     </button>
   </div>
 
-  <!-- Greška -->
-  <div class="greska-poruka" id="greska" role="alert" aria-live="polite"></div>
+  <!-- GRESKA -->
+  <div class="greska-b" id="greska" role="alert" aria-live="polite"></div>
 
-  <!-- Admin forma -->
-  <div class="tab-sadrzaj vidljiv-blok" id="tab-admin" role="tabpanel">
+  <!-- ADMIN FORMA -->
+  <div class="tab-sadrzaj vis" id="tab-admin" role="tabpanel" aria-labelledby="tb-admin">
     <div class="polje-g">
       <label for="a-korisnicko">Korisničko ime</label>
-      <input type="text" id="a-korisnicko" placeholder="Admin"
-        autocomplete="off" onkeydown="if(event.key==='Enter')prijava()"
-        aria-required="true">
+      <input type="text" id="a-korisnicko" placeholder="Admin" autocomplete="username"
+        onkeydown="if(event.key==='Enter')prijava()" aria-required="true">
     </div>
     <div class="polje-g">
       <label for="a-lozinka">Lozinka</label>
-      <input type="password" id="a-lozinka" placeholder="••••••"
-        onkeydown="if(event.key==='Enter')prijava()"
-        aria-required="true">
+      <input type="password" id="a-lozinka" placeholder="••••••" autocomplete="current-password"
+        onkeydown="if(event.key==='Enter')prijava()" aria-required="true">
     </div>
-    <button class="dugme-prijava" onclick="prijava()" aria-label="Prijavi se kao administrator">
-      <span class="lucide-ikona"><i data-lucide="log-in"></i></span>
+    <button class="btn-login" onclick="prijava()" aria-label="Prijavi se kao administrator">
+      <img src="slike/ikone/log-in.svg" class="svg-ikona" alt="prijava">
       Prijavi se kao Admin
     </button>
   </div>
 
-  <!-- Korisnik forma -->
-  <div class="tab-sadrzaj" id="tab-user" role="tabpanel">
+  <!-- KORISNIK FORMA -->
+  <div class="tab-sadrzaj" id="tab-korisnik" role="tabpanel" aria-labelledby="tb-korisnik">
     <div class="polje-g">
       <label for="u-korisnicko">Korisničko ime</label>
-      <input type="text" id="u-korisnicko" placeholder="User"
-        autocomplete="off" onkeydown="if(event.key==='Enter')prijava()"
-        aria-required="true">
+      <input type="text" id="u-korisnicko" placeholder="Korisnik" autocomplete="username"
+        onkeydown="if(event.key==='Enter')prijava()" aria-required="true">
     </div>
     <div class="polje-g">
       <label for="u-lozinka">Lozinka</label>
-      <input type="password" id="u-lozinka" placeholder="••••••"
-        onkeydown="if(event.key==='Enter')prijava()"
-        aria-required="true">
+      <input type="password" id="u-lozinka" placeholder="••••••" autocomplete="current-password"
+        onkeydown="if(event.key==='Enter')prijava()" aria-required="true">
     </div>
-    <button class="dugme-prijava" onclick="prijava()" aria-label="Prijavi se kao korisnik">
-      <span class="lucide-ikona"><i data-lucide="log-in"></i></span>
+    <button class="btn-login" onclick="prijava()" aria-label="Prijavi se kao korisnik">
+      <img src="slike/ikone/log-in.svg" class="svg-ikona" alt="prijava">
       Prijavi se kao Korisnik
     </button>
   </div>
 
-  <!-- Demo info -->
-  <div class="demo-z">
-    Admin: <strong>Admin / Admin</strong> &nbsp;·&nbsp; Korisnik: <strong>User / User</strong><br>
-    <em>Nove korisnike dodaje Admin u svom panelu (čuvaju se u localStorage)</em>
+  <div class="na-pocetnu">
+    <a href="pocetna.html">← Vrati se na početnu</a>
   </div>
 </div>
-
 <script src="js/core.js"></script>
-<script src="js/prijava.js"></script>
+<script>
+/* ==========================================
+   PRIJAVA LOGIKA
+========================================== */
+let aktivniTab = 'admin';
+
+// Ako je vec ulogovan – preusmeri odmah
+(function() {
+  const sesija = citajSesiju();
+  if (ses.korisnickoIme && ses.uloga) {
+    window.location.href = ses.uloga === 'admin' ? 'upravljanje.html' : 'korisnik.html';
+  }
+})();
+
+// Postavi ikonicu teme
+const jeTamnaTema = (localStorage.getItem('ss_tema') || 'tamna') === 'tamna';
+document.getElementById('tema-ikona').innerHTML = jeTamnaTema
+  ? '<img src="slike/ikone/sun.svg" class="svg-ikona" alt="sunce">'
+  : '<img src="slike/ikone/moon.svg" class="svg-ikona" alt="mesec">';
+
+function prikaziTab(tab) {
+  aktivniTab = tab;
+  document.querySelectorAll('.tab-sadrzaj').forEach(t => t.classList.remove('vis'));
+  document.querySelectorAll('.tab-b').forEach(b => {
+    b.classList.remove('ak');
+    b.setAttribute('aria-selected', 'false');
+  });
+  document.getElementById('tab-' + tab).classList.add('vis');
+  document.getElementById('tb-' + tab).classList.add('ak');
+  document.getElementById('tb-' + tab).setAttribute('aria-selected', 'true');
+  document.getElementById('greska').style.display = 'none';
+}
+
+function prijava() {
+  const poljeKor = document.getElementById(aktivniTab === 'admin' ? 'a-korisnicko' : 'u-korisnicko');
+  const poljeLoz = document.getElementById(aktivniTab === 'admin' ? 'a-lozinka'    : 'u-lozinka');
+  const korisnik = poljeKor.value.trim();
+  const lozinka  = poljeLoz.value;
+
+  poljeKor.classList.remove('greska-p');
+  poljeLoz.classList.remove('greska-p');
+
+  if (!korisnik) { poljeKor.classList.add('greska-p'); prikaziGresku('Unesite korisničko ime.'); return; }
+  if (!lozinka)  { poljeLoz.classList.add('greska-p'); prikaziGresku('Unesite lozinku.');        return; }
+
+  const rezultat = provjeriPrijavu(korisnik, lozinka);
+  if (!rezultat.uspeh) {
+    poljeKor.classList.add('greska-p');
+    poljeLoz.classList.add('greska-p');
+    prikaziGresku('Pogrešno korisničko ime ili lozinka.');
+    return;
+  }
+  if (rezultat.uloga !== aktivniTab) {
+    prikaziGresku(aktivniTab === 'admin'
+      ? 'Ovaj nalog nije admin. Koristite tab „Korisnik".'
+      : 'Ovaj nalog je admin. Koristite tab „Admin".');
+    return;
+  }
+
+  sacuvajSesiju(korisnik, rezultat.uloga);
+  window.location.href = rezultat.uloga === 'admin' ? 'upravljanje.html' : 'korisnik.html';
+}
+
+function prikaziGresku(poruka) {
+  const el = document.getElementById('greska');
+  el.textContent = poruka;
+  el.style.display = 'block';
+}
+
+/* ==========================================
+   ANIMIRANE CESTICE U POZADINI
+========================================== */
+(function kreirajCestice() {
+  const kontejner = document.getElementById('cestice-k');
+  for (let i = 0; i < 30; i++) {
+    const cestica = document.createElement('div');
+    cestica.className = 'cestica';
+    cestica.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      width:  ${Math.random() * 3 + 1}px;
+      height: ${Math.random() * 3 + 1}px;
+      animation-duration: ${Math.random() * 12 + 8}s;
+      animation-delay:    ${Math.random() * 10}s;
+      background: ${i % 3 === 0 ? 'var(--srebro)' : 'var(--zlato)'};
+    `;
+    kontejner.appendChild(cestica);
+  }
+})();
+</script>
 </body>
 </html>

@@ -39,10 +39,10 @@ function prikaziTab(tab) {
 /* ── Statistike ───────────────────────────────────────────────── */
 function osveziStatistike() {
   const stat = dajStatistike();
-  document.getElementById('stat-ep').textContent = stat.ep;
-  document.getElementById('stat-oc').textContent = stat.oc;
-  document.getElementById('stat-ko').textContent = stat.kom;
-  document.getElementById('stat-pr').textContent = stat.p || '–';
+  document.getElementById('stat-ep').textContent = stat.brojEpizoda;
+  document.getElementById('stat-oc').textContent = stat.brojOcena;
+  document.getElementById('stat-ko').textContent = stat.brojKomentara;
+  document.getElementById('stat-pr').textContent = stat.prosecnaOcena || '–';
 }
 osveziStatistike();
 
@@ -98,10 +98,10 @@ function sacuvajEpizodu() {
 
   if (izmenaId !== null) {
     izmeniEpizodu(izmenaId, { naziv, datum, opis, slika });
-    prikaziToast('✅ Epizoda izmenjena!');
+    prikaziObavestenje('✅ Epizoda izmenjena!');
   } else {
     dodajEpizodu({ naziv, datum, opis, slika });
-    prikaziToast('✅ Epizoda dodata!');
+    prikaziObavestenje('✅ Epizoda dodata!');
   }
   otkaziFormu();
   renderujEpizode();
@@ -130,7 +130,7 @@ function renderujEpizode() {
     </tr></thead>
     <tbody>
     ${epizode.map(ep => {
-      const oc = dajProsek(ep.id);
+      const oc = dajProsecnuOcenu(ep.id);
       return `<tr>
         <td style="color:var(--zlato);font-weight:600">${ep.id}</td>
         <td>
@@ -165,10 +165,10 @@ function renderujKomentare() {
     <thead><tr><th>Korisnik</th><th>Epizoda</th><th>Komentar</th><th>Datum</th><th>Akcija</th></tr></thead>
     <tbody>
     ${baza.komentari.map(k => {
-      const ep = dajEpizodu(k.eid);
+      const ep = dajEpizodu(komentar.epizodaId);
       return `<tr>
         <td style="color:var(--zlato);font-weight:500">${k.k}</td>
-        <td style="font-size:.85rem">${ep ? ep.naziv : `(obrisana, ID:${k.eid})`}</td>
+        <td style="font-size:.85rem">${ep ? ep.naziv : `(obrisana, ID:${komentar.epizodaId})`}</td>
         <td style="color:var(--tekst2);font-size:.86rem">${k.t}</td>
         <td style="color:var(--tekst2);font-size:.82rem">${k.dat || '–'}</td>
         <td><button class="dugme-obrisi" onclick="potvrdiObrisi(${k.id},'kom')" aria-label="Obriši komentar">🗑</button></td>
@@ -211,11 +211,11 @@ function dodajKorisnika() {
   const svi = [...parsujTxt(dajAdmineTxt()), ...parsujTxt(dajKorisnikeTxt())];
   if (svi.some(x => x.u === ime)) { greskaEl.textContent = 'Korisnik sa tim imenom već postoji.'; greskaEl.style.display = 'block'; return; }
 
-  dodajKorisnikaTxt(ime, loz, uloga);
+  dodajNalogUTekst(ime, loz, uloga);
   document.getElementById('nu-korisnicko').value = '';
   document.getElementById('nu-lozinka').value    = '';
   renderujKorisnike();
-  prikaziToast(`✅ Korisnik „${ime}" dodat kao ${uloga === 'admin' ? 'Admin' : 'Korisnik'}!`);
+  prikaziObavestenje(`✅ Korisnik „${ime}" dodat kao ${uloga === 'admin' ? 'Admin' : 'Korisnik'}!`);
 }
 
 function ukloniKorisnika(korisnickoIme, uloga) {
@@ -227,7 +227,7 @@ function ukloniKorisnika(korisnickoIme, uloga) {
     sacuvajKorisnikeTxt(linije.join('\n'));
   }
   renderujKorisnike();
-  prikaziToast(`🗑 Korisnik „${korisnickoIme}" uklonjen.`);
+  prikaziObavestenje(`🗑 Korisnik „${korisnickoIme}" uklonjen.`);
 }
 
 /* ── Poruke sa kontakt forme ──────────────────────────────────── */
@@ -264,7 +264,7 @@ function potvrdiObrisi(id, tip) {
     else              { obrisiKomentar(id); renderujKomentare(); }
     zatvoriModal();
     osveziStatistike();
-    prikaziToast('🗑 Obrisano uspešno.');
+    prikaziObavestenje('🗑 Obrisano uspešno.');
   };
 }
 

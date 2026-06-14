@@ -60,7 +60,7 @@ document.addEventListener('keydown', function(e) {
 /* ── Rang lista ───────────────────────────────────────────────── */
 function renderujRang(limit) {
   const rangirane = dajEpizode()
-    .map(ep => ({ ep, oc: dajProsek(ep.id) }))
+    .map(ep => ({ ep, oc: dajProsecnuOcenu(ep.id) }))
     .filter(x => x.oc.n > 0)
     .sort((a, b) => b.oc.p !== a.oc.p ? b.oc.p - a.oc.p : b.oc.n - a.oc.n)
     .slice(0, limit);
@@ -111,7 +111,7 @@ function hoverZvezdice(epId, vrednost) {
   });
 }
 function resetZvezdice(epId) {
-  const mojaOcena = ulogovan ? dajOcenuK(epId, sesija.k) : null;
+  const mojaOcena = ulogovan ? dajOcenuKorisnika(epId, sesija.k) : null;
   document.querySelectorAll(`#zv-${epId} .zvezda`).forEach(zv => {
     const v    = parseInt(zv.dataset.o);
     const ozv  = mojaOcena && v <= mojaOcena.o;
@@ -124,7 +124,7 @@ function resetZvezdice(epId) {
 function klikOcena(epId, vrednost) {
   if (!ulogovan) { otvoriModal(); return; }
   postaviOcenu(epId, sesija.k, vrednost);
-  prikaziToast(`★ Ocenio/la si sa ${vrednost}/5!`);
+  prikaziObavestenje(`★ Ocenio/la si sa ${vrednost}/5!`);
   renderujSve();
   renderujRang(10);
 }
@@ -135,12 +135,12 @@ function klikKomentar(epId) {
   const polje  = document.getElementById('kta-' + epId);
   const tekst  = polje.value.trim();
   if (!tekst) {
-    prikaziToast('⚠️ Komentar ne može biti prazan!', '#FF8080');
+    prikaziObavestenje('⚠️ Komentar ne može biti prazan!', '#FF8080');
     return;
   }
-  const postojeci = dajKomentarK(epId, sesija.k);
+  const postojeci = dajKomentarKorisnika(epId, sesija.k);
   postaviKomentar(epId, sesija.k, tekst);
-  prikaziToast(postojeci ? '✏️ Komentar izmenjen!' : '💬 Komentar sačuvan!');
+  prikaziObavestenje(postojeci ? '✏️ Komentar izmenjen!' : '💬 Komentar sačuvan!');
   renderujSve();
 }
 
@@ -159,9 +159,9 @@ function renderujSve() {
   }
 
   mreza.innerHTML = epizode.map((ep, rbr) => {
-    const oc       = dajProsek(ep.id);
-    const mojaOc   = ulogovan ? dajOcenuK(ep.id, sesija.k) : null;
-    const mojKom   = ulogovan ? dajKomentarK(ep.id, sesija.k) : null;
+    const oc       = dajProsecnuOcenu(ep.id);
+    const mojaOc   = ulogovan ? dajOcenuKorisnika(ep.id, sesija.k) : null;
+    const mojKom   = ulogovan ? dajKomentarKorisnika(ep.id, sesija.k) : null;
     const sviKom   = dajKomentare(ep.id);
 
     /* Zvezdice proseka */
