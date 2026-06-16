@@ -42,7 +42,7 @@
 
   /* ===== MUZICKI PLEJER ===== */
   .muz-prekidac {
-    position: fixed; bottom: 30px; left: 20px; z-index: 9999;
+    position: fixed; bottom: 20px; left: 20px; z-index: 9999;
     width: 52px; height: 52px; border-radius: 50%;
     background: linear-gradient(135deg, var(--zlato-t, #A07C20), var(--zlato, #D4AF37));
     border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
@@ -52,30 +52,44 @@
   .muz-prekidac .svg-ikona { width: 1.4rem; height: 1.4rem; filter: invert(1); }
 
   .muzika-traka {
-    position: fixed; bottom: 92px; left: 20px; z-index: 9999;
-    background: var(--kartica, #12121E); border: 1px solid rgba(212,175,55,.3);
-    border-radius: 16px; padding: 14px 18px; width: 340px; max-width: calc(100vw - 40px);
-    box-shadow: 0 8px 30px rgba(0,0,0,.6), 0 0 0 1px rgba(212,175,55,.08);
-    display: none; flex-direction: column; gap: 10px;
-    animation: pojavi-plejer .3s ease;
+    position: fixed; bottom: 0; left: 0; right: 0; width: 100%;
+    z-index: 9999;
+    background: var(--kartica, #12121E);
+    border-top: 2px solid rgba(212,175,55,.4);
+    border-radius: 0; padding: 10px 20px;
+    display: none; flex-direction: row; align-items: center; gap: 16px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,.6);
   }
-  @keyframes pojavi-plejer { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
   .muzika-traka.otvorena { display: flex; }
+  body.plejer-otvoren { padding-bottom: 72px; }
 
-  .muzika-info { display: flex; align-items: center; gap: 12px; }
+  .muzika-info { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
   .muzika-ikona {
     width: 40px; height: 40px; border-radius: 50%;
     background: linear-gradient(135deg, rgba(212,175,55,.2), rgba(212,175,55,.05));
     border: 1px solid rgba(212,175,55,.3);
-    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
   }
   .muzika-ikona.svira { animation: rotacija 4s linear infinite; }
   @keyframes rotacija { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  .muzika-naziv { font-weight: 700; font-size: .88rem; color: var(--tekst, #E8DCC8); }
-  .muzika-umetnik { font-size: .75rem; color: var(--tekst2, #9A9080); margin-top: 2px; }
+  .muzika-naziv { font-weight: 700; font-size: .88rem; color: var(--tekst, #E8DCC8); white-space: nowrap; }
+  .muzika-umetnik { font-size: .75rem; color: var(--tekst2, #9A9080); margin-top: 2px; white-space: nowrap; }
 
-  .muzika-klizac { display: flex; align-items: center; gap: 8px; }
-  .muz-vreme { font-size: .72rem; color: var(--tekst2, #9A9080); min-width: 32px; }
+  .muzika-kontrole { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .muz-dugme {
+    background: rgba(212,175,55,.08); border: 1px solid rgba(212,175,55,.2);
+    border-radius: 50%; width: 34px; height: 34px;
+    color: var(--zlato, #D4AF37); cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center; transition: .2s;
+  }
+  .muz-dugme:hover { background: rgba(212,175,55,.2); }
+  .muz-dugme.pusti-pauza {
+    width: 42px; height: 42px; font-size: 1.2rem;
+    background: linear-gradient(135deg, var(--zlato-t, #A07C20), var(--zlato, #D4AF37));
+    color: #07070F; border: none;
+  }
+  .muzika-klizac { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+  .muz-vreme { font-size: .72rem; color: var(--tekst2, #9A9080); min-width: 36px; white-space: nowrap; }
   .muzika-klizac input[type=range] {
     flex: 1; height: 4px; -webkit-appearance: none; appearance: none;
     background: rgba(212,175,55,.2); border-radius: 2px; cursor: pointer;
@@ -84,21 +98,9 @@
     -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%;
     background: var(--zlato, #D4AF37); cursor: pointer;
   }
-
-  .muzika-kontrole { display: flex; align-items: center; justify-content: center; gap: 8px; }
-  .muz-dugme {
-    background: rgba(212,175,55,.08); border: 1px solid rgba(212,175,55,.2);
-    border-radius: 50%; width: 34px; height: 34px;
-    color: var(--zlato, #D4AF37); cursor: pointer; font-size: 1rem;
-    display: flex; align-items: center; justify-content: center; transition: .2s;
-  }
-  .muz-dugme:hover { background: rgba(212,175,55,.2); }
-  .muz-dugme.pusti-pauza { width: 42px; height: 42px; font-size: 1.2rem;
-    background: linear-gradient(135deg, var(--zlato-t, #A07C20), var(--zlato, #D4AF37)); color: #07070F; border: none; }
-
-  .muzika-jacina { display: flex; align-items: center; gap: 8px; font-size: .75rem; color: var(--tekst2, #9A9080); }
+  .muzika-jacina { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
   .muzika-jacina input[type=range] {
-    width: 70px; height: 4px; -webkit-appearance: none; appearance: none;
+    width: 80px; height: 4px; -webkit-appearance: none; appearance: none;
     background: rgba(212,175,55,.2); border-radius: 2px; cursor: pointer;
   }
   .muzika-jacina input[type=range]::-webkit-slider-thumb {
@@ -106,12 +108,12 @@
     background: var(--zlato, #D4AF37); cursor: pointer;
   }
   .muzika-zatvori {
-    position: absolute; top: 10px; right: 12px;
-    background: none; border: none; color: var(--tekst2, #9A9080);
-    cursor: pointer; font-size: 1rem; line-height: 1; padding: 2px 6px;
+    position: static; background: none; border: none;
+    color: var(--tekst2, #9A9080); cursor: pointer; font-size: 1.1rem;
+    padding: 4px 8px; flex-shrink: 0; margin-left: auto;
   }
   .muzika-zatvori:hover { color: var(--zlato, #D4AF37); }
-  .muzika-traka { position: fixed !important; bottom: 92px !important; left: 20px !important; z-index: 9999 !important; }
+
 
 </style>
 </head>
@@ -767,29 +769,30 @@ const prekidac = document.getElementById('muz-prekidac');
 const traka = document.getElementById('muzika-traka');
 const dugmePusti = document.getElementById('muz-pusti');
 const napredak = document.getElementById('muz-napredak');
+const ikona = document.getElementById('muz-ikona');
 const vremeTek = document.getElementById('muz-vreme-tek');
 const vremeUk = document.getElementById('muz-vreme-uk');
 const ikonaElement = document.getElementById('muz-ikona');
 
 function osveziDugmePusti() {
   if(!dugmePusti || !zvuk) return;
-  dugmePusti.innerHTML = zvuk.paused ? '▶' : '⏸';
+  dugmePusti.innerHTML = zvuk.paused ? '<span aria-hidden="true">▶</span>' : '<span aria-hidden="true">⏸</span>';
   if(ikonaElement) { zvuk.paused ? ikonaElement.classList.remove('svira') : ikonaElement.classList.add('svira'); }
 }
 
-function otvoriPlejer() { if(traka && prekidac) { traka.classList.add('otvorena'); prekidac.style.display = 'none'; if(zvuk && zvuk.paused) zvuk.play().catch(()=>{}); osveziDugmePusti(); } }
-function zatvoriPlejer() { if(traka && prekidac) { traka.classList.remove('otvorena'); prekidac.style.display = 'flex'; } }
+function otvoriPlejer() { if(traka && prekidac) { traka.classList.add('otvorena'); document.body.classList.add('plejer-otvoren'); prekidac.style.display = 'none'; if(zvuk && zvuk.paused) zvuk.play().catch(()=>{}); osveziDugmePusti(); } }
+function zatvoriPlejer() { if(traka && prekidac) { traka.classList.remove('otvorena'); document.body.classList.remove('plejer-otvoren'); prekidac.style.display = 'flex'; } }
 
 function togglujMuziku() {
-  if(!zvuk || !dugmePusti || !ikonaElement) return;
+  if(!zvuk || !dugmePusti) return;
   if (zvuk.paused) {
     zvuk.play();
     dugmePusti.innerHTML = '<span aria-hidden="true">⏸</span>';
-    ikona.classList.add('svira');
+    if(ikona) ikona.classList.add('svira');
   } else {
     zvuk.pause();
     dugmePusti.innerHTML = '<span aria-hidden="true">▶</span>';
-    ikona.classList.remove('svira');
+    if(ikona) ikona.classList.remove('svira');
   }
 }
 function promeniPoziciju(val) { if (zvuk && zvuk.duration) zvuk.currentTime = (val / 100) * zvuk.duration; }
@@ -811,7 +814,7 @@ if (zvuk) {
   zvuk.addEventListener('ended', () => {
     if(playIcon && ikona && progres) {
       dugmePusti.innerHTML = '<span aria-hidden="true">▶</span>';
-      ikona.classList.remove('svira'); progres.value = 0;
+      if(ikona) ikona.classList.remove('svira'); if(napredak) napredak.value = 0;
     }
   });
 }
