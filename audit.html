@@ -7,170 +7,116 @@
 <meta name="description" content="SerijaStar – Vrednovanje sajta: rezultati provere korisničkog iskustva, bezbednosti i SEO optimizacije.">
 <meta name="robots" content="noindex, nofollow">
 <title>SerijaStar – Vrednovanje sajta</title>
-<link rel="icon" href="slike/logo.png" type="image/png">
+<link rel="icon" href="slike/logo-64.png" type="image/png">
+<link rel="stylesheet" href="css/fontovi.css">
 <link rel="stylesheet" href="css/stil.css">
-<link rel="stylesheet" href="css/Komponente.css">
-<link rel="stylesheet" href="css/Animacije.css">
-<link rel="stylesheet" href="css/responzivan.css">
+<link rel="stylesheet" href="css/komponente.css">
+<link rel="stylesheet" href="css/animacije.css">
 <style>
-/* ═══ AUDIT PAGE STYLES ═══ */
-.audit-hero {
-  text-align: center;
-  padding: 60px 40px 40px;
-  position: relative;
-  z-index: 1;
-}
-.audit-hero h1 {
-  background: linear-gradient(135deg, var(--zlato-sv), var(--zlato), var(--srebro));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  margin-bottom: 12px;
-}
-.audit-hero p {
-  color: var(--tekst2);
-  letter-spacing: 2px;
-  font-size: .85rem;
-  text-transform: uppercase;
-}
+.svg-ikona { width:1em; height:1em; vertical-align:middle; display:inline-block; }
+.m-ikona .svg-ikona { width:1em; height:1em; margin-right:4px; }
+.nav-desno .svg-ikona { width:1rem; height:1rem; }
+.dugme-acc .svg-ikona { width:1rem; height:1rem; }
 
-/* Ukupna ocena */
+.audit-hero { text-align:center; padding:60px 40px 40px; }
+.audit-hero h1 {
+  background: linear-gradient(135deg, var(--zlato-sv,#F5E27A), var(--zlato,#D4AF37), var(--srebro,#C0C0C0));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-bottom:12px;
+}
+.audit-hero p { color:var(--tekst2,#9A9080); letter-spacing:2px; font-size:.85rem; text-transform:uppercase; }
+
 .ukupna-ocena-blok {
-  background: var(--kartica);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 40px;
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
+  background:var(--kartica,#12121E); border:1px solid var(--border,rgba(212,175,55,.18));
+  border-radius:var(--radius,12px); padding:40px; margin-bottom:40px;
+  display:flex; align-items:center; gap:40px; flex-wrap:wrap;
 }
 .ocena-krug {
-  width: 140px; height: 140px;
-  border-radius: 50%;
-  border: 4px solid var(--zlato);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 0 30px rgba(212,175,55,0.25);
+  width:140px; height:140px; border-radius:50%;
+  border:4px solid var(--zlato,#D4AF37);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  flex-shrink:0; box-shadow:0 0 30px rgba(212,175,55,.25);
 }
-.ocena-krug .broj { font-size: 3rem; font-weight: 900; color: var(--zlato); line-height: 1; }
-.ocena-krug .max  { font-size: .85rem; color: var(--tekst2); }
-.ocena-opis h2 { margin-bottom: 8px; }
-.ocena-opis p  { color: var(--tekst2); font-size: .95rem; }
+.ocena-krug .broj { font-size:3rem; font-weight:900; color:var(--zlato,#D4AF37); line-height:1; }
+.ocena-krug .max  { font-size:.85rem; color:var(--tekst2,#9A9080); }
+.ocena-opis { flex:1; min-width:200px; }
+.ocena-opis h2 { margin-bottom:8px; color:var(--zlato,#D4AF37); font-family:var(--font-n); }
+.ocena-opis p  { color:var(--tekst2,#9A9080); font-size:.95rem; line-height:1.7; }
 
-/* Trake napretka */
-.trake-blok { flex: 1; min-width: 260px; }
-.traka-red {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
-}
-.traka-label { font-size: .85rem; color: var(--tekst2); width: 110px; flex-shrink: 0; }
-.traka-pozadina {
-  flex: 1; height: 8px; background: var(--bg4);
-  border-radius: 4px; overflow: hidden;
-}
-.traka-punjenje {
-  height: 100%; border-radius: 4px;
-  transition: width 1.2s ease;
-}
-.traka-vrednost { font-size: .85rem; font-weight: 700; width: 36px; text-align: right; }
-.zelena  { background: linear-gradient(90deg, #4a9e2f, #7ecb57); }
-.narandzasta { background: linear-gradient(90deg, #c47a1a, #e8a83a); }
-.crvena  { background: linear-gradient(90deg, #c0312f, #e05a58); }
+.trake-blok { flex:1; min-width:260px; }
+.traka-red { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.traka-label { font-size:.85rem; color:var(--tekst2,#9A9080); width:120px; flex-shrink:0; }
+.traka-pozadina { flex:1; height:8px; background:var(--bg4,rgba(255,255,255,.06)); border-radius:4px; overflow:hidden; }
+.traka-punjenje { height:100%; border-radius:4px; width:0%; transition:width 1.2s ease; }
+.traka-vrednost { font-size:.85rem; font-weight:700; width:36px; text-align:right; }
+.zelena  { background:linear-gradient(90deg,#4a9e2f,#7ecb57); }
+.narandzasta { background:linear-gradient(90deg,#c47a1a,#e8a83a); }
+.crvena  { background:linear-gradient(90deg,#c0312f,#e05a58); }
 
-/* Kategorije */
-.kategorija-sekcija { margin-bottom: 48px; }
+.kategorija-sekcija { margin-bottom:48px; }
 .kategorija-naslov {
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 20px; padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:20px; padding-bottom:12px;
+  border-bottom:1px solid var(--border,rgba(212,175,55,.18));
 }
-.kategorija-naslov h2 { font-size: 1.3rem; }
-.kat-ocena-znacka {
-  margin-left: auto;
-  padding: 4px 14px;
-  border-radius: 20px;
-  font-size: .85rem;
-  font-weight: 700;
-}
-.znacka-z { background: rgba(78,158,47,.2); color: #7ecb57; border: 1px solid rgba(78,158,47,.4); }
-.znacka-n { background: rgba(196,122,26,.2); color: #e8a83a; border: 1px solid rgba(196,122,26,.4); }
-.znacka-c { background: rgba(192,49,47,.2); color: #e05a58; border: 1px solid rgba(192,49,47,.4); }
+.kategorija-naslov h2 { font-size:1.3rem; font-family:var(--font-n); }
+.kat-ocena-znacka { margin-left:auto; padding:4px 14px; border-radius:20px; font-size:.85rem; font-weight:700; }
+.znacka-z { background:rgba(78,158,47,.2); color:#7ecb57; border:1px solid rgba(78,158,47,.4); }
+.znacka-n { background:rgba(196,122,26,.2); color:#e8a83a; border:1px solid rgba(196,122,26,.4); }
+.znacka-c { background:rgba(192,49,47,.2); color:#e05a58; border:1px solid rgba(192,49,47,.4); }
 
-/* Kartice rezultata */
-.rezultati-mreza {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 16px;
-}
+.rezultati-mreza { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; }
 .rezultat-kartica {
-  background: var(--kartica);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  transition: var(--tr);
+  background:var(--kartica,#12121E); border:1px solid var(--border,rgba(212,175,55,.18));
+  border-radius:var(--radius,12px); padding:20px; transition:all .25s;
 }
-.rezultat-kartica:hover { border-color: var(--zlato); transform: translateY(-2px); }
-.kartica-zaglavlje { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.rezultat-kartica:hover { border-color:var(--zlato,#D4AF37); transform:translateY(-2px); }
+.kartica-zaglavlje { display:flex; align-items:flex-start; gap:12px; margin-bottom:10px; }
 .status-znacka {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: .78rem; font-weight: 700;
-  padding: 3px 10px; border-radius: 20px; flex-shrink: 0; margin-top: 2px;
+  display:inline-flex; align-items:center; gap:5px;
+  font-size:.78rem; font-weight:700; padding:3px 10px;
+  border-radius:20px; flex-shrink:0; margin-top:2px; white-space:nowrap;
 }
-.prolaz  { background: rgba(78,158,47,.2); color: #7ecb57; border: 1px solid rgba(78,158,47,.35); }
-.upozorenje { background: rgba(196,122,26,.2); color: #e8a83a; border: 1px solid rgba(196,122,26,.35); }
-.greska  { background: rgba(192,49,47,.2); color: #e05a58; border: 1px solid rgba(192,49,47,.35); }
-.kartica-naslov { font-size: .95rem; font-weight: 700; color: var(--tekst); }
-.kartica-opis { font-size: .85rem; color: var(--tekst2); line-height: 1.6; }
+.prolaz     { background:rgba(78,158,47,.2);  color:#7ecb57; border:1px solid rgba(78,158,47,.35); }
+.upozorenje { background:rgba(196,122,26,.2); color:#e8a83a; border:1px solid rgba(196,122,26,.35); }
+.greska     { background:rgba(192,49,47,.2);  color:#e05a58; border:1px solid rgba(192,49,47,.35); }
+.kartica-naslov { font-size:.95rem; font-weight:700; color:var(--tekst,#E8DCC8); }
+.kartica-opis { font-size:.85rem; color:var(--tekst2,#9A9080); line-height:1.6; }
 
-/* Alat info boks */
 .alat-info {
-  background: var(--kartica);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--zlato);
-  border-radius: var(--radius);
-  padding: 24px 28px;
-  margin-bottom: 40px;
-  display: flex; gap: 20px; align-items: flex-start;
+  background:var(--kartica,#12121E); border:1px solid var(--border,rgba(212,175,55,.18));
+  border-left:4px solid var(--zlato,#D4AF37); border-radius:var(--radius,12px);
+  padding:24px 28px; margin-bottom:40px; display:flex; gap:20px; align-items:flex-start;
 }
-.alat-ikona { font-size: 2rem; flex-shrink: 0; }
-.alat-tekst h3 { margin-bottom: 6px; color: var(--zlato); }
-.alat-tekst p { font-size: .9rem; color: var(--tekst2); line-height: 1.6; }
-.alat-tekst a { color: var(--zlato); }
+.alat-ikona { font-size:2rem; flex-shrink:0; }
+.alat-tekst h3 { margin-bottom:6px; color:var(--zlato,#D4AF37); font-family:var(--font-n); }
+.alat-tekst p  { font-size:.9rem; color:var(--tekst2,#9A9080); line-height:1.7; }
+.alat-tekst a  { color:var(--zlato,#D4AF37); }
 
-/* Metrike grid */
-.metrike-mreza {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 12px;
-  margin-bottom: 24px;
-}
+.metrike-mreza { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:12px; margin-bottom:24px; }
 .metrika-kartica {
-  background: var(--kartica);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  text-align: center;
+  background:var(--kartica,#12121E); border:1px solid var(--border,rgba(212,175,55,.18));
+  border-radius:var(--radius,12px); padding:16px; text-align:center;
 }
-.metrika-vrednost { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
-.metrika-label { font-size: .78rem; color: var(--tekst2); }
-.vrednost-z { color: #7ecb57; }
-.vrednost-n { color: #e8a83a; }
-.vrednost-c { color: #e05a58; }
+.metrika-vrednost { font-size:1.5rem; font-weight:700; margin-bottom:4px; }
+.metrika-label { font-size:.75rem; color:var(--tekst2,#9A9080); }
+.vrednost-z { color:#7ecb57; }
+.vrednost-n { color:#e8a83a; }
+.vrednost-c { color:#e05a58; }
 
-/* Razdvajac */
 .zlatna-linija-tanka {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--zlato), transparent);
-  margin: 40px 0;
-  opacity: .4;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--zlato,#D4AF37),transparent);
+  margin:40px 0; opacity:.35;
 }
 
-@media (max-width: 768px) {
-  .ukupna-ocena-blok { flex-direction: column; align-items: center; text-align: center; }
-  .rezultati-mreza { grid-template-columns: 1fr; }
-  .metrike-mreza { grid-template-columns: repeat(2, 1fr); }
-  .alat-info { flex-direction: column; }
-  .audit-hero { padding: 40px 20px 30px; }
+@media (max-width:768px) {
+  .ukupna-ocena-blok { flex-direction:column; align-items:center; text-align:center; }
+  .rezultati-mreza { grid-template-columns:1fr; }
+  .metrike-mreza { grid-template-columns:repeat(2,1fr); }
+  .alat-info { flex-direction:column; }
+  .audit-hero { padding:40px 20px 30px; }
+  .traka-label { width:90px; font-size:.78rem; }
 }
 </style>
 </head>
@@ -265,7 +211,7 @@
     </div>
     <button class="dugme-jezicki aktivan-jezik" id="btn-sr" onclick="postaviJezik('sr')" aria-label="Srpski jezik">SR</button>
     <button class="dugme-jezicki" id="btn-en" onclick="postaviJezik('en')" aria-label="English language">EN</button>
-    <a href="prijava.html" class="dugme-prim" style="font-size:.82rem;padding:8px 18px;">
+    <a href="prijava.html" class="dugme-prim" style="font-size:.82rem;padding:8px 18px;" data-i18n="nav.prijava">
       <img src="slike/ikone/log-in.svg" class="svg-ikona" alt="prijava">Prijavi se
     </a>
     <button class="hamburger" id="hamburger" onclick="togglujMeni()" aria-label="Otvori meni" aria-expanded="false">
@@ -279,23 +225,25 @@
 <!-- ═══ GLAVNI SADRŽAJ ═══ -->
 <main id="glavni-sadrzaj">
 
-  <!-- NASLOV -->
   <div class="audit-hero animuj-gore">
     <h1>Vrednovanje sajta</h1>
-    <p>Rezultati analize · petarbpapic.github.io/WebSem</p>
+    <p>Rezultati analize · petarbpapic.github.io/WebSem · 16.6.2026.</p>
   </div>
 
   <div class="kontejner">
 
-    <!-- INFORMACIJE O ALATU -->
+    <!-- INFO O ALATU -->
     <div class="alat-info animuj-gore">
       <div class="alat-ikona">🔍</div>
       <div class="alat-tekst">
         <h3>Korišćeni alat: Google Lighthouse</h3>
         <p>
-          <strong>Google Lighthouse</strong> je besplatan alat za automatizovano vrednovanje veb stranica, ugrađen direktno u Chrome DevTools.
-          Analiza je pokrenuta na URL-u <a href="https://petarbpapic.github.io/WebSem/pocetna.html" target="_blank" rel="noopener noreferrer">petarbpapic.github.io/WebSem/pocetna.html</a>
-          u Desktop modu, dana <strong>16.6.2026.</strong> Alat proverava pet oblasti: Performanse, Pristupačnost, Dobre prakse, SEO i PWA.
+          <strong>Google Lighthouse</strong> je besplatan alat za automatizovano vrednovanje veb stranica,
+          ugrađen u Chrome DevTools (F12 → Lighthouse tab). Analiza je pokrenuta na URL-u
+          <a href="https://petarbpapic.github.io/WebSem/pocetna.html" target="_blank" rel="noopener noreferrer">
+            petarbpapic.github.io/WebSem/pocetna.html
+          </a>
+          u Desktop modu. Alat proverava pet oblasti: Performanse, Pristupačnost, Dobre prakse, SEO i Bezbednost.
         </p>
       </div>
     </div>
@@ -307,33 +255,34 @@
         <span class="max">/100</span>
       </div>
       <div class="ocena-opis">
-        <h2 class="zlatni-tekst">Ukupna ocena sajta</h2>
-        <p>Sajt poseduje solidne osnove — responzivan dizajn, višejezičku podršku, pristupačnost i SEO meta tagove. Prostor za napredak postoji u oblastima bezbednosti i tehničke optimizacije.</p>
+        <h2>Ukupna ocena sajta</h2>
+        <p>Sajt poseduje solidne osnove — responzivan dizajn, višejezičku podršku, pristupačnost i SEO meta tagove.
+        Prostor za napredak postoji u oblastima bezbednosti i tehničke optimizacije.</p>
       </div>
       <div class="trake-blok">
         <div class="traka-red">
           <span class="traka-label">Performanse</span>
-          <div class="traka-pozadina"><div class="traka-punjenje zelena" style="width:72%"></div></div>
+          <div class="traka-pozadina"><div class="traka-punjenje zelena" data-sirina="72%"></div></div>
           <span class="traka-vrednost vrednost-z">72</span>
         </div>
         <div class="traka-red">
           <span class="traka-label">Pristupačnost</span>
-          <div class="traka-pozadina"><div class="traka-punjenje zelena" style="width:65%"></div></div>
+          <div class="traka-pozadina"><div class="traka-punjenje zelena" data-sirina="65%"></div></div>
           <span class="traka-vrednost vrednost-z">65</span>
         </div>
         <div class="traka-red">
           <span class="traka-label">Dobre prakse</span>
-          <div class="traka-pozadina"><div class="traka-punjenje narandzasta" style="width:58%"></div></div>
+          <div class="traka-pozadina"><div class="traka-punjenje narandzasta" data-sirina="58%"></div></div>
           <span class="traka-vrednost vrednost-n">58</span>
         </div>
         <div class="traka-red">
           <span class="traka-label">SEO</span>
-          <div class="traka-pozadina"><div class="traka-punjenje zelena" style="width:68%"></div></div>
+          <div class="traka-pozadina"><div class="traka-punjenje zelena" data-sirina="68%"></div></div>
           <span class="traka-vrednost vrednost-z">68</span>
         </div>
         <div class="traka-red">
           <span class="traka-label">Bezbednost</span>
-          <div class="traka-pozadina"><div class="traka-punjenje crvena" style="width:35%"></div></div>
+          <div class="traka-pozadina"><div class="traka-punjenje crvena" data-sirina="35%"></div></div>
           <span class="traka-vrednost vrednost-c">35</span>
         </div>
       </div>
@@ -341,314 +290,180 @@
 
     <div class="zlatna-linija-tanka"></div>
 
-    <!-- ═══ 1. KORISNIČKO ISKUSTVO ═══ -->
+    <!-- 1. KORISNIČKO ISKUSTVO -->
     <section class="kategorija-sekcija animuj-gore" aria-labelledby="ux-naslov">
       <div class="kategorija-naslov">
         <h2 id="ux-naslov">👤 Korisničko iskustvo (UX)</h2>
         <span class="kat-ocena-znacka znacka-z">78 / 100</span>
       </div>
-
       <div class="metrike-mreza">
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-z">✔</div>
-          <div class="metrika-label">Tamna / svetla tema</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-z">✔</div>
-          <div class="metrika-label">Promena veličine fonta</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-z">SR/EN</div>
-          <div class="metrika-label">Višejezička podrška</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-z">✔</div>
-          <div class="metrika-label">Responzivan dizajn</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-z">✔</div>
-          <div class="metrika-label">Hamburger meni</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-n">⚠</div>
-          <div class="metrika-label">Kontakt forma (lažni send)</div>
-        </div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-z">✔</div><div class="metrika-label">Tamna / svetla tema</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-z">✔</div><div class="metrika-label">Promena veličine fonta</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-z">SR/EN</div><div class="metrika-label">Višejezička podrška</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-z">✔</div><div class="metrika-label">Responzivan dizajn</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-z">✔</div><div class="metrika-label">Hamburger meni</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-n">⚠</div><div class="metrika-label">Kontakt forma</div></div>
       </div>
-
       <div class="rezultati-mreza">
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka prolaz">✔ Prolaz</span>
-            <div class="kartica-naslov">Tema i prilagodljivost</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka prolaz">✔ Prolaz</span><div class="kartica-naslov">Tema i prilagodljivost</div></div>
           <p class="kartica-opis">Promena tamne/svetle teme i veličine fonta radi ispravno na svim stranicama. Podešavanja se čuvaju u localStorage i primenjuju pri svakoj poseti.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka prolaz">✔ Prolaz</span>
-            <div class="kartica-naslov">Responzivna navigacija</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka prolaz">✔ Prolaz</span><div class="kartica-naslov">Responzivna navigacija</div></div>
           <p class="kartica-opis">Hamburger meni sa <code>aria-expanded</code> atributom radi ispravno na ekranima do 768px. Medija upiti su definisani za desktop i mobilnu rezoluciju.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka prolaz">✔ Prolaz</span>
-            <div class="kartica-naslov">Validacija formi</div>
-          </div>
-          <p class="kartica-opis">Kontakt forma i prijava imaju HTML i JavaScript validaciju sa jasnim porukama grešaka i fokusom na pogrešno polje.</p>
+          <div class="kartica-zaglavlje"><span class="status-znacka prolaz">✔ Prolaz</span><div class="kartica-naslov">Validacija formi</div></div>
+          <p class="kartica-opis">Kontakt forma i prijava imaju HTML i JavaScript validaciju sa jasnim porukama grešaka i automatskim fokusom na pogrešno polje.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka upozorenje">⚠ Upozorenje</span>
-            <div class="kartica-naslov">Kontakt forma ne šalje poruke</div>
-          </div>
-          <p class="kartica-opis">Forma prikazuje „Uspešno poslato!" ali podatke samo upisuje u localStorage — poruka ne stiže nikamo. Korisnik nije obavešten da je ovo demo sajt bez servera.</p>
+          <div class="kartica-zaglavlje"><span class="status-znacka upozorenje">⚠ Upozorenje</span><div class="kartica-naslov">Kontakt forma ne šalje poruke</div></div>
+          <p class="kartica-opis">Forma prikazuje „Uspešno poslato!" ali podatke samo upisuje u localStorage — poruka ne stiže nikamo jer sajt ne koristi server.</p>
         </div>
       </div>
     </section>
 
     <div class="zlatna-linija-tanka"></div>
 
-    <!-- ═══ 2. SEO OPTIMIZACIJA ═══ -->
+    <!-- 2. SEO -->
     <section class="kategorija-sekcija animuj-gore" aria-labelledby="seo-naslov">
       <div class="kategorija-naslov">
         <h2 id="seo-naslov">🔎 SEO optimizacija</h2>
         <span class="kat-ocena-znacka znacka-n">68 / 100</span>
       </div>
-
       <div class="metrike-mreza">
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-z">7/7</div>
-          <div class="metrika-label">lang="sr" na stranicama</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-n">5/7</div>
-          <div class="metrika-label">meta description</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-c">1/7</div>
-          <div class="metrika-label">canonical tag</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-c">0</div>
-          <div class="metrika-label">sitemap.xml</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-c">0</div>
-          <div class="metrika-label">robots.txt</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-n">2/5</div>
-          <div class="metrika-label">Open Graph tagovi</div>
-        </div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-z">7/7</div><div class="metrika-label">lang="sr" na stranicama</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-n">5/7</div><div class="metrika-label">meta description</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-c">1/7</div><div class="metrika-label">canonical tag</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-c">0</div><div class="metrika-label">sitemap.xml</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-c">0</div><div class="metrika-label">robots.txt</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-n">2/5</div><div class="metrika-label">Open Graph tagovi</div></div>
       </div>
-
       <div class="rezultati-mreza">
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka prolaz">✔ Prolaz</span>
-            <div class="kartica-naslov">Jezik deklarisan na svim stranicama</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka prolaz">✔ Prolaz</span><div class="kartica-naslov">Jezik deklarisan na svim stranicama</div></div>
           <p class="kartica-opis">Svih 7 HTML fajlova ima <code>lang="sr"</code> na &lt;html&gt; elementu — pretraživači i čitači ekrana ispravno tumače jezik sadržaja.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka prolaz">✔ Prolaz</span>
-            <div class="kartica-naslov">robots meta tag ispravno konfigurisan</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka prolaz">✔ Prolaz</span><div class="kartica-naslov">robots meta tag ispravno konfigurisan</div></div>
           <p class="kartica-opis">Admin panel (upravljanje.html) ima <code>noindex, nofollow</code> — ispravno skriveno od pretraživača. Javne stranice imaju <code>index, follow</code>.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka upozorenje">⚠ Upozorenje</span>
-            <div class="kartica-naslov">Open Graph tagovi nepotpuni</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka upozorenje">⚠ Upozorenje</span><div class="kartica-naslov">Open Graph tagovi nepotpuni</div></div>
           <p class="kartica-opis">pocetna.html ima <code>og:title</code> i <code>og:type</code>, ali nedostaju <code>og:image</code>, <code>og:url</code> i <code>og:description</code>. Deljenje na društvenim mrežama neće prikazati preview sliku.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka greska">✖ Greška</span>
-            <div class="kartica-naslov">Nema sitemap.xml i robots.txt</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka greska">✖ Greška</span><div class="kartica-naslov">Nema sitemap.xml i robots.txt</div></div>
           <p class="kartica-opis">Pretraživači ne mogu automatski pronaći strukturu sajta. Oba fajla nedostaju u korenom direktorijumu repozitorijuma.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka greska">✖ Greška</span>
-            <div class="kartica-naslov">Canonical tag samo na jednoj stranici</div>
-          </div>
-          <p class="kartica-opis">Jedino pocetna.html ima <code>&lt;link rel="canonical"&gt;</code>. Preostalih 6 stranica ga nema, što može uzrokovati probleme sa duplikovanim sadržajem kod pretraživača.</p>
+          <div class="kartica-zaglavlje"><span class="status-znacka greska">✖ Greška</span><div class="kartica-naslov">Canonical tag samo na jednoj stranici</div></div>
+          <p class="kartica-opis">Jedino pocetna.html ima <code>&lt;link rel="canonical"&gt;</code>. Preostalih 6 stranica ga nema, što može uzrokovati probleme sa duplikovanim sadržajem.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka upozorenje">⚠ Upozorenje</span>
-            <div class="kartica-naslov">meta description nedostaje na 2 stranice</div>
-          </div>
-          <p class="kartica-opis">index.html i upravljanje.html nemaju meta description tag. Pretraživači će automatski generisati opis, koji često nije optimalan za prikaz u rezultatima pretrage.</p>
+          <div class="kartica-zaglavlje"><span class="status-znacka upozorenje">⚠ Upozorenje</span><div class="kartica-naslov">meta description nedostaje na 2 stranice</div></div>
+          <p class="kartica-opis">index.html i upravljanje.html nemaju meta description. Pretraživači će automatski generisati opis koji nije optimalan za prikaz u rezultatima pretrage.</p>
         </div>
       </div>
     </section>
 
     <div class="zlatna-linija-tanka"></div>
 
-    <!-- ═══ 3. BEZBEDNOST ═══ -->
+    <!-- 3. BEZBEDNOST -->
     <section class="kategorija-sekcija animuj-gore" aria-labelledby="sec-naslov">
       <div class="kategorija-naslov">
         <h2 id="sec-naslov">🔒 Bezbednost</h2>
         <span class="kat-ocena-znacka znacka-c">35 / 100</span>
       </div>
-
       <div class="metrike-mreza">
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-c">Plain</div>
-          <div class="metrika-label">Lozinke u localStorage</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-c">27×</div>
-          <div class="metrika-label">innerHTML bez sanitizacije</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-c">0</div>
-          <div class="metrika-label">Content Security Policy</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-z">✔</div>
-          <div class="metrika-label">rel="noopener" na linkovima</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-z">HTTPS</div>
-          <div class="metrika-label">GitHub Pages SSL</div>
-        </div>
-        <div class="metrika-kartica">
-          <div class="metrika-vrednost vrednost-c">Admin:Admin</div>
-          <div class="metrika-label">Hardkodovani nalog</div>
-        </div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-c">Plain</div><div class="metrika-label">Lozinke u localStorage</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-c">27×</div><div class="metrika-label">innerHTML bez sanitizacije</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-c">0</div><div class="metrika-label">Content Security Policy</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-z">✔</div><div class="metrika-label">rel="noopener" na linkovima</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-z">HTTPS</div><div class="metrika-label">GitHub Pages SSL</div></div>
+        <div class="metrika-kartica"><div class="metrika-vrednost vrednost-c">Admin:Admin</div><div class="metrika-label">Hardkodovani nalog</div></div>
       </div>
-
       <div class="rezultati-mreza">
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka greska">✖ Kritično</span>
-            <div class="kartica-naslov">Lozinke u plain tekstu</div>
-          </div>
-          <p class="kartica-opis">Korisnički nalozi se čuvaju u formatu <code>korisnickoIme:lozinka</code> direktno u localStorage bez hešovanja. Svaki JavaScript kod na stranici može pročitati sve lozinke.</p>
+          <div class="kartica-zaglavlje"><span class="status-znacka greska">✖ Kritično</span><div class="kartica-naslov">Lozinke u plain tekstu</div></div>
+          <p class="kartica-opis">Korisnički nalozi se čuvaju u formatu <code>korisnickoIme:lozinka</code> direktno u localStorage bez hešovanja. Svaki JavaScript na stranici može ih pročitati.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka greska">✖ Kritično</span>
-            <div class="kartica-naslov">XSS ranjivost — innerHTML bez provere</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka greska">✖ Kritično</span><div class="kartica-naslov">XSS ranjivost — innerHTML bez sanitizacije</div></div>
           <p class="kartica-opis">korisnik.js i upravljanje.js koriste <code>innerHTML</code> na 27 mesta za prikaz podataka iz localStorage-a (komentari, nazivi epizoda) bez sanitizacije ulaza.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka greska">✖ Greška</span>
-            <div class="kartica-naslov">Nema Content Security Policy</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka greska">✖ Greška</span><div class="kartica-naslov">Nema Content Security Policy</div></div>
           <p class="kartica-opis">Bez CSP headera, browser dozvoljava učitavanje skripti sa bilo kog izvora. CSP bi dodatno zaštitio sajt od ubacivanja malicioznog koda.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka upozorenje">⚠ Napomena</span>
-            <div class="kartica-naslov">Hardkodovani admin nalog</div>
-          </div>
-          <p class="kartica-opis">U core.js je definisan fallback: <code>Admin:Admin</code>. Ako localStorage ne sadrži podatke, ovaj nalog je aktivan i dostupan svima bez registracije.</p>
+          <div class="kartica-zaglavlje"><span class="status-znacka upozorenje">⚠ Napomena</span><div class="kartica-naslov">Hardkodovani admin nalog</div></div>
+          <p class="kartica-opis">U core.js je definisan fallback nalog <code>Admin:Admin</code>. Ako localStorage ne sadrži podatke, ovaj nalog je aktivan i dostupan svima.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka prolaz">✔ Prolaz</span>
-            <div class="kartica-naslov">HTTPS automatski aktivan</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka prolaz">✔ Prolaz</span><div class="kartica-naslov">HTTPS automatski aktivan</div></div>
           <p class="kartica-opis">GitHub Pages automatski obezbeđuje SSL sertifikat — sajt je dostupan isključivo putem HTTPS protokola bez dodatne konfiguracije.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka prolaz">✔ Prolaz</span>
-            <div class="kartica-naslov">Eksterni linkovi zaštićeni</div>
-          </div>
-          <p class="kartica-opis">Svi <code>target="_blank"</code> linkovi imaju <code>rel="noopener noreferrer"</code> — sprečava tabnapping napad koji bi maliciozna stranica mogla iskoristiti.</p>
+          <div class="kartica-zaglavlje"><span class="status-znacka prolaz">✔ Prolaz</span><div class="kartica-naslov">Eksterni linkovi zaštićeni</div></div>
+          <p class="kartica-opis">Svi <code>target="_blank"</code> linkovi imaju <code>rel="noopener noreferrer"</code> — sprečava tabnapping napad.</p>
         </div>
       </div>
     </section>
 
     <div class="zlatna-linija-tanka"></div>
 
-    <!-- ═══ 4. PRISTUPAČNOST ═══ -->
+    <!-- 4. PRISTUPAČNOST -->
     <section class="kategorija-sekcija animuj-gore" aria-labelledby="access-naslov">
       <div class="kategorija-naslov">
         <h2 id="access-naslov">♿ Pristupačnost</h2>
         <span class="kat-ocena-znacka znacka-n">65 / 100</span>
       </div>
-
       <div class="rezultati-mreza">
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka prolaz">✔ Prolaz</span>
-            <div class="kartica-naslov">ARIA atributi na interaktivnim elementima</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka prolaz">✔ Prolaz</span><div class="kartica-naslov">ARIA atributi na interaktivnim elementima</div></div>
           <p class="kartica-opis">korisnik.html sadrži više od 20 aria-label, aria-live, aria-modal i role atributa. Navigacija ima <code>role="navigation"</code>, modali imaju <code>aria-modal="true"</code>.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka prolaz">✔ Prolaz</span>
-            <div class="kartica-naslov">Alt tekst na svim slikama</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka prolaz">✔ Prolaz</span><div class="kartica-naslov">Alt tekst na svim slikama</div></div>
           <p class="kartica-opis">pocetna.html sadrži alt atribute na svim slikama, uključujući logo (<code>alt="SerijaStar logo"</code>) sa eksplicitnim width/height dimenzijama.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka greska">✖ Greška</span>
-            <div class="kartica-naslov">Nema „skip to content" linka</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka greska">✖ Greška</span><div class="kartica-naslov">Nema „skip to content" linka</div></div>
           <p class="kartica-opis">Korisnici koji navigiraju tastaturom moraju prolaziti kroz celokupnu navigaciju na svakoj stranici. Skip link bi im omogućio direktan skok na sadržaj.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka upozorenje">⚠ Upozorenje</span>
-            <div class="kartica-naslov">Hijerarhija naslova</div>
-          </div>
-          <p class="kartica-opis">pocetna.html: 1×h1, 7×h2, 9×h3, 3×h4 — strukturno ispravno. korisnik.html ima samo 1×h1, 2×h2, 1×h3 sa nedovoljno razvijenom hijerarhijom za kompleksan sadržaj.</p>
+          <div class="kartica-zaglavlje"><span class="status-znacka upozorenje">⚠ Upozorenje</span><div class="kartica-naslov">Hijerarhija naslova</div></div>
+          <p class="kartica-opis">pocetna.html: 1×h1, 7×h2, 9×h3, 3×h4 — strukturno ispravno. korisnik.html ima 1×h1, 2×h2, 1×h3 sa nedovoljno razvijenom hijerarhijom za kompleksan sadržaj.</p>
         </div>
       </div>
     </section>
 
     <div class="zlatna-linija-tanka"></div>
 
-    <!-- ═══ 5. PERFORMANSE ═══ -->
+    <!-- 5. PERFORMANSE -->
     <section class="kategorija-sekcija animuj-gore" aria-labelledby="perf-naslov">
       <div class="kategorija-naslov">
         <h2 id="perf-naslov">⚡ Performanse</h2>
         <span class="kat-ocena-znacka znacka-z">72 / 100</span>
       </div>
-
       <div class="rezultati-mreza">
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka prolaz">✔ Prolaz</span>
-            <div class="kartica-naslov">Lokalni resursi — bez CDN zavisnosti</div>
-          </div>
+          <div class="kartica-zaglavlje"><span class="status-znacka prolaz">✔ Prolaz</span><div class="kartica-naslov">Lokalni resursi — bez CDN zavisnosti</div></div>
           <p class="kartica-opis">Bootstrap, fontovi (Playfair Display, Raleway u .woff2 formatu), ikonice i biblioteke su lokalni — sajt radi i bez internet konekcije.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka prolaz">✔ Prolaz</span>
-            <div class="kartica-naslov">Lazy loading na medijima</div>
-          </div>
-          <p class="kartica-opis">Google Maps iframe na kontakt stranici ima <code>loading="lazy"</code> — mapa se učitava tek kada postane vidljiva u pregledaču, što ubrzava inicijalno učitavanje.</p>
+          <div class="kartica-zaglavlje"><span class="status-znacka prolaz">✔ Prolaz</span><div class="kartica-naslov">Lazy loading na medijima</div></div>
+          <p class="kartica-opis">Google Maps iframe i slider slike imaju <code>loading="lazy"</code> — učitavaju se tek kada postanu vidljivi, što ubrzava inicijalno otvaranje stranice.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka upozorenje">⚠ Upozorenje</span>
-            <div class="kartica-naslov">CSS fajlovi nisu minifikovani</div>
-          </div>
-          <p class="kartica-opis">Vlastiti CSS fajlovi (ukupno 1764 linije: stil.css, Komponente.css, Animacije.css, responzivan.css) nisu minifikovani. Moguća ušteda 30–40% veličine fajlova.</p>
+          <div class="kartica-zaglavlje"><span class="status-znacka upozorenje">⚠ Upozorenje</span><div class="kartica-naslov">CSS fajlovi nisu minifikovani</div></div>
+          <p class="kartica-opis">Vlastiti CSS fajlovi (ukupno 1764 linije: stil.css, Komponente.css, Animacije.css, responzivan.css) nisu minifikovani. Moguća ušteda 30–40% veličine.</p>
         </div>
         <div class="rezultat-kartica">
-          <div class="kartica-zaglavlje">
-            <span class="status-znacka upozorenje">⚠ Upozorenje</span>
-            <div class="kartica-naslov">Slike u JPG formatu</div>
-          </div>
-          <p class="kartica-opis">Slider i epizodne slike su u .jpg formatu. Konverzija u WebP bi smanjila veličinu 25–35% uz isti vizuelni kvalitet, uz fallback za starije pregledače.</p>
+          <div class="kartica-zaglavlje"><span class="status-znacka upozorenje">⚠ Upozorenje</span><div class="kartica-naslov">Slike u JPG formatu</div></div>
+          <p class="kartica-opis">Slider i epizodne slike su u .jpg formatu. Konverzija u WebP bi smanjila veličinu 25–35% uz isti vizuelni kvalitet.</p>
         </div>
       </div>
     </section>
@@ -656,12 +471,13 @@
     <!-- ZAKLJUČAK -->
     <div class="ukupna-ocena-blok animuj-gore" style="margin-top:0">
       <div style="flex:1">
-        <h2 class="zlatni-tekst" style="margin-bottom:12px">Zaključak vrednovanja</h2>
-        <p style="color:var(--tekst2); line-height:1.8; font-size:.95rem;">
-          SerijaStar sajt zadovoljava zahteve akademskog projekta: multipage struktura, responzivnost, višejezička podrška, 
-          animacije, pristupačnost i SEO meta tagovi su implementirani. Hosting na GitHub Pages radi ispravno sa automatskim HTTPS sertifikatom.
-          Glavne oblasti za poboljšanje u produkcijskom okruženju su bezbednost (hešovanje lozinki, sanitizacija unosa) i 
-          tehnička SEO optimizacija (sitemap, canonical tagovi). Ove napomene su karakteristične za statičke sajlove koji ne koriste serversko okruženje.
+        <h2 style="color:var(--zlato,#D4AF37);font-family:var(--font-n);margin-bottom:12px">Zaključak vrednovanja</h2>
+        <p style="color:var(--tekst2,#9A9080);line-height:1.8;font-size:.95rem;">
+          SerijaStar sajt zadovoljava zahteve akademskog projekta: multipage struktura, responzivnost, višejezička podrška,
+          animacije, pristupačnost i SEO meta tagovi su implementirani. Hosting na GitHub Pages radi ispravno sa automatskim
+          HTTPS sertifikatom. Glavne oblasti za poboljšanje su bezbednost (hešovanje lozinki, sanitizacija unosa) i
+          tehnička SEO optimizacija (sitemap, canonical tagovi). Ove napomene su karakteristične za statičke sajtove
+          bez serverskog okruženja.
         </p>
       </div>
     </div>
@@ -696,7 +512,7 @@
   </div>
   <div class="podnozje-dno">
     <span data-i18n="footer.copy">2025 SerijaStar. Sva prava zadrzana.</span>
-    <span style="color:var(--zlato)" data-i18n="footer.ljubav">Izgradjeno sa ljubavlju za ljubitelje serija</span>
+    <span style="color:var(--zlato,#D4AF37)" data-i18n="footer.ljubav">Izgradjeno sa ljubavlju za ljubitelje serija</span>
   </div>
 </footer>
 
@@ -705,7 +521,7 @@
 <!-- ═══ SKRIPTE ═══ -->
 <script src="js/core.js"></script>
 <script>
-/* ════ TEMA I IKONA ════ */
+/* ════ TEMA ════ */
 const tamna = (localStorage.getItem('ss_tema') || 'tamna') === 'tamna';
 const dugmeTema = document.getElementById('btn-tema');
 if (dugmeTema) {
@@ -727,7 +543,6 @@ function togglujMeni() {
     hb.setAttribute('aria-expanded', o);
   }
 }
-
 document.querySelectorAll('.nav-veze > li > a').forEach(a => {
   a.addEventListener('click', function(e) {
     if (window.innerWidth > 768) return;
@@ -739,14 +554,20 @@ document.querySelectorAll('.nav-veze > li > a').forEach(a => {
   });
 });
 
-/* ════ ANIMACIJA TRAKA PRI UČITAVANJU ════ */
+/* ════ ANIMACIJA TRAKA ════ */
 window.addEventListener('load', () => {
-  document.querySelectorAll('.traka-punjenje').forEach(traka => {
-    const ciljnasirina = traka.style.width;
-    traka.style.width = '0%';
-    setTimeout(() => { traka.style.width = ciljnasirina; }, 300);
-  });
+  setTimeout(() => {
+    document.querySelectorAll('.traka-punjenje').forEach(t => {
+      t.style.width = t.getAttribute('data-sirina') || '0%';
+    });
+  }, 400);
 });
+
+/* ════ ANIMACIJE PRI SKROLOVANJU ════ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vidljiv'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.animuj-gore').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
